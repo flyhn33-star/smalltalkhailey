@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gulliver Ch.2 p.9 — The Terms of Freedom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700&family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF5E9; --paper-deep:#F2E8D5; --ink:#22322E; --ink-soft:#5C6B65;
+  --sea:#1E6D62; --sea-light:#A9D6CB; --amber:#DE9B2E; --seal:#B4553F;
+  --line:rgba(34,50,46,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);
+  background-image:radial-gradient(circle at 12% 8%, rgba(169,214,203,.35), transparent 42%),
+                   radial-gradient(circle at 88% 92%, rgba(222,155,46,.18), transparent 45%);
+  background-attachment:fixed;color:var(--ink);
+  font-family:"Noto Sans KR",sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:820px;margin:0 auto;padding:40px 22px 90px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--sea)}
+h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(30px,6vw,46px);line-height:1.1;margin:.28em 0 .1em;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--sea)}
+.sub{color:var(--ink-soft);font-size:14px;margin:0 0 6px}
+.head-rule{height:2px;background:linear-gradient(90deg,var(--sea),var(--sea-light) 40%,transparent);margin:26px 0 0}
+.namebar{display:flex;align-items:center;gap:12px;margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 16px;flex-wrap:wrap}
+.namebar label{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--ink-soft);flex:none}
+.namebar input{border:none;outline:none;background:transparent;font:inherit;font-size:15px;flex:1;min-width:120px;color:var(--ink)}
+.namebar .elapsed{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--sea);flex:none}
+section{margin:46px 0 0}
+h2{font-family:"Fraunces",serif;font-weight:600;font-size:22px;margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+h2 .num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--amber);letter-spacing:.1em;border:1px solid var(--amber);border-radius:3px;padding:1px 6px;flex:none}
+.hint{color:var(--ink-soft);font-size:13px;margin:0 0 18px}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:9px}
+.word{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 13px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:border-color .18s,transform .18s,box-shadow .18s}
+.word:hover{border-color:var(--sea-light);transform:translateY(-1px);box-shadow:0 4px 12px rgba(30,109,98,.09)}
+.word b{font-family:"Fraunces",serif;font-weight:600;font-size:16px;display:block}
+.word .ko{display:block;font-size:13px;color:var(--sea);margin-top:3px;filter:blur(4.5px);opacity:.55;transition:filter .2s,opacity .2s;user-select:none}
+.word.on .ko{filter:none;opacity:1;user-select:auto}
+.toolbar{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.mini{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;background:transparent;border:1px solid var(--line);border-radius:99px;padding:5px 13px;cursor:pointer;color:var(--ink-soft);transition:.18s}
+.mini:hover{border-color:var(--sea);color:var(--sea)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card .tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.card.pos .tag{color:var(--sea)} .card.neg .tag{color:var(--seal)}
+.card p{margin:6px 0 0;font-size:14px}
+.card .ex{font-family:"Fraunces",serif;font-size:15.5px;margin-top:9px;line-height:1.5}
+.trap{margin-top:12px;border-left:3px solid var(--amber);background:rgba(222,155,46,.09);border-radius:0 9px 9px 0;padding:13px 16px;font-size:14px}
+.x{color:var(--seal);font-family:"IBM Plex Mono",monospace;font-size:13px}
+.o{color:var(--sea);font-family:"IBM Plex Mono",monospace;font-size:13px}
+.chunk{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit;transition:.18s}
+.chunk:hover{border-color:var(--sea-light)}
+.chunk .en{font-family:"Fraunces",serif;font-size:16px;flex:1}
+.chunk .ko2{font-size:12.5px;color:var(--ink-soft);flex:none}
+.dots{display:flex;gap:5px;flex:none}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--sea-light);transition:.18s}
+.dot.fill{background:var(--sea);border-color:var(--sea)}
+.chunk.done{background:rgba(169,214,203,.22);border-color:var(--sea-light)}
+.decree{position:relative;background:var(--paper-deep);border:1px solid rgba(34,50,46,.18);border-radius:4px;padding:26px 26px 22px;box-shadow:inset 0 0 60px rgba(180,85,63,.06)}
+.decree::before,.decree::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 9px,rgba(34,50,46,.10) 9px 11px)}
+.decree::before{top:-1px} .decree::after{bottom:-1px}
+.decree h3{font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin:6px 0 20px;color:var(--seal)}
+.rule{border-bottom:1px dotted rgba(34,50,46,.25);padding:15px 0}
+.rule:last-of-type{border-bottom:none}
+.rule .ko3{font-size:14px}
+.rule .ko3 span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--seal);margin-right:9px}
+.rule .field{display:flex;align-items:center;gap:9px;margin-top:9px;border-bottom:1px solid rgba(34,50,46,.22);padding-bottom:5px}
+.rule .field input{border:none;outline:none;background:transparent;font:inherit;font-family:"Fraunces",serif;font-size:15.5px;flex:1;color:var(--ink);min-width:0}
+.rule .field input::placeholder{font-family:"Noto Sans KR",sans-serif;font-size:13px;color:rgba(92,107,101,.45)}
+.rule .mark{font-family:"IBM Plex Mono",monospace;font-size:15px;flex:none;width:18px;text-align:center}
+.rule.correct .mark{color:var(--sea)} .rule.partial .mark{color:var(--amber)} .rule.miss .mark{color:var(--seal)}
+.rule.correct .field{border-color:var(--sea)}
+.rule .hintbtn{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;background:transparent;border:1px dashed rgba(180,85,63,.5);border-radius:99px;color:var(--seal);padding:2px 10px;cursor:pointer;margin-top:9px;transition:.16s}
+.rule .hintbtn:hover{background:rgba(180,85,63,.09)}
+.rule .skel{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--ink-soft);margin-top:9px;display:none}
+.rule .skel .kw{color:var(--sea);font-weight:500}
+.rule.hinted .skel{display:block} .rule.hinted .hintbtn{display:none}
+.rule .ans{font-family:"Fraunces",serif;font-size:15.5px;color:var(--sea);margin-top:7px;max-height:0;overflow:hidden;opacity:0;transition:max-height .3s ease,opacity .3s ease}
+.rule.open .ans{max-height:90px;opacity:1}
+.seal{display:block;margin:22px auto 0;width:76px;height:76px;border-radius:50%;background:var(--seal);color:#F7EFE2;border:none;cursor:pointer;font-family:"Fraunces",serif;font-size:12px;line-height:1.25;box-shadow:0 3px 0 rgba(0,0,0,.16);transition:transform .18s,box-shadow .18s}
+.seal:hover{transform:translateY(1px);box-shadow:0 2px 0 rgba(0,0,0,.16)}
+.decree .note{text-align:center;font-size:11.5px;color:var(--ink-soft);margin:10px 0 0}
+.q{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 16px;margin-bottom:9px}
+.q .t{font-size:14.5px}
+.q .btns{display:flex;gap:7px;margin-top:9px;align-items:center}
+.ox{width:38px;height:32px;border-radius:7px;border:1px solid var(--line);background:transparent;cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--ink-soft);transition:.15s}
+.ox:hover{border-color:var(--sea)}
+.ox.right{background:var(--sea);border-color:var(--sea);color:#fff}
+.ox.wrong{background:var(--seal);border-color:var(--seal);color:#fff}
+.fb{font-size:12.5px;color:var(--ink-soft);margin-left:6px}
+.timer-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+.clock{font-family:"IBM Plex Mono",monospace;font-size:46px;font-weight:500;color:var(--sea)}
+.clock.low{color:var(--seal)}
+.run{background:var(--sea);color:#fff;border:none;border-radius:99px;padding:9px 26px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.1em;cursor:pointer;margin:6px 4px 0;transition:.18s}
+.run:hover{background:#175A51}
+.run.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+.keys{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px}
+.key{font-family:"Fraunces",serif;font-size:14px;background:rgba(169,214,203,.3);border-radius:99px;padding:5px 14px}
+.lines{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 16px 14px}
+.line{display:flex;gap:11px;align-items:center;border-bottom:1px solid var(--line);padding:11px 0}
+.line:last-child{border-bottom:none}
+.line span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--amber);flex:none}
+.line input{border:none;background:transparent;font:inherit;font-family:"Fraunces",serif;font-size:15.5px;flex:1;outline:none;color:var(--ink);min-width:0}
+.line input::placeholder{color:rgba(92,107,101,.45);font-family:"Noto Sans KR",sans-serif;font-size:13.5px;font-weight:300}
+.line .warn{font-size:11.5px;color:var(--seal);flex:none}
+/* submit */
+.submit-box{background:var(--sea);border-radius:14px;padding:26px;color:#EDF6F3;text-align:center}
+.submit-box h3{font-family:"Fraunces",serif;font-weight:600;font-size:20px;margin:0 0 6px;color:#fff}
+.submit-box p{font-size:13px;margin:0 0 18px;color:rgba(237,246,243,.8)}
+.big{background:var(--amber);color:#2A1D06;border:none;border-radius:99px;padding:13px 38px;font-family:"Fraunces",serif;font-weight:600;font-size:16px;cursor:pointer;transition:.18s}
+.big:hover{background:#C98A22}
+.result{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:14px;display:none}
+.result.show{display:block}
+.score{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px;flex-wrap:wrap}
+.score .big-n{font-family:"Fraunces",serif;font-size:40px;font-weight:600;color:var(--sea);line-height:1}
+.score .of{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-soft)}
+.score .who{margin-left:auto;font-size:13px;color:var(--ink-soft);text-align:right}
+.breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.bd{background:var(--paper);border-radius:9px;padding:10px 13px}
+.bd .l{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase}
+.bd .v{font-family:"Fraunces",serif;font-size:18px;font-weight:600}
+.report{font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.7;white-space:pre-wrap;background:var(--paper);border-radius:9px;padding:14px;max-height:320px;overflow:auto;color:var(--ink)}
+.sendrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.send{background:var(--sea);color:#fff;border:none;border-radius:99px;padding:10px 20px;font-size:13px;font-family:"Noto Sans KR",sans-serif;cursor:pointer;transition:.18s}
+.send:hover{background:#175A51}
+.send.alt{background:transparent;color:var(--sea);border:1px solid var(--sea)}
+.saved{font-size:12px;color:var(--sea);margin-top:10px;min-height:18px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+footer p{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--ink-soft);margin:0}
+footer .tbtn{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;background:transparent;border:1px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--ink-soft);cursor:pointer}
+footer .tbtn:hover{border-color:var(--sea);color:var(--sea)}
+#teacher{display:none;margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+#teacher.show{display:block}
+#teacher h4{font-family:"Fraunces",serif;font-size:16px;margin:0 0 10px}
+.rec{border-bottom:1px solid var(--line);padding:10px 0;font-size:13px}
+.rec:last-child{border-bottom:none}
+.rec b{font-family:"Fraunces",serif;font-size:15px}
+.rec .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-soft)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media (max-width:620px){.grid2{grid-template-columns:1fr}.chunk{flex-wrap:wrap}.chunk .ko2{width:100%}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  body{background:#fff}
+  .word .ko{filter:none;opacity:1}
+  .rule .ans{max-height:none;opacity:1}
+  .rule .skel{display:block}
+  .seal,.toolbar,.run,.rule .hintbtn,.submit-box,.sendrow,footer .tbtn{display:none}
+  .result{display:block}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Gulliver's Travels · Chapter 2 · p.9</div>
+    <h1>자유의 <em>조건</em><br>The Terms of Freedom</h1>
+    <p class="sub">사슬을 푸는 대신 걸리버가 지켜야 했던 다섯 가지 명령 — 오늘의 문법은 <strong>must / must not</strong></p>
+    <div class="head-rule"></div>
+    <div class="namebar">
+      <label for="sname">NAME</label>
+      <input id="sname" type="text" placeholder="이름을 적고 시작하세요" autocomplete="off">
+      <span class="elapsed" id="elapsed">00:00</span>
+    </div>
+  </header>
+
+  <section>
+    <h2><span class="num">01</span> 오늘의 단어</h2>
+    <p class="hint">카드를 눌러 뜻을 확인하세요. 먼저 영어만 보고 소리 내어 읽어봅니다.</p>
+    <div class="toolbar">
+      <button class="mini" id="showAll">뜻 모두 보기</button>
+      <button class="mini" id="hideAll">뜻 모두 가리기</button>
+    </div>
+    <div class="vocab" id="vocab"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">02</span> 문법: must vs. must not</h2>
+    <p class="hint">must 뒤에는 언제나 동사원형. to도, -s도 붙지 않습니다.</p>
+    <div class="grid2">
+      <div class="card pos">
+        <div class="tag">must + 동사원형</div><p>의무 — 반드시 ~해야 한다</p>
+        <div class="ex">You <strong>must walk</strong> on the main roads.</div>
+      </div>
+      <div class="card neg">
+        <div class="tag">must not + 동사원형</div><p>금지 — 절대 ~하면 안 된다</p>
+        <div class="ex">You <strong>must not leave</strong> without permission.</div>
+      </div>
+    </div>
+    <div class="trap"><b>헷갈리는 지점 1 — 형태</b><br>
+      <span class="x">✕ You must to walk. / You must walks.</span><br>
+      <span class="o">✓ You must walk.</span></div>
+    <div class="trap"><b>헷갈리는 지점 2 — 뜻</b><br>
+      <span class="x">must not = 하면 안 된다 (금지)</span><br>
+      <span class="o">don't have to = 안 해도 된다 (선택)</span><br>
+      걸리버가 받은 건 전부 <strong>금지와 의무</strong>였습니다. don't have to는 하나도 없었죠.</div>
+  </section>
+
+  <section>
+    <h2><span class="num">03</span> 청크 3회 반복</h2>
+    <p class="hint">한 줄을 세 번 눌러 세 번 소리 내어 말합니다. 점 세 개가 다 차면 완료.</p>
+    <div id="chunks"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">04</span> 릴리퍼트 왕국 포고문 복원</h2>
+    <p class="hint">한국어를 보고 영어 문장을 직접 써 보세요. 막히면 힌트를, 다 쓴 뒤에는 봉인을 엽니다.</p>
+    <div class="decree">
+      <h3>Orders of the King · Lilliput</h3>
+      <div id="rules"></div>
+      <button class="seal" id="seal">정답<br>봉인 해제</button>
+      <p class="note">봉인을 열면 제출 기록에 '정답 미리 봄'으로 남습니다.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">05</span> 내용 확인 O / X</h2>
+    <p class="hint">기억나는 대로 먼저 답하고, 틀린 문항은 본문에서 근거를 찾아보세요.</p>
+    <div id="quiz"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">06</span> 60초 리텔링</h2>
+    <p class="hint">키워드만 보고 p.9의 내용을 영어로 이어서 말합니다. 멈춰도 다시 이어가면 됩니다.</p>
+    <div class="timer-box">
+      <div class="clock" id="clock">01:00</div>
+      <button class="run" id="start">시작</button>
+      <button class="run ghost" id="reset">되돌리기</button>
+      <div class="keys">
+        <span class="key">many weeks</span><span class="key">chains removed</span>
+        <span class="key">in return for freedom</span><span class="key">five orders</span>
+        <span class="key">agreed</span><span class="key">at last, free</span><span class="key">explored the island</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">07</span> 나의 규칙 다섯 가지</h2>
+    <p class="hint">내 교실·집·회사의 규칙을 must와 must not으로 다섯 개 만들어 보세요. 이 문장은 선생님이 직접 읽고 첨삭합니다.</p>
+    <div class="lines" id="mine"></div>
+  </section>
+
+  <section>
+    <h2><span class="num">08</span> 제출</h2>
+    <p class="hint">채점은 자동으로 끝나고, 결과를 복사·이메일·파일 중 편한 방법으로 보내면 됩니다.</p>
+    <div class="submit-box">
+      <h3>다 풀었나요?</h3>
+      <p>제출하면 04·05번이 자동 채점되고 학습 기록이 함께 정리됩니다.</p>
+      <button class="big" id="submit">채점하고 제출하기</button>
+    </div>
+    <div class="result" id="result">
+      <div class="score">
+        <span class="big-n" id="scoreN">0</span><span class="of">/ 10점</span>
+        <span class="who" id="who"></span>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="report" id="report"></div>
+      <div class="sendrow">
+        <button class="send" id="copy">결과 복사</button>
+        <button class="send alt" id="mail">이메일로 제출</button>
+        <button class="send alt" id="dl">파일로 저장</button>
+      </div>
+      <div class="saved" id="saved"></div>
+    </div>
+  </section>
+
+  <footer>
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 9 L6.4 3.6 L9.2 7 H14.8 L17.6 3.6 L20 9 V17 A3 3 0 0 1 17 20 H7 A3 3 0 0 1 4 17 Z" fill="#22322E"/>
+      <circle cx="9.6" cy="12.4" r="1.1" fill="#A9D6CB"/><circle cx="14.4" cy="12.4" r="1.1" fill="#A9D6CB"/>
+    </svg>
+    <p>HAILEY ENGLISH LAB · REVIEW SHEET</p>
+    <button class="tbtn" id="tbtn">선생님 보기</button>
+  </footer>
+  <div id="teacher"><h4>제출 기록</h4><div id="records"></div></div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const fbApp = initializeApp({
+  apiKey: "AIzaSyCsbL_16s7DLUXRS22Z9bN-WCWsLS1eJq8",
+  authDomain: "hldys-59f64.firebaseapp.com",
+  projectId: "hldys-59f64",
+  storageBucket: "hldys-59f64.firebasestorage.app",
+  messagingSenderId: "222352015503",
+  appId: "1:222352015503:web:9bdb45bf7f11efb9a430fa"
+});
+const db = getFirestore(fbApp);
+const SHEET_ID = "gulliver-ch2-p9";
+
+const TEACHER_EMAIL="hailey@weekends.co.kr";
+const startedAt=Date.now();
+const state={hints:0,revealed:false,chunksDone:0,timerUsed:false};
+
+/* ---------- 01 vocab ---------- */
+const VOCAB=[["chains","사슬"],["remove","없애다, 풀다"],["in return for","~의 대가로"],["obey","따르다, 복종하다"],
+["order","명령"],["permission","허락"],["warning","미리 알림, 예고"],["capital","수도"],["main road","큰길"],
+["field","들판"],["step on","~을 밟다"],["defend","지키다, 방어하다"],["enemy","적"],["condition","조건"],
+["guard","경비병"],["unlock","잠금을 풀다"],["explore","탐험하다"],["at last","마침내"]];
+const vb=document.getElementById('vocab');
+VOCAB.forEach(([en,ko])=>{
+  const b=document.createElement('button');
+  b.className='word';b.innerHTML='<b>'+en+'</b><span class="ko">'+ko+'</span>';
+  b.onclick=()=>b.classList.toggle('on');vb.appendChild(b);
+});
+document.getElementById('showAll').onclick=()=>document.querySelectorAll('.word').forEach(w=>w.classList.add('on'));
+document.getElementById('hideAll').onclick=()=>document.querySelectorAll('.word').forEach(w=>w.classList.remove('on'));
+
+/* ---------- 03 chunks ---------- */
+const CHUNKS=[["in return for my freedom","자유를 얻는 대가로"],["I had to obey the orders","명령을 따라야 했다"],
+["without permission","허락 없이"],["give two hours' warning","두 시간 전에 미리 알리다"],
+["take extra care not to step on","밟지 않도록 각별히 조심하다"],["defend themselves against enemies","적으로부터 스스로를 지키다"],
+["I agreed to all their conditions","나는 그 조건을 모두 받아들였다"],["at last I was free","마침내 나는 자유로워졌다"]];
+const cb=document.getElementById('chunks');
+CHUNKS.forEach(([en,ko])=>{
+  const b=document.createElement('button');b.className='chunk';
+  b.innerHTML='<span class="en">'+en+'</span><span class="ko2">'+ko+'</span><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span>';
+  let n=0;
+  b.onclick=()=>{
+    n=n>=3?0:n+1;
+    b.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('fill',i<n));
+    b.classList.toggle('done',n>=3);
+    state.chunksDone=document.querySelectorAll('.chunk.done').length;
+  };
+  cb.appendChild(b);
+});
+
+/* ---------- 04 rules ---------- */
+const RULES=[
+ ["허락 없이 릴리퍼트를 떠나면 안 된다.","You must not leave Lilliput without permission."],
+ ["수도를 방문하기 두 시간 전에 미리 알려야 한다.","You must give two hours' warning before you visit the capital."],
+ ["들판이나 정원이 아니라 큰길로 걸어야 한다.","You must walk on the main roads, not through the fields or gardens."],
+ ["릴리퍼트 사람과 그들의 집, 동물을 밟지 않도록 각별히 조심해야 한다.","You must take extra care not to step on any Lilliputians, their homes or animals."],
+ ["적으로부터 릴리퍼트를 지키는 일을 도와야 한다.","You must help the Lilliputians defend themselves against their enemies."]];
+const KEEP=new Set(['you','the','on','to','any','their','or','a','of','and']);
+function skeleton(s){
+  return s.split(' ').map((w,idx)=>{
+    const core=w.replace(/[^A-Za-z']/g,'');
+    const tail=w.slice(core.length?w.indexOf(core)+core.length:0);
+    if(KEEP.has(core.toLowerCase())) return '<span class="kw">'+w+'</span>';
+    if(idx>0&&/^[A-Z]/.test(core)) return '<span class="kw">'+w+'</span>';
+    return core.split('').map((c,j)=>j===0?c:(/[a-zA-Z]/.test(c)?'_':c)).join('')+tail;
+  }).join(' ');
+}
+const norm=s=>s.toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' ').trim();
+const rb=document.getElementById('rules');
+RULES.forEach(([ko,en],i)=>{
+  const d=document.createElement('div');d.className='rule';
+  d.innerHTML='<div class="ko3"><span>'+String(i+1).padStart(2,'0')+'</span>'+ko+'</div>'+
+    '<div class="field"><input type="text" placeholder="영어로 써 보세요" autocomplete="off" spellcheck="false"><span class="mark"></span></div>'+
+    '<button class="hintbtn">힌트 보기</button>'+
+    '<div class="skel">'+skeleton(en)+'</div>'+
+    '<div class="ans">'+en+'</div>';
+  d.querySelector('.hintbtn').onclick=()=>{d.classList.add('hinted');state.hints++};
+  rb.appendChild(d);
+});
+document.getElementById('seal').onclick=e=>{
+  const open=!document.querySelector('.rule').classList.contains('open');
+  document.querySelectorAll('.rule').forEach(r=>r.classList.toggle('open',open));
+  e.currentTarget.innerHTML=open?'정답<br>다시 덮기':'정답<br>봉인 해제';
+  if(open) state.revealed=true;
+};
+function gradeRules(){
+  const rows=[];let pts=0;
+  document.querySelectorAll('.rule').forEach((r,i)=>{
+    const typed=r.querySelector('.field input').value.trim();
+    const a=norm(RULES[i][1]),b=norm(typed);
+    const aw=a.split(' '),bw=b.split(' ');
+    const hit=bw.filter(w=>aw.includes(w)).length;
+    const ratio=b?hit/aw.length:0;
+    let mark,got;
+    if(b&&a===b){mark='○';got=1;r.className='rule correct'+(r.classList.contains('hinted')?' hinted':'')+(r.classList.contains('open')?' open':'')}
+    else if(ratio>=0.8){mark='△';got=0.5;r.className='rule partial'+(r.classList.contains('hinted')?' hinted':'')+(r.classList.contains('open')?' open':'')}
+    else{mark='✕';got=0;r.className='rule miss'+(r.classList.contains('hinted')?' hinted':'')+(r.classList.contains('open')?' open':'')}
+    r.querySelector('.mark').textContent=mark;
+    pts+=got;
+    rows.push({no:i+1,mark:mark,typed:typed||'(빈칸)',answer:RULES[i][1],hinted:r.classList.contains('hinted')});
+  });
+  return {pts:pts,rows:rows};
+}
+
+/* ---------- 05 quiz ---------- */
+const QUIZ=[["왕은 여러 주가 지난 뒤에야 사슬을 풀어주기로 했다.",true,"오랜 시간이 지난 뒤였습니다."],
+["걸리버는 조건 중 마음에 드는 것만 받아들였다.",false,"모든 조건을 받아들였습니다."],
+["걸리버는 수도에 갈 때 미리 알릴 의무가 있었다.",true,"두 시간 전 예고 조건이 있었죠."],
+["걸리버는 정원을 가로질러 다녀도 괜찮았다.",false,"큰길로만 다녀야 했습니다."],
+["자유를 얻은 뒤 걸리버는 며칠 동안 섬을 둘러보았다.",true,"섬을 탐험했습니다."]];
+const answers=new Array(QUIZ.length).fill(null);
+const qb=document.getElementById('quiz');
+QUIZ.forEach(([t,ans,fb],idx)=>{
+  const d=document.createElement('div');d.className='q';
+  d.innerHTML='<div class="t">'+t+'</div><div class="btns"><button class="ox" data-v="1">O</button><button class="ox" data-v="0">X</button><span class="fb"></span></div>';
+  d.querySelectorAll('.ox').forEach(btn=>{
+    btn.onclick=()=>{
+      const pick=btn.dataset.v==='1';const ok=pick===ans;
+      answers[idx]=pick;
+      d.querySelectorAll('.ox').forEach(b=>b.classList.remove('right','wrong'));
+      btn.classList.add(ok?'right':'wrong');
+      d.querySelector('.fb').textContent=(ok?'정답 · ':'다시 · ')+fb;
+    };
+  });
+  qb.appendChild(d);
+});
+
+/* ---------- 06 timer ---------- */
+let left=60,tid=null;
+const clock=document.getElementById('clock');
+const paint=()=>{clock.textContent='00:'+String(left).padStart(2,'0');clock.classList.toggle('low',left<=10)};
+document.getElementById('start').onclick=e=>{
+  state.timerUsed=true;
+  if(tid){clearInterval(tid);tid=null;e.currentTarget.textContent='이어서';return}
+  e.currentTarget.textContent='멈춤';
+  tid=setInterval(()=>{left--;paint();if(left<=0){clearInterval(tid);tid=null;left=0;paint();document.getElementById('start').textContent='시작'}},1000);
+};
+document.getElementById('reset').onclick=()=>{clearInterval(tid);tid=null;left=60;paint();document.getElementById('start').textContent='시작'};
+paint();
+
+/* ---------- 07 my rules ---------- */
+const PH=['You must not ...','You must ...','You must not ...','You must ...','You must ... before you ...'];
+const mine=document.getElementById('mine');
+PH.forEach((p,i)=>{
+  const d=document.createElement('div');d.className='line';
+  d.innerHTML='<span>'+String(i+1).padStart(2,'0')+'</span><input type="text" placeholder="'+p+'" autocomplete="off" spellcheck="false"><span class="warn"></span>';
+  const inp=d.querySelector('input'),warn=d.querySelector('.warn');
+  inp.oninput=()=>{
+    const v=inp.value.toLowerCase();
+    if(/must\s+to\s/.test(v)) warn.textContent='must + to ✕';
+    else if(/must\s+(not\s+)?[a-z]+s\b/.test(v)&&!/must\s+(not\s+)?(is|has|was|does)\b/.test(v)) warn.textContent='동사원형 확인';
+    else warn.textContent='';
+  };
+  mine.appendChild(d);
+});
+
+/* ---------- elapsed ---------- */
+setInterval(()=>{
+  const s=Math.floor((Date.now()-startedAt)/1000);
+  document.getElementById('elapsed').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+},1000);
+
+/* ---------- 08 submit ---------- */
+let lastReport='';
+document.getElementById('submit').onclick=async()=>{
+  const name=document.getElementById('sname').value.trim();
+  if(!name){document.getElementById('sname').focus();document.getElementById('saved').textContent='';alert('이름을 먼저 적어주세요.');return}
+  const rg=gradeRules();
+  let qPts=0;const qRows=[];
+  QUIZ.forEach(([t,ans],i)=>{
+    const picked=answers[i];
+    const ok=picked===ans;if(ok)qPts++;
+    qRows.push(String(i+1).padStart(2,'0')+' '+(picked===null?'-':(ok?'○':'✕'))+' '+t);
+  });
+  const myRules=[...document.querySelectorAll('#mine input')].map(i=>i.value.trim());
+  const secs=Math.floor((Date.now()-startedAt)/1000);
+  const mins=Math.floor(secs/60)+'분 '+(secs%60)+'초';
+  const total=rg.pts+qPts;
+  const now=new Date();
+  const stamp=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+
+  document.getElementById('scoreN').textContent=total%1?total.toFixed(1):total;
+  document.getElementById('who').innerHTML='<strong>'+name+'</strong><br>'+stamp+' · '+mins;
+  document.getElementById('breakdown').innerHTML=
+    '<div class="bd"><div class="l">문장 복원</div><div class="v">'+(rg.pts%1?rg.pts.toFixed(1):rg.pts)+' / 5</div></div>'+
+    '<div class="bd"><div class="l">내용 확인</div><div class="v">'+qPts+' / 5</div></div>'+
+    '<div class="bd"><div class="l">청크 반복</div><div class="v">'+state.chunksDone+' / 8</div></div>'+
+    '<div class="bd"><div class="l">힌트 사용</div><div class="v">'+state.hints+'회</div></div>';
+
+  let txt='Hailey English Lab · Gulliver Ch.2 p.9\n';
+  txt+='이름: '+name+'\n제출: '+stamp+'\n학습 시간: '+mins+'\n';
+  txt+='총점: '+total+' / 10  (문장 복원 '+rg.pts+'/5 · 내용 확인 '+qPts+'/5)\n';
+  txt+='청크 반복 '+state.chunksDone+'/8 · 힌트 '+state.hints+'회 · 정답 미리 보기 '+(state.revealed?'사용함':'사용 안 함')+' · 리텔링 타이머 '+(state.timerUsed?'진행':'미진행')+'\n';
+  txt+='\n[04] 문장 복원\n';
+  rg.rows.forEach(r=>{
+    txt+=String(r.no).padStart(2,'0')+' '+r.mark+(r.hinted?' (힌트)':'')+'\n   학생: '+r.typed+'\n';
+    if(r.mark!=='○') txt+='   정답: '+r.answer+'\n';
+  });
+  txt+='\n[05] 내용 확인\n'+qRows.join('\n')+'\n';
+  txt+='\n[07] 나의 규칙 — 선생님 첨삭 필요\n';
+  myRules.forEach((v,i)=>{txt+=String(i+1).padStart(2,'0')+' '+(v||'(빈칸)')+'\n'});
+  lastReport=txt;
+  document.getElementById('report').textContent=txt;
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+
+  try{
+    await setDoc(doc(db,'reviewSubmissions', SHEET_ID+'_'+Date.now()+'_'+name.replace(/[^\w가-힣]/g,'')), {
+      sheet:SHEET_ID, name:name, stamp:stamp, ts:Date.now(),
+      total:total, ruleScore:rg.pts, quizScore:qPts,
+      seconds:secs, chunksDone:state.chunksDone, hints:state.hints,
+      revealed:state.revealed, timerUsed:state.timerUsed,
+      rules:rg.rows, quiz:qRows, myRules:myRules, report:txt
+    });
+    document.getElementById('saved').textContent='제출 완료 — 선생님 화면에 저장되었습니다.';
+  }catch(e){
+    document.getElementById('saved').textContent='전송에 실패했습니다. 아래 버튼으로 결과를 보내주세요.';
+  }
+};
+
+document.getElementById('copy').onclick=async()=>{
+  try{await navigator.clipboard.writeText(lastReport);document.getElementById('saved').textContent='결과를 복사했습니다. 메시지에 붙여넣어 보내세요.'}
+  catch(e){document.getElementById('saved').textContent='복사가 막혔습니다. 위 결과를 직접 선택해 복사해 주세요.'}
+};
+document.getElementById('mail').onclick=()=>{
+  const name=document.getElementById('sname').value.trim()||'학생';
+  window.location.href='mailto:'+TEACHER_EMAIL+'?subject='+encodeURIComponent('[복습 제출] Gulliver Ch.2 p.9 — '+name)+'&body='+encodeURIComponent(lastReport);
+};
+document.getElementById('dl').onclick=()=>{
+  const name=document.getElementById('sname').value.trim()||'student';
+  const blob=new Blob([lastReport],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='gulliver-p9-'+name+'.txt';a.click();
+  URL.revokeObjectURL(a.href);
+  document.getElementById('saved').textContent='파일로 저장했습니다.';
+};
+
+/* ---------- teacher ---------- */
+document.getElementById('tbtn').onclick=async()=>{
+  const box=document.getElementById('teacher');
+  if(box.classList.contains('show')){box.classList.remove('show');return}
+  if(prompt('선생님 암호')!=='hailey26'){return}
+  box.classList.add('show');
+  const list=document.getElementById('records');
+  list.innerHTML='<p class="meta">불러오는 중…</p>';
+  try{
+    const snap=await getDocs(collection(db,'reviewSubmissions'));
+    const rows=[];
+    snap.forEach(s=>{const d=s.data();if(!d.sheet||d.sheet===SHEET_ID) rows.push(d)});
+    rows.sort((a,b)=>(b.ts||0)-(a.ts||0));
+    if(!rows.length){list.innerHTML='<p class="meta">아직 제출 기록이 없습니다.</p>';return}
+    list.innerHTML='';
+    rows.forEach(d=>{
+      const el=document.createElement('div');el.className='rec';el.style.cursor='pointer';
+      el.innerHTML='<b>'+d.name+'</b> · '+d.total+'/10 <span class="meta">'+d.stamp+' · 힌트 '+(d.hints||0)+'회'+(d.revealed?' · 정답 봄':'')+'</span>';
+      const pre=document.createElement('div');pre.className='report';pre.style.marginTop='8px';pre.style.display='none';
+      pre.textContent=d.report||'';
+      el.onclick=()=>{pre.style.display=pre.style.display==='none'?'block':'none'};
+      list.appendChild(el);list.appendChild(pre);
+    });
+  }catch(e){list.innerHTML='<p class="meta">기록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>'}
+};
+
+/* 링크에 ?name=brian 을 붙이면 이름이 미리 채워집니다 */
+const qp=new URLSearchParams(location.search).get('name');
+if(qp) document.getElementById('sname').value=qp;
+</script>
+</body>
+</html>
