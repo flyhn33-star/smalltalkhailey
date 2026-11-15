@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It depends on ~ · Pattern Practice (Brian)</title>
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--ink:#1f2a2e;--mute:#6b7680;--teal:#1e7a7a;--teal-d:#165e5e;--teal-l:#e3f1f0;--amber:#c98a1b;--amber-l:#fdf3dc;--red:#b9382c;--red-l:#fbe9e7;--line:#e6e0d4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;font-size:18px;line-height:1.5;word-break:keep-all}
+.wrap{max-width:900px;margin:0 auto;padding:18px 18px 110px}
+.eb{font-size:12px;letter-spacing:.18em;color:var(--teal);font-weight:700}
+h1{font-family:Georgia,serif;font-size:36px;margin:4px 0 2px}
+.sub{color:var(--mute);font-size:15px;margin-bottom:14px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:2px solid var(--line);background:#fff;border-radius:22px;padding:7px 14px;font:700 14px inherit;color:var(--mute);cursor:pointer}
+.tab.on{border-color:var(--teal);background:var(--teal);color:#fff}
+.pane{display:none}.pane.on{display:block}
+.card{background:var(--card);border-radius:18px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:14px}
+h2{font-family:Georgia,serif;font-size:23px;color:var(--teal);margin:0 0 10px}
+h2 span{font-family:inherit;font-size:14px;color:var(--mute);font-weight:400;margin-left:6px}
+button{font-family:inherit;cursor:pointer}
+.big{font-family:Georgia,serif;font-size:44px;font-weight:700;line-height:1.15}
+.big u{text-decoration:none;background:linear-gradient(transparent 55%,#fbe08a 55%)}
+.ko{font-size:22px;color:var(--teal-d);font-weight:700;margin-top:6px}
+.dlg{display:grid;gap:8px;margin-top:14px}
+.bq{background:#f1f4f6;border-radius:16px 16px 16px 4px;padding:11px 16px;max-width:86%;font-size:19px}
+.ba{background:var(--amber-l);border-radius:16px 16px 4px 16px;padding:11px 16px;max-width:86%;margin-left:auto;font-size:19px}
+.ba b{color:#8a5c00}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pt{border:2px solid var(--line);border-radius:16px;padding:16px}
+.pt .f{font-weight:700;font-size:20px}
+.pt .f em{font-style:normal;background:var(--teal);color:#fff;border-radius:6px;padding:1px 8px;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:18px;padding:5px 12px;font-size:16px;font-weight:700;color:var(--ink)}
+.chip.h{border-style:dashed;color:var(--teal-d);border-color:var(--teal)}
+.no{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line);font-size:19px}
+.no:last-child{border:0}
+.no s{color:var(--red)}.no b{color:var(--teal)}
+.kr{color:var(--mute);font-size:15px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.track{flex:1;height:12px;background:#e9e4d8;border-radius:7px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--teal);width:0;transition:width .25s}
+.cnt{font-weight:700;color:var(--mute);font-size:15px}
+.sent{font-family:Georgia,serif;font-size:30px;margin:6px 0 4px;line-height:1.3}
+.sent u{text-decoration:none;border-bottom:3px solid var(--teal);padding:0 16px;color:var(--teal);font-weight:700}
+.opts{display:grid;gap:10px;margin-top:16px}
+.opt{border:2px solid var(--line);border-bottom-width:5px;background:#fff;border-radius:16px;padding:16px 18px;font-size:22px;font-weight:700;color:var(--ink);text-align:left}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--teal-l)}
+.opt.ok{border-color:var(--teal);background:var(--teal-l);color:var(--teal-d)}
+.opt.no{border-color:var(--red);background:var(--red-l);color:var(--red);text-decoration:line-through;display:block;border-bottom-width:5px;padding:16px 18px}
+.opt:disabled{cursor:default}
+.fb{display:none;margin-top:14px;border-radius:14px;padding:12px 16px;font-size:17px}
+.fb.ok{display:block;background:var(--teal-l);color:var(--teal-d)}
+.fb.bad{display:block;background:var(--red-l);color:var(--red)}
+.fb small{display:block;color:var(--ink);font-size:15px;margin-top:2px}
+.btn{border:none;border-radius:14px;padding:15px 20px;font-size:18px;font-weight:700;background:var(--teal);color:#fff;box-shadow:0 3px 0 var(--teal-d)}
+.btn.sec{background:#fff;color:var(--teal-d);border:2px solid var(--teal);box-shadow:none}
+.btn.gray{background:#eef1f5;color:var(--ink);box-shadow:none}
+.btn.w{width:100%;margin-top:14px}
+.slot{min-height:66px;border:2px dashed var(--teal);border-radius:16px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;background:#fbfdfc}
+.slot.ok{border-style:solid;background:var(--teal-l)}.slot.bad{border-color:var(--red);background:var(--red-l)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;min-height:54px}
+.pc{border:2px solid var(--line);border-bottom-width:4px;background:#fff;border-radius:12px;padding:9px 14px;font-size:20px;font-weight:700;color:var(--ink)}
+.pc.used{visibility:hidden}
+.wq{padding:16px 0;border-bottom:1px dashed var(--line)}
+.wq:last-child{border:0}
+.wq .q{font-weight:700;font-size:20px}
+.wq .q i{font-style:normal;color:var(--teal);margin-right:6px}
+textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:11px 13px;font-family:inherit;font-size:18px;line-height:1.5;background:#fff;color:var(--ink);min-height:82px;resize:vertical;margin-top:8px}
+textarea:focus{outline:none;border-color:var(--teal)}
+.chk{font-size:14px;margin-top:6px;font-weight:700}
+.chk.ok{color:var(--teal)}.chk.bad{color:var(--amber)}
+.model{display:none;background:var(--amber-l);border-radius:12px;padding:10px 14px;font-size:17px;margin-top:8px}
+.model.on{display:block}
+.lnk{border:none;background:none;color:var(--teal-d);font-weight:700;font-size:15px;text-decoration:underline;padding:0;margin-top:8px}
+.frame{background:var(--amber-l);border-radius:14px;padding:14px 18px;font-size:20px}
+.frame b{color:#8a5c00}
+.score{font-family:Georgia,serif;font-size:64px;font-weight:700;color:var(--teal);text-align:center;line-height:1}
+.msg{text-align:center;font-size:15px;font-weight:700;color:var(--teal);min-height:22px;margin-top:10px}
+pre{display:none;background:#f1f4f6;border-radius:12px;padding:12px;font-size:13px;white-space:pre-wrap;margin:10px 0 0;font-family:ui-monospace,Menlo,monospace}
+pre.on{display:block}
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--line);padding:12px 20px;display:flex;justify-content:center;gap:12px}
+.nav .btn{min-width:150px}
+@media(max-width:640px){.two{grid-template-columns:1fr}.big{font-size:34px}.sent{font-size:24px}.opt{font-size:19px}.no{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eb">HAILEY ENGLISH LAB · PATTERN PRACTICE</div>
+  <h1>It depends on ~</h1>
+  <div class="sub">Brian · 이해 → 고르기 → 순서 맞추기 → 직접 쓰기 · 15분</div>
+  <div class="tabs" id="tabs"></div>
+
+  <div class="pane" data-t="이해">
+    <div class="card">
+      <div class="big">It <u>depends on</u> ~</div>
+      <div class="ko">= ~에 따라 달라요 · ~에 달려 있어요</div>
+      <p style="margin:12px 0 0">"네 / 아니요"로 딱 잘라 답하기 어려울 때 쓰는 말이에요. <b>"상황에 따라 달라요"</b>를 말하고, 그 뒤에 <b>무엇에 따라 다른지</b>를 붙여요.</p>
+      <div class="dlg">
+        <div class="bq">Do you like traveling alone?</div>
+        <div class="ba">Hmm, <b>it depends on</b> the place.<br><span class="kr">음, 장소에 따라 달라요.</span></div>
+        <div class="bq">Value or premium?</div>
+        <div class="ba"><b>It depends on</b> how often I use it.<br><span class="kr">얼마나 자주 쓰는지에 따라 달라요.</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>뒤에 오는 것은 두 가지뿐</h2>
+      <div class="two">
+        <div class="pt"><div class="f">It depends on <em>명사</em></div><div class="kr">~에 따라</div>
+          <div class="chips"><span class="chip">the price</span><span class="chip">the weather</span><span class="chip">the place</span><span class="chip">my mood</span><span class="chip">the budget</span><span class="chip">the person</span></div></div>
+        <div class="pt"><div class="f">It depends on <em>의문사 + 주어 + 동사</em></div><div class="kr">누가/어디서/얼마나 ~하는지에 따라</div>
+          <div class="chips"><span class="chip">who I'm with</span><span class="chip">where we go</span><span class="chip">how much it costs</span><span class="chip">how tired I am</span><span class="chip">what I need</span></div></div>
+      </div>
+      <p class="kr" style="margin:12px 0 0">의문사 뒤는 <b style="color:var(--ink)">질문 어순이 아니에요.</b> who <b style="color:var(--ink)">I am</b> with (○) · who <s>am I</s> with (✕)</p>
+    </div>
+    <div class="card">
+      <h2>자주 틀리는 5가지</h2>
+      <div class="no"><span><s>It depend on</s> the price.</span><span>→</span><span>It <b>depends</b> on the price.</span></div>
+      <div class="no"><span>It depends <s>of</s> the weather.</span><span>→</span><span>It depends <b>on</b> the weather.</span></div>
+      <div class="no"><span><s>It's depends on</s> the place.</span><span>→</span><span><b>It depends on</b> the place.</span></div>
+      <div class="no"><span>It depends on who <s>am I</s> with.</span><span>→</span><span>It depends on who <b>I'm</b> with.</span></div>
+      <div class="no"><span>It depends on <s>expensive</s>.</span><span>→</span><span>It depends on <b>the price</b>.</span></div>
+    </div>
+    <div class="card">
+      <h2>길게 말하는 틀 <span>수업에서 3분 말하기에 바로 쓰기</span></h2>
+      <div class="frame"><b>It depends on</b> ___. <b>If</b> ___, I ___. <b>But if</b> ___, I ___.</div>
+      <p style="margin:12px 0 0">It depends on who I'm with. If I'm with close friends, I like group trips. But if I'm with new people, I'd rather travel alone.</p>
+    </div>
+  </div>
+
+  <div class="pane" data-t="고르기"><div id="quiz"></div></div>
+  <div class="pane" data-t="순서 맞추기"><div id="build"></div></div>
+
+  <div class="pane" data-t="직접 쓰기">
+    <div class="card">
+      <h2>내 대답 쓰기 <span>It depends on 으로 시작 · 2문장 이상</span></h2>
+      <div class="frame" style="font-size:17px"><b>It depends on</b> ___. <b>If</b> ___, I ___. <b>But if</b> ___, I ___.</div>
+      <div id="write"></div>
+    </div>
+  </div>
+
+  <div class="pane" data-t="결과">
+    <div class="card"><div class="score" id="sc">–</div><div class="kr" style="text-align:center;margin-top:8px" id="scs"></div></div>
+    <div class="card">
+      <div class="kr">다 했으면 결과를 복사해서 카톡으로 선생님께 보내주세요. 쓴 문장도 같이 들어가요.</div>
+      <button class="btn w" id="copy">결과 복사 (카톡용)</button>
+      <div class="msg" id="msg"></div><pre id="out"></pre>
+      <button class="btn gray w" id="reset">처음부터 다시</button>
+    </div>
+  </div>
+</div>
+<div class="nav"><button class="btn gray" id="prev">← 이전</button><button class="btn" id="next">다음 →</button></div>
+
+<script>
+(function(){
+var K='brian-depends-v1';var S={tab:0,qi:0,qa:{},bi:0,ba:{},w:{},m:{}};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function shuf(a,seed){a=a.slice();var s=seed||1;for(var i=a.length-1;i>0;i--){s=(s*9301+49297)%233280;var j=Math.floor(s/233280*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+var panes=[].slice.call(document.querySelectorAll('.pane'));
+function tabs(){var el=$('tabs');el.innerHTML='';panes.forEach(function(p,i){var b=document.createElement('button');b.className='tab'+(i===S.tab?' on':'');b.textContent=(i+1)+' · '+p.dataset.t;b.onclick=function(){S.tab=i;save();tabs()};el.appendChild(b);p.classList.toggle('on',i===S.tab)});
+ $('prev').style.visibility=S.tab===0?'hidden':'visible';$('next').style.visibility=S.tab===panes.length-1?'hidden':'visible';if(S.tab===4)result()}
+$('prev').onclick=function(){if(S.tab>0){S.tab--;save();tabs();scrollTo(0,0)}};
+$('next').onclick=function(){if(S.tab<panes.length-1){S.tab++;save();tabs();scrollTo(0,0)}};
+
+var Q=[
+['It ___ on the price.',['depends','depend','is depend'],'주어가 It → depends (s 붙이기)'],
+['It depends ___ the weather.',['on','of','to'],'depend는 항상 on'],
+['___ depends on the budget.',['It','It\'s','I'],"It's depends (✕) → It depends"],
+['It depends on ___.',['who I\'m with','who am I with','who with I am'],'의문사 + 주어 + 동사 (질문 어순 ✕)'],
+['It depends on ___.',['how much it costs','how much does it cost','how much cost it'],'how much + it + costs'],
+['It depends on ___.',['the price','expensive','cheap'],'on 뒤에는 명사 (형용사 ✕)'],
+['It depends on ___ I have.',['how much time','how many time','how much times'],'time은 셀 수 없음 → how much time'],
+['It depends on ___.',['what I need','what do I need','what need I'],'what + I + need'],
+['"그건 날씨에 달려 있어요."',['It depends on the weather.','It depends the weather.','It is depends on weather.'],'It depends on + the weather'],
+['Solo or group? — 가장 자연스러운 대답은?',['It depends on where I go.','It depends where do I go.','It\'s depend on where.'],'It depends on + where + I + go']];
+function drawQ(){var el=$('quiz');var i=S.qi;if(i>=Q.length){var r=Q.filter(function(q,k){return S.qa[k]===q[1][0]}).length;el.innerHTML='<div class="card" style="text-align:center"><div class="score">'+r+' / '+Q.length+'</div><p>'+(r===Q.length?'전부 맞았어요!':'틀린 문제의 팁을 한 번 더 보고 넘어가요.')+'</p><button class="btn sec" id="qre">다시 풀기</button></div>';$('qre').onclick=function(){S.qi=0;S.qa={};save();drawQ()};return}
+ var q=Q[i];var opts=shuf(q[1],i+3);
+ el.innerHTML='<div class="card"><div class="top"><div class="track"><i style="width:'+(i/Q.length*100)+'%"></i></div><div class="cnt">'+(i+1)+' / '+Q.length+'</div></div><div class="sent">'+esc(q[0]).replace('___','<u>?</u>')+'</div><div class="opts">'+opts.map(function(o){return '<button class="opt" data-o="'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div><div class="fb" id="qfb"></div><button class="btn w" id="qnx" style="display:none">'+(i===Q.length-1?'점수 보기':'다음 →')+'</button></div>';
+ [].forEach.call(el.querySelectorAll('.opt'),function(b){b.onclick=function(){var ok=b.dataset.o===q[1][0];S.qa[i]=b.dataset.o;save();[].forEach.call(el.querySelectorAll('.opt'),function(x){x.disabled=true;if(x.dataset.o===q[1][0])x.classList.add('ok')});if(!ok)b.classList.add('no');var f=$('qfb');f.className='fb '+(ok?'ok':'bad');f.innerHTML='<b>'+(ok?'맞아요!':'정답: '+esc(q[1][0]))+'</b><small>'+esc(q[2])+'</small>';$('qnx').style.display='block'}});
+ $('qnx').onclick=function(){S.qi++;save();drawQ()}}
+
+var B=[
+['그건 가격에 따라 달라요.',['It','depends on','the price.']],
+['누구랑 같이 있느냐에 따라 달라요.',['It depends on','who','I\'m','with.']],
+['얼마나 드는지에 따라 달라요.',['It depends on','how much','it','costs.']],
+['우리가 어디 가느냐에 따라 달라요.',['It depends on','where','we','go.']],
+['얼마나 자주 쓰는지에 따라 달라요.',['It depends on','how often','I','use it.']],
+['싸면 가성비 제품을 사요.',['If','it\'s cheap,','I buy','the value option.']]];
+var cur=[];
+function drawB(){var el=$('build');var i=S.bi;if(i>=B.length){var r=B.filter(function(b,k){return S.ba[k]===1}).length;el.innerHTML='<div class="card" style="text-align:center"><div class="score">'+r+' / '+B.length+'</div><p>한 번에 맞힌 문장 수예요.</p><button class="btn sec" id="bre">다시 하기</button></div>';$('bre').onclick=function(){S.bi=0;S.ba={};save();cur=[];drawB()};return}
+ var b=B[i];var order=shuf(b[1].map(function(_,k){return k}),i+7);if(order.join()===b[1].map(function(_,k){return k}).join())order.reverse();
+ el.innerHTML='<div class="card"><div class="top"><div class="track"><i style="width:'+(i/B.length*100)+'%"></i></div><div class="cnt">'+(i+1)+' / '+B.length+'</div></div><div class="kr">조각을 순서대로 눌러 문장을 만드세요.</div><div class="sent" style="font-size:24px;font-family:inherit;font-weight:700">'+esc(b[0])+'</div><div class="slot" id="slot"></div><div class="bank" id="bank"></div><div class="fb" id="bfb"></div><div style="display:flex;gap:10px;margin-top:14px"><button class="btn gray" id="bclr" style="flex:1">지우기</button><button class="btn" id="bchk" style="flex:2">확인</button></div></div>';
+ function paint(){var s=$('slot');s.innerHTML=cur.map(function(k){return '<button class="pc" data-r="'+k+'">'+esc(b[1][k])+'</button>'}).join('')||'<span class="kr">여기에 문장이 만들어져요</span>';
+  $('bank').innerHTML=order.map(function(k){return '<button class="pc'+(cur.indexOf(k)>=0?' used':'')+'" data-k="'+k+'">'+esc(b[1][k])+'</button>'}).join('');
+  [].forEach.call(el.querySelectorAll('[data-k]'),function(x){x.onclick=function(){cur.push(+x.dataset.k);paint()}});
+  [].forEach.call(el.querySelectorAll('[data-r]'),function(x){x.onclick=function(){cur.splice(cur.indexOf(+x.dataset.r),1);paint()}})}
+ paint();var tried=false;
+ $('bclr').onclick=function(){cur=[];$('slot').className='slot';$('bfb').className='fb';paint()};
+ $('bchk').onclick=function(){if(cur.length<b[1].length)return;var ok=cur.join()===b[1].map(function(_,k){return k}).join();var f=$('bfb');
+  if(ok){if(S.ba[i]===undefined)S.ba[i]=tried?0:1;save();$('slot').className='slot ok';f.className='fb ok';f.innerHTML='<b>맞아요!</b><small>'+esc(b[1].join(' '))+'</small>';$('bchk').textContent=(i===B.length-1?'점수 보기':'다음 →');$('bchk').onclick=function(){S.bi++;save();cur=[];drawB()}}
+  else{tried=true;$('slot').className='slot bad';f.className='fb bad';f.innerHTML='<b>순서가 달라요.</b><small>It depends on 다음에 의문사, 그다음 주어 + 동사 순서예요. 지우고 다시 해보세요.</small>'}}}
+
+var W=[
+['Do you prefer traveling alone or with friends?',['who I\'m with','the place','how long the trip is'],'It depends on who I\'m with. If I\'m with close friends, I enjoy group trips. But if I don\'t know them well, I\'d rather travel alone.'],
+['Value or premium — which do you choose?',['the item','how often I use it','the price'],'It depends on how often I use it. If I use it every day, I pay more for quality. But if I use it once, I choose the cheaper one.'],
+['Is it okay to quit a hobby quickly?',['why I quit','how much I spent','how I feel'],'It depends on why I quit. If I got tired of it, that\'s okay. But if I quit because it was hard, I should try again.'],
+['Do you like using AI tools for design?',['the project','what I need','how much time I have'],'It depends on the project. If I need many ideas fast, AI helps. But if I want an original poster, I sketch by hand.'],
+['Is being bored a bad thing?',['what I do next','how long it lasts','my mood'],'It depends on what I do next. If I just scroll on my phone, it\'s bad. But if I start drawing, boredom can be good.'],
+['Would you pay more for a handmade chair?',['the price','who made it','the design'],'It depends on the price. If it\'s a little more expensive, I would buy it. But if it costs twice as much, I wouldn\'t.']];
+function check(t){t=(t||'').trim();if(!t)return ['',''];var low=t.toLowerCase();var msgs=[];
+ if(!/it depends on/.test(low)){if(/depend on\b/.test(low)&&!/depends on/.test(low))msgs.push('depend → depends');else if(/depends (of|to)\b/.test(low))msgs.push('of / to → on');else if(/it'?s depends?/.test(low))msgs.push("It's depends → It depends");else msgs.push('It depends on 으로 시작해 보세요')}
+ if(/depends on (who|where|what|how|when|why)[a-z ]* (am i|do i|does it|do we|are we|is it)\b/.test(low))msgs.push('의문사 뒤는 주어 + 동사 (who I am ~)');
+ var n=t.split(/\s+/).filter(Boolean).length;if(n<10)msgs.push('조금 더 길게 (If ~ 를 붙여 보세요)');
+ if(!/\bif\b/.test(low)&&n>=10)msgs.push('If ~ 문장을 하나 넣으면 더 좋아요');
+ return msgs.length?['bad','확인: '+msgs.join(' · ')]:['ok','좋아요! It depends on + If 문장까지 썼어요.']}
+function drawW(){var el=$('write');el.innerHTML=W.map(function(w,i){var c=check(S.w[i]);return '<div class="wq"><div class="q"><i>'+(i+1)+'</i>'+esc(w[0])+'</div><div class="chips">'+w[1].map(function(h){return '<span class="chip h">'+esc(h)+'</span>'}).join('')+'</div><textarea data-w="'+i+'" placeholder="It depends on …">'+esc(S.w[i]||'')+'</textarea><div class="chk '+c[0]+'" id="ck'+i+'">'+c[1]+'</div><button class="lnk" data-m="'+i+'">'+(S.m[i]?'예시 답 숨기기':'다 쓴 뒤 예시 답 보기')+'</button><div class="model'+(S.m[i]?' on':'')+'">'+esc(w[2])+'</div></div>'}).join('');
+ [].forEach.call(el.querySelectorAll('textarea'),function(x){x.oninput=function(){var i=+x.dataset.w;S.w[i]=x.value;save();var c=check(x.value);var k=$('ck'+i);k.className='chk '+c[0];k.textContent=c[1]}});
+ [].forEach.call(el.querySelectorAll('[data-m]'),function(x){x.onclick=function(){S.m[+x.dataset.m]=!S.m[+x.dataset.m];save();drawW()}})}
+function counts(){return {q:Q.filter(function(q,k){return S.qa[k]===q[1][0]}).length,b:B.filter(function(b,k){return S.ba[k]===1}).length,w:W.filter(function(w,k){return (S.w[k]||'').trim().split(/\s+/).filter(Boolean).length>=6}).length}}
+function result(){var c=counts();$('sc').textContent=(c.q+c.b)+' / '+(Q.length+B.length);$('scs').textContent='고르기 '+c.q+'/'+Q.length+' · 순서 맞추기 '+c.b+'/'+B.length+' · 직접 쓰기 '+c.w+'/'+W.length+'문장'}
+$('copy').onclick=function(){var c=counts();var txt='[Brian · It depends on ~ practice]\n고르기: '+c.q+' / '+Q.length+'\n순서 맞추기: '+c.b+' / '+B.length+'\n\n— My sentences —\n'+W.map(function(w,i){return (i+1)+'. '+w[0]+'\n   '+((S.w[i]||'').trim()||'-')}).join('\n');
+ var o=$('out');o.textContent=txt;o.classList.add('on');var m=$('msg');try{navigator.clipboard.writeText(txt).then(function(){m.textContent='복사됐어요 ✓ 카톡에 붙여넣어 보내주세요.'}).catch(function(){m.textContent='아래 내용을 직접 복사해서 보내주세요.'})}catch(e){m.textContent='아래 내용을 직접 복사해서 보내주세요.'}};
+var armed=false;$('reset').onclick=function(){if(!armed){armed=true;$('reset').textContent='정말 지울까요? 한 번 더 누르면 지워져요';setTimeout(function(){armed=false;$('reset').textContent='처음부터 다시'},4000);return}try{localStorage.removeItem(K)}catch(e){}location.reload()};
+tabs();drawQ();drawB();drawW();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brian · Before Sunday's class (Nov 15)</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ec;--card:#fff;--ink:#1f2a2e;--mute:#6b7680;--teal:#1e7a7a;--teal-d:#165e5e;--teal-l:#e3f1f0;--amber:#c98a1b;--amber-l:#fdf3dc;--red:#b9382c;--red-l:#fbe9e7;--line:#e6e0d4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",-apple-system,sans-serif;font-size:16px;line-height:1.55;-webkit-tap-highlight-color:transparent;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:660px;margin:0 auto;padding:20px 16px 60px}
+.eb{font-size:11px;letter-spacing:.18em;color:var(--teal);font-weight:700}
+h1{font-family:Fraunces,Georgia,serif;font-size:28px;margin:2px 0 12px;line-height:1.2}
+h2{font-family:Fraunces,Georgia,serif;font-size:19px;color:var(--teal);margin:0 0 10px}
+h2 span{font-family:"Noto Sans KR",sans-serif;font-size:12.5px;color:var(--mute);font-weight:400;margin-left:6px}
+.card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.hero{background:var(--teal);color:#fff;border-radius:16px;padding:18px;margin-bottom:14px}
+.hero .d{font-family:Fraunces,serif;font-size:24px;font-weight:700;line-height:1.2}
+.hero .m{font-size:14px;opacity:.95;margin-top:4px}
+.hero .tag{display:inline-block;background:var(--amber-l);color:#8a5c00;font-weight:700;border-radius:10px;padding:6px 12px;font-size:15px;margin-top:12px}
+.kr{color:var(--mute);font-size:13.5px}
+.rule{background:var(--amber-l);border-radius:10px;padding:9px 12px;font-size:14.5px;margin-top:8px}
+.rule b{color:#8a5c00}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:6px 4px;border-bottom:1px dashed var(--line)}
+td.o{color:var(--teal);font-weight:700}
+a.open{display:block;text-align:center;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;padding:15px;border-radius:13px;margin-top:12px;box-shadow:0 3px 0 var(--teal-d);font-size:16px}
+a.open:active{transform:translateY(2px);box-shadow:0 1px 0 var(--teal-d)}
+.url{font-size:12.5px;color:var(--mute);word-break:break-all;margin-top:8px;text-align:center}
+.map div{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.map div:last-child{border:0}
+.map b{color:var(--teal);flex:0 0 16px}
+.map i{font-style:normal;color:var(--mute);font-size:12.5px;margin-left:auto;text-align:right}
+.vw{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--line)}
+.vw:last-of-type{border:0}
+.vw b{font-size:16px}.vw small{display:block;color:var(--mute);font-size:13px;font-weight:400}
+select{font-family:inherit;font-size:14.5px;border:2px solid var(--line);border-radius:10px;padding:8px 8px;background:#fff;max-width:170px;color:var(--ink)}
+select.ok{border-color:var(--teal);background:var(--teal-l)}select.no{border-color:var(--red);background:var(--red-l)}
+.q{padding:12px 0;border-bottom:1px dashed var(--line)}
+.q:last-of-type{border:0}
+.q p{margin:0 0 8px;font-weight:700;font-size:15.5px}
+.opt{display:block;border:2px solid var(--line);border-radius:11px;padding:9px 12px;margin-bottom:6px;font-size:15px;cursor:pointer}
+.opt input{margin-right:8px;accent-color:var(--teal)}
+.opt.sel{border-color:var(--teal);background:var(--teal-l)}
+.opt.ok{border-color:var(--teal);background:var(--teal-l);font-weight:700}
+.opt.no{border-color:var(--red);background:var(--red-l)}
+.ex{display:none;font-size:13.5px;color:var(--teal-d);margin-top:4px}
+.ex.on{display:block}
+label.f{display:block;font-weight:700;color:var(--teal);font-size:15px;margin:14px 0 4px}
+label.f small{display:block;color:var(--mute);font-weight:400;font-size:13px}
+textarea,input[type=text]{width:100%;border:2px solid var(--line);border-radius:12px;padding:11px 13px;font-family:inherit;font-size:16px;line-height:1.55;background:#fff;color:var(--ink)}
+textarea{min-height:76px;resize:vertical}
+textarea:focus,input:focus,select:focus{outline:none;border-color:var(--teal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips span{border:1.5px solid var(--line);border-radius:16px;padding:4px 10px;font-size:13px;background:#fff}
+.chips span i{font-style:normal;color:var(--mute);margin-left:4px;font-size:12px}
+button{font-family:inherit;font-size:16px;font-weight:700;border:none;border-radius:13px;padding:14px;cursor:pointer;width:100%}
+.b1{background:var(--teal);color:#fff;box-shadow:0 3px 0 var(--teal-d)}
+.b2{background:#fff;color:var(--teal-d);border:2px solid var(--teal)}
+.b3{background:#eef1f5;color:var(--ink);font-size:14.5px;padding:11px}
+.score{font-weight:700;color:var(--teal);margin-top:10px;font-size:15.5px;min-height:22px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.msg{margin-top:12px;font-size:14.5px;font-weight:700;min-height:22px}
+.msg.ok{color:var(--teal)}.msg.no{color:var(--red)}
+pre{display:none;background:#f1f4f6;border-radius:12px;padding:12px;font-size:12.5px;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Menlo,monospace;margin:12px 0 0;max-height:260px;overflow:auto}
+pre.on{display:block}
+.prog{position:sticky;top:0;background:var(--bg);padding:8px 0 10px;z-index:5}
+.bar{height:9px;background:#e9e4d8;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+.prog span{font-size:12.5px;color:var(--mute)}
+ol{margin:0;padding-left:20px;font-size:15px}
+
+.vw{display:block}
+.vo{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+.vb{font-size:14px;font-weight:500;padding:9px 4px;border:2px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);width:100%;line-height:1.3}
+.vb.sel{border-color:var(--teal);background:var(--teal-l);font-weight:700}
+.vb.ok{border-color:var(--teal);background:var(--teal-l);font-weight:700;color:var(--teal-d)}
+.vb.no{border-color:var(--red);background:var(--red-l);color:var(--red)}
+.vw small{display:inline;margin-left:8px}
+p,li,.rule,.kr,h1,h2{text-wrap:pretty}
+.fld label.f{margin-top:14px}
+@media(min-width:640px){
+ .wrap{max-width:1180px;padding:24px 24px 70px}
+ h1{font-size:32px}
+ .hero{display:flex;align-items:center;justify-content:space-between;gap:14px 24px;flex-wrap:wrap;padding:20px 24px}
+ .hero .d{font-size:27px;white-space:nowrap}
+ .hero .tag{margin-top:0;font-size:16px;padding:9px 16px;white-space:nowrap}
+ .card{padding:22px 24px;margin-bottom:18px}
+ #vocab{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+ .vw:nth-last-child(-n+2){border-bottom:0}
+ select{max-width:none;width:150px}
+ .opts{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px}
+ .opts.wide{grid-template-columns:1fr}
+ .opt{margin-bottom:0}
+ .ex{margin-top:8px}
+ .ac{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+ .ac .full{grid-column:1/-1}
+ .w3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+ .w3 input{margin-bottom:0!important}
+ .btnc{max-width:520px;margin:10px auto 0}
+ .ctr{max-width:320px;margin-left:auto;margin-right:auto;display:block}
+ .chips span{white-space:nowrap}
+}
+@media(min-width:820px){
+ .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+ .s1{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px;align-items:start}
+ .s1 .map{margin-top:0}
+ select{width:180px}
+}
+@media(min-width:1040px){
+ .wrap{padding:28px 32px 70px}
+ .card{padding:24px 26px}
+ .map div{white-space:nowrap}
+ .vw small{white-space:nowrap}
+ #vocab{gap:0 40px}
+ select{width:230px}
+ #quiz{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+ .q{border-bottom:1px dashed var(--line)!important}
+ .q:nth-last-child(-n+2){border-bottom:0!important}
+ .q p{white-space:nowrap}
+ .opt{white-space:nowrap}
+ ol li{white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eb">HAILEY ENGLISH LAB · THE FLUENT ME</div>
+  <h1>Before Sunday's class</h1>
+
+  <div class="hero">
+    <div class="d">Sun, Nov 15 · 10:00–11:30</div>
+    <div class="m">Zoom · same link as always · 90 minutes</div>
+    <div class="tag">수업 전 꼭 풀어보세요! · about 20 min</div>
+  </div>
+
+  <div class="prog"><div class="bar"><i id="bar"></i></div><span id="progt">0% done</span></div>
+
+  <div class="card">
+    <h2>Step 1 · Read the article <span>10 min</span></h2>
+    <div class="s1"><div>
+    <div style="font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:700;line-height:1.3">How craft conquered design</div>
+    <div class="kr">Dezeen · 16 Sep 2026</div>
+    <p style="margin:10px 0 0;font-size:15px">Words like "handmade" and "heritage" are everywhere in design now. The article asks <b>why craft became cool</b>, what happened to factory-made design, and <b>whether this trend will last</b>.</p>
+    <a class="open" id="openA" href="https://www.dezeen.com/2026/09/16/how-craft-conquered-design/" target="_blank" rel="noopener">Open the article ↗</a>
+    <div class="url">dezeen.com/2026/09/16/how-craft-conquered-design</div>
+    <div class="kr" style="margin-top:10px">새 탭에서 기사가 열려요. 읽고 이 페이지로 돌아와서 아래 문제를 풀어요.</div>
+    </div>
+    <div class="map" style="margin-top:12px">
+      <div><b>1</b>Three familiar words<i>first paragraph</i></div>
+      <div><b>2</b>Craft changes places<i>"once dowdy" paragraph</i></div>
+      <div><b>3</b>And industrial design?<i>same paragraph, second half</i></div>
+      <div><b>4</b>The writer's question<i>short paragraph with "?"</i></div>
+      <div><b>5</b>"Solid foundations"<i>subtitle section · experts</i></div>
+      <div><b>6</b>The ending<i>making-of videos</i></div>
+    </div></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 2 · Words <span>맞는 뜻 하나만 누르기 · 8</span></h2>
+    <div id="vocab"></div>
+    <button class="b2 ctr" id="chkV" style="margin-top:14px">정답 체크</button>
+    <div class="kr" style="margin-top:6px;text-align:center">정답은 수업시간에 확인해보세요!</div>
+    <div class="score" id="scV"></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 3 · Read &amp; check <span>6 questions</span></h2>
+    <div id="quiz"></div>
+    <button class="b2 ctr" id="chkQ" style="margin-top:14px">정답 체크</button>
+    <div class="kr" style="margin-top:6px;text-align:center">정답은 수업시간에 확인해보세요!</div>
+    <div class="score" id="scQ"></div>
+  </div>
+
+  <div class="card">
+    <h2>Step 4 · My Article Card <span>문법 안 봐요 — 생각만 있으면 통과</span></h2>
+    <div class="kr">수업 첫 2분은 이 카드로 Brian이 열어요.</div>
+    <div class="ac">
+      <div class="fld full"><label class="f">One-sentence summary<small>The article says that…</small></label>
+      <textarea data-k="sum"></textarea></div>
+      <div class="fld full"><label class="f">3 new words<small>word · meaning</small></label>
+      <div class="w3"><input type="text" data-k="w1" placeholder="1." style="margin-bottom:6px">
+      <input type="text" data-k="w2" placeholder="2." style="margin-bottom:6px">
+      <input type="text" data-k="w3" placeholder="3."></div></div>
+      <div class="fld"><label class="f">My opinion<small>I agree / disagree because… — because 뒤를 길게</small></label>
+      <textarea data-k="op" style="min-height:110px"></textarea></div>
+      <div class="fld"><label class="f">Connect it to me<small>my woodwork · motion graphics</small></label>
+      <textarea data-k="me" style="min-height:110px"></textarea></div>
+      <div class="fld full"><label class="f">1 question for Hailey</label>
+      <input type="text" data-k="qh"></div>
+    </div>
+    <div class="chips">
+      <span>worth the price<i>값을 한다</i></span><span>just marketing<i>마케팅일 뿐</i></span><span>carry a story<i>이야기를 담다</i></span><span>by hand<i>손으로</i></span><span>mass-produced<i>대량생산된</i></span><span>the process<i>과정</i></span><span>submit my work<i>작품을 출품하다</i></span><span>the difference is…<i>차이는</i></span>
+    </div>
+    <div class="rule"><b>Say it like this:</b> "I read an article about ___. It says ___. I think ___ because ___. This reminds me of ___. By the way, Hailey, ___?"</div>
+  </div>
+
+  <div class="two">
+  <div class="card">
+    <h2>Feedback from last class <span>Nov 8 · 38 / 48</span></h2>
+    <p style="margin:0 0 10px;font-size:15px">You kept talking even when a word was missing — that is the skill that matters most right now. Let's keep grammar in your own notes. I'll just write down the moments where you stop, and give you feedback after class.</p>
+    <table>
+      <tr><td>take</td><td class="o">took</td><td>I <b>took</b> a night bus.</td></tr>
+      <tr><td>teach</td><td class="o">taught</td><td>He <b>taught</b> me a word.</td></tr>
+      <tr><td>spend</td><td class="o">spent</td><td>I <b>spent</b> 50,000 won.</td></tr>
+      <tr><td>meet</td><td class="o">met</td><td>I <b>met</b> a friend there.</td></tr>
+      <tr><td>come</td><td class="o">came</td><td>We <b>came</b> back late.</td></tr>
+    </table>
+    <div class="rule"><b>took or taken?</b> "taken" can't stand alone. No <i>has / have / was</i> in front → <b>took</b>.</div>
+    <div class="rule"><b>Spelling.</b> study → stud<b>ied</b> · slip → sli<b>pped</b> · practice → practice<b>d</b></div>
+    <div class="rule"><b>"to".</b> go <b>to</b> Busan · go home (no to) · approach him (no to)</div>
+  </div>
+
+  <div class="card">
+    <h2>In class on Sunday <span>목표: 3분 이상 멈추지 않고 말하기</span></h2>
+    <ol>
+      <li><b>Article talk (2 min)</b> — you open with your Article Card</li>
+      <li>Past verbs — write the 10 from last time once more</li>
+      <li>Travel words — I say Korean, you say English</li>
+      <li><b>You talk first</b> — your last trip. Long is better than perfect.</li>
+      <li>We keep talking. I only take notes.</li>
+      <li>Feedback: just 3 things, then you try again.</li>
+    </ol>
+    <div class="rule"><b>If you get stuck, don't stop:</b> Let me think… · What I mean is… · For example, … · Anyway, …</div>
+  </div>
+
+  </div>
+  <div class="card" style="border:2px solid var(--teal)">
+    <h2>Finish <span>다 했으면</span></h2>
+    <div class="kr">저장하기 = 이 기기에 저장돼서 나중에 이어서 할 수 있어요. 제출하기 = 답이 복사돼요. 카톡에 붙여넣어서 선생님께 보내주세요.</div>
+    <div class="row btnc">
+      <button class="b2" id="saveB">저장하기</button>
+      <button class="b1" id="subB">제출하기</button>
+    </div>
+    <div class="msg" id="msg"></div>
+    <pre id="out"></pre>
+    <button class="b3 ctr" id="rst" style="margin-top:14px">처음부터 다시 하기</button>
+  </div>
+</div>
+<script>
+(function(){
+var K='brian-nov15-prep-v2';
+var S={v:{},q:{},t:{},cv:false,cq:false,opened:false};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){}
+var storeOK=true;
+function save(){try{localStorage.setItem(K,JSON.stringify(S));storeOK=true}catch(e){storeOK=false}}
+function $(id){return document.getElementById(id)}
+var V=[['conquer','take control completely',['비교하다','정복하다','포기하다'],1],['dowdy','old-fashioned, not stylish',['촌스러운','값비싼','희귀한'],0],['bespoke','made for one customer',['대량생산된','중고의','맞춤 제작의'],2],['authentic','real, not copied',['비슷한','진짜의','공식적인'],1],['underlying','below the surface',['근본적인','겉으로 드러난','임시의'],0],['provenance','where it came from',['가격','재질','출처 · 유래'],2],['flirt with','try an idea briefly',['잠깐 시도만 해보다','끝까지 밀어붙이다','반대하다'],0],['lose its sheen','stop looking attractive',['값이 오르다','빛이 바래다','유명해지다'],1]];
+var Q=[
+ ['Design copied the language of craft from which industry?',['cars','food','building','finance'],1,'Look at the first paragraph.'],
+ ['How has the image of craft changed?',['always luxury','less popular','once dowdy, now cool','replaced by tech'],2,'Find the word "dowdy".'],
+ ['What happened to industrial design?',['lost its sheen','got more expensive','joined craft'],0,'Same paragraph as "dowdy", second half.'],
+ ['After the recession, craft became a sign of…',['speed','low price','rarity','quality and trust'],3,'Look in the "solid foundations" section.'],
+ ['One question the writer asks:',['Which country is best at craft?','Does "craft vs design" really mean anything?'],1,'The short paragraph that ends with "?".'],
+ ['What will stay, according to the ending?',['making-of videos','higher prices','caring where our things come from'],2,'Look at the last paragraphs.']];
+
+function drawV(){var el=$('vocab');el.innerHTML='';V.forEach(function(v,i){var d=document.createElement('div');d.className='vw';
+ var h='<div><b>'+v[0]+'</b><small>'+v[1]+'</small></div><div class="vo">';
+ v[2].forEach(function(k,j){var c='vb';if(S.v[i]===j){c+=S.cv?(j===v[3]?' ok':' no'):' sel'}h+='<button type="button" class="'+c+'" data-v="'+i+'" data-j="'+j+'">'+k+'</button>'});
+ d.innerHTML=h+'</div>';el.appendChild(d)});
+ el.querySelectorAll('.vb').forEach(function(x){x.onclick=function(){S.v[+x.dataset.v]=+x.dataset.j;S.cv=false;save();$('scV').textContent='';drawV();prog()}});
+ if(S.cv)$('scV').textContent='Words: '+scoreV()+' / 8'+(scoreV()<8?' — 빨간 것만 다시 골라보세요. 수업시간에 확인해보세요!':' — perfect! 수업시간에 확인해보세요!')}
+function scoreV(){var n=0;V.forEach(function(v,i){if(S.v[i]===v[3])n++});return n}
+function drawQ(){var el=$('quiz');el.innerHTML='';Q.forEach(function(q,i){var d=document.createElement('div');d.className='q';var wide=q[1].some(function(o){return o.length>22});var h='<p>'+(i+1)+'. '+q[0]+'</p><div class="opts'+(wide?' wide':'')+'">';
+ q[1].forEach(function(o,j){var c='opt';if(S.cq&&S.q[i]===j)c+=(j===q[2]?' ok':' no');else if(S.q[i]===j)c+=' sel';
+  h+='<label class="'+c+'"><input type="radio" name="q'+i+'" value="'+j+'"'+(S.q[i]===j?' checked':'')+'>'+o+'</label>'});
+ h+='</div><div class="ex'+(S.cq&&S.q[i]!==undefined&&S.q[i]!==q[2]?' on':'')+'">Hint: '+q[3]+'</div>';d.innerHTML=h;el.appendChild(d)});
+ el.querySelectorAll('input').forEach(function(r){r.onchange=function(){S.q[+r.name.slice(1)]=+r.value;S.cq=false;save();$('scQ').textContent='';drawQ();prog()}});
+ if(S.cq)$('scQ').textContent='Questions: '+scoreQ()+' / 6'+(scoreQ()<6?' — 힌트 보고 다시 찾아보세요. 수업시간에 확인해보세요!':' — perfect! 수업시간에 확인해보세요!')}
+function scoreQ(){var n=0;Q.forEach(function(q,i){if(S.q[i]===q[2])n++});return n}
+$('chkV').onclick=function(){S.cv=true;save();drawV()};
+$('chkQ').onclick=function(){S.cq=true;save();drawQ()};
+$('openA').addEventListener('click',function(){S.opened=true;save();prog()});
+document.querySelectorAll('[data-k]').forEach(function(x){x.value=S.t[x.dataset.k]||'';x.oninput=function(){S.t[x.dataset.k]=x.value;save();prog()}});
+function prog(){var d=0,tot=1+8+6+5;if(S.opened)d++;
+ V.forEach(function(v,i){if(S.v[i]!==undefined)d++});Q.forEach(function(q,i){if(S.q[i]!==undefined)d++});
+ ['sum','op','me','qh'].forEach(function(k){if((S.t[k]||'').trim().length>2)d++});if((S.t.w1||'').trim())d++;
+ var p=Math.round(d/tot*100);$('bar').style.width=p+'%';$('progt').textContent=p+'% done'}
+function msg(t,ok){var m=$('msg');m.textContent=t;m.className='msg '+(ok?'ok':'no')}
+$('saveB').onclick=function(){save();msg(storeOK?'저장됐어요 ✓ 이 기기에서 다시 열면 이어서 할 수 있어요.':'이 브라우저에서는 저장이 안 돼요. 제출하기로 복사해서 보내주세요.',storeOK)};
+function build(){var t=S.t;var wrongV=V.filter(function(v,i){return S.v[i]!==v[3]}).map(function(v){return v[0]});
+ var wrongQ=[];Q.forEach(function(q,i){if(S.q[i]!==q[2])wrongQ.push(i+1)});
+ return '[Brian · Nov 15 prep]\nArticle: How craft conquered design\n\nWords: '+scoreV()+' / 8'+(wrongV.length?'  (missed: '+wrongV.join(', ')+')':'')+
+ '\nQuestions: '+scoreQ()+' / 6'+(wrongQ.length?'  (missed: Q'+wrongQ.join(', Q')+')':'')+
+ '\n\n— Article Card —\nSummary: '+(t.sum||'-')+'\nNew words: 1) '+(t.w1||'-')+'  2) '+(t.w2||'-')+'  3) '+(t.w3||'-')+
+ '\nMy opinion: '+(t.op||'-')+'\nConnect to me: '+(t.me||'-')+'\nQuestion for Hailey: '+(t.qh||'-')}
+$('subB').onclick=function(){save();var txt=build();var o=$('out');o.textContent=txt;o.classList.add('on');
+ var done=function(){msg('복사됐어요 ✓ 카톡에 붙여넣어서 선생님께 보내주세요.',true)};
+ var fail=function(){msg('자동 복사가 안 됐어요. 아래 내용을 길게 눌러 복사해서 카톡으로 보내주세요.',false)};
+ try{navigator.clipboard.writeText(txt).then(done).catch(fail)}catch(e){fail()}};
+var armed=false;
+$('rst').onclick=function(){if(!armed){armed=true;$('rst').textContent='정말 지울까요? 한 번 더 누르면 지워져요';setTimeout(function(){armed=false;$('rst').textContent='처음부터 다시 하기'},4000);return}
+ try{localStorage.removeItem(K)}catch(e){}location.reload()};
+drawV();drawQ();prog();
+})();
+</script>
+</body>
+</html>

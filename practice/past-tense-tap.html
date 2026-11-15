@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>과거동사 36 · Tap Test (Brian)</title>
+<style>
+:root{--bg:#f2f6fa;--card:#fff;--ink:#1f2a2e;--mute:#6b7680;--blue:#2f6fa8;--blue-d:#245684;--blue-l:#e3eef8;--amber:#d99a1e;--amber-l:#fdf3dc;--red:#c0392b;--red-l:#fbe9e7;--green:#2e8b57;--green-l:#e4f4ea;--line:#dfe7ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;font-size:18px;line-height:1.5;word-break:keep-all}
+.wrap{max-width:860px;margin:0 auto;padding:18px 18px 60px}
+.eb{font-size:12px;letter-spacing:.18em;color:var(--blue);font-weight:700}
+h1{font-family:Georgia,serif;font-size:30px;margin:4px 0 4px}
+.sub{color:var(--mute);font-size:14.5px;margin-bottom:16px}
+.card{background:var(--card);border-radius:18px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:14px}
+button{font-family:inherit;cursor:pointer}
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mode{border:2px solid var(--line);border-bottom-width:5px;background:#fff;border-radius:16px;padding:18px;text-align:left;color:var(--ink);font-size:17px}
+.mode b{display:block;font-size:20px;color:var(--blue);margin-bottom:2px}
+.mode span{color:var(--mute);font-size:14px}
+.mode:hover{border-color:var(--blue);background:var(--blue-l)}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.track{flex:1;height:12px;background:#dfe7ee;border-radius:7px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--blue);width:0;transition:width .25s}
+.cnt{font-weight:700;color:var(--mute);font-size:15px;font-variant-numeric:tabular-nums}
+.x{border:2px solid var(--line);background:#fff;border-radius:10px;padding:5px 11px;font-size:14px;font-weight:700;color:var(--mute)}
+.tag{display:inline-block;font-size:13px;font-weight:700;border-radius:12px;padding:2px 10px;background:var(--blue-l);color:var(--blue);margin-bottom:10px}
+.tag.s{background:var(--amber-l);color:#8a5c00}
+.base{font-family:Georgia,serif;font-size:54px;font-weight:700;line-height:1.1}
+.ko{color:var(--mute);font-size:19px;margin-top:2px}
+.sent{font-size:26px;margin:18px 0 6px;font-family:Georgia,serif}
+.sent u{text-decoration:none;border-bottom:3px solid var(--blue);padding:0 18px;color:var(--blue);font-weight:700}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.opts.two{grid-template-columns:repeat(2,1fr)}
+.opt{border:2px solid var(--line);border-bottom-width:5px;background:#fff;border-radius:16px;padding:20px 8px;font-size:26px;font-weight:700;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-l)}
+.opt.ok{border-color:var(--green);background:var(--green-l);color:var(--green)}
+.opt.no{border-color:var(--red);background:var(--red-l);color:var(--red);text-decoration:line-through}
+.opt:disabled{cursor:default}
+.fb{min-height:64px;margin-top:16px;border-radius:14px;padding:12px 16px;font-size:17px;display:none}
+.fb.ok{display:block;background:var(--green-l);color:var(--green)}
+.fb.no{display:block;background:var(--red-l);color:var(--red)}
+.fb b{font-size:19px}
+.fb small{display:block;color:var(--ink);font-size:15px;margin-top:2px}
+.next{display:none;width:100%;margin-top:14px;border:none;border-radius:14px;padding:16px;font-size:19px;font-weight:700;background:var(--blue);color:#fff;box-shadow:0 3px 0 var(--blue-d)}
+.next.on{display:block}
+.score{font-family:Georgia,serif;font-size:76px;font-weight:700;color:var(--blue);line-height:1;text-align:center}
+.ctr{text-align:center}
+.miss{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:12px}
+.miss div{background:var(--red-l);border-radius:12px;padding:9px 12px;font-size:16px}
+.miss s{color:var(--red)}.miss b{color:var(--green)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.btn{border:none;border-radius:14px;padding:15px;font-size:17px;font-weight:700;background:var(--blue);color:#fff}
+.btn.sec{background:#fff;color:var(--blue-d);border:2px solid var(--blue)}
+.btn.gray{background:#e9eef3;color:var(--ink)}
+.msg{text-align:center;font-size:14.5px;font-weight:700;color:var(--blue);min-height:22px;margin-top:10px}
+pre{display:none;background:#eef2f6;border-radius:12px;padding:12px;font-size:13px;white-space:pre-wrap;margin:10px 0 0;font-family:ui-monospace,Menlo,monospace}
+pre.on{display:block}
+@media(max-width:560px){.modes{grid-template-columns:1fr}.base{font-size:42px}.sent{font-size:21px}.opt{font-size:20px;padding:16px 4px}.score{font-size:60px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eb">HAILEY ENGLISH LAB · PAST TENSE TAP TEST</div>
+  <h1>자주 쓰는 과거동사 36</h1>
+  <div class="sub">Brian · 맞는 과거형을 누르세요. 누르면 바로 확인돼요. ★ = 파이널에서 틀렸거나 헷갈렸던 동사</div>
+  <div id="app"></div>
+</div>
+<script>
+(function(){
+var A=[
+['take','가져가다 · 타다','I ___ the bus home.',['took','taken','taked'],1,'taken은 has/was 뒤에서만'],
+['speak','말하다','He ___ to the king.',['spoke','speaked','spoken'],1,''],
+['leave','떠나다 · 두고 오다','We ___ at 6 am.',['left','leaved','leaft'],1,''],
+['choose','고르다','I ___ the cheaper one.',['chose','choosed','chosen'],1,'o 하나'],
+['spend','(돈·시간) 쓰다','I ___ 50,000 won on shoes.',['spent','spended','spend'],1,'spend on ~'],
+['find','찾다 · 알게 되다','I ___ a good café.',['found','finded','founded'],1,''],
+['think','생각하다','I ___ it was worth it.',['thought','thinked','taught'],1,'teach → taught와 구분'],
+['teach','가르치다','She ___ me this rule.',['taught','teached','thought'],1,'think → thought와 구분'],
+['buy','사다','I ___ a jacket on sale.',['bought','buyed','brought'],0,'brought는 bring의 과거'],
+['pay','지불하다','I ___ by card.',['paid','payed','pay'],0,''],
+['go','가다','I ___ to Busan last month.',['went','goed','gone'],0,'gone은 has 뒤에서만'],
+['come','오다','I ___ home late.',['came','comed','come'],0,''],
+['get','받다 · 되다','I ___ a refund.',['got','getted','gotten'],0,'got lost / got up / got tired'],
+['have','먹다 · 가지다','We ___ lunch together.',['had','haved','has'],0,''],
+['make','만들다','I ___ a mistake.',['made','maked','maden'],0,''],
+['say','말하다','She ___ it was too expensive.',['said','sayed','sayd'],0,'said to me'],
+['tell','말해주다','He ___ me not to go there.',['told','telled','tolded'],1,'tell + 사람 바로'],
+['feel','느끼다','I ___ tired after the trip.',['felt','feeled','fell'],0,'fell은 fall의 과거'],
+['meet','만나다','I ___ new people at the hostel.',['met','meeted','meet'],0,''],
+['write','쓰다','I ___ a 3-minute speech.',['wrote','writed','written'],0,'written은 has/was 뒤에서만'],
+['eat','먹다','We ___ out last night.',['ate','eated','eaten'],0,''],
+['drink','마시다','I ___ a 1,500-won coffee.',['drank','drinked','drunk'],0,''],
+['forget','잊다','I ___ to send the file.',['forgot','forgetted','forgotten'],0,''],
+['cost','(값이) 들다','It ___ only 10,000 won.',['cost','costed','costs'],0,'형태 그대로: cut · put · read도']
+];
+var B=[
+['plan','계획하다','We ___ the trip a month ago.',['planned','planed','plant'],1,'자음 두 번'],
+['slip','미끄러지다','Dao ___ on the wet floor.',['slipped','sliped','slept'],1,'자음 두 번'],
+['stop','멈추다','The bus ___ suddenly.',['stopped','stoped','stopt'],0,'자음 두 번'],
+['study','공부하다','I ___ design.',['studied','studyed','studed'],0,'y → ied'],
+['try','시도하다','I ___ solo travel for the first time.',['tried','tryed','tryd'],0,'y → ied'],
+['practice','연습하다','I ___ my speech.',['practiced','practiceed','practicd'],1,'e로 끝나면 d만'],
+['approach','다가가다','Dao ___ the deep end.',['approached','approachd','approched'],1,'뒤에 to 없음'],
+['arrive','도착하다','We ___ in Osaka at noon.',['arrived','arriveed','arrivd'],0,'arrive in 도시 / at 장소'],
+['work','일하다','I ___ overtime all week.',['worked','workd','workked'],0,''],
+['decide','결정하다','I ___ to save money.',['decided','decideed','decidd'],0,'decide to + 동사'],
+['compare','비교하다','I ___ two products.',['compared','compareed','comparred'],0,'compare A with B'],
+['book','예약하다','I ___ a hostel online.',['booked','bookd','bookked'],0,'']
+];
+var T=[
+['I decided ___ save money.','to','뒤에 동사 → to'],
+['I studied ___ design.','✕','뒤에 명사 → to 없음'],
+['I forgot ___ send the file.','to','뒤에 동사 → to'],
+['I bought ___ a jacket.','✕','뒤에 명사 → to 없음'],
+['A man approached ___ me.','✕','approach 뒤에 to 없음'],
+['He told ___ me the way.','✕','tell + 사람 바로'],
+['She said ___ me, "Hi."','to','say는 to + 사람'],
+['Last month I went ___ Busan.','to','go to + 장소'],
+['After dinner we went ___ home.','✕','home은 to 없음'],
+['He told me ___ go there.','to','뒤에 동사 → to']
+];
+function mk(arr,grp){return arr.map(function(v){return {k:'v',base:v[0],ko:v[1],s:v[2],o:v[3],ans:v[3][0],star:v[4],tip:v[5],grp:grp}})}
+var VERBS=mk(A,'불규칙').concat(mk(B,'규칙 · 철자'));
+var TO=T.map(function(t){return {k:'t',s:t[0],o:['to','✕'],ans:t[1],tip:t[2],grp:'to 규칙',base:t[0]}});
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var app=document.getElementById('app');var Q=[],i=0,right=0,miss=[],title='';
+function home(){app.innerHTML='<div class="card"><div class="modes">'+
+ '<button class="mode" data-m="star"><b>★ 틀렸던 동사만</b><span>'+VERBS.filter(function(v){return v.star}).length+'문제 · 먼저 이것부터</span></button>'+
+ '<button class="mode" data-m="all"><b>전체 36</b><span>불규칙 24 + 규칙 12</span></button>'+
+ '<button class="mode" data-m="to"><b>to / ✕</b><span>10문제 · to가 필요한지 고르기</span></button>'+
+ '<button class="mode" data-m="mix"><b>한 번에 전부</b><span>46문제 · 과거동사 36 + to 10</span></button></div></div>';
+ [].forEach.call(app.querySelectorAll('.mode'),function(b){b.onclick=function(){var m=b.dataset.m;
+  var set=m==='star'?VERBS.filter(function(v){return v.star}):m==='all'?VERBS:m==='to'?TO:VERBS.concat(TO);
+  title=b.querySelector('b').textContent;start(shuf(set))}})}
+function start(set){Q=set;i=0;right=0;miss=[];show()}
+function show(){var q=Q[i];var opts=q.k==='v'?shuf(q.o):q.o;
+ var h='<div class="card"><div class="top"><button class="x" id="quit">✕ 그만</button><div class="track"><i style="width:'+(i/Q.length*100)+'%"></i></div><div class="cnt">'+(i+1)+' / '+Q.length+'</div></div>';
+ h+='<span class="tag'+(q.star?' s':'')+'">'+(q.star?'★ ':'')+q.grp+'</span>';
+ if(q.k==='v')h+='<div class="base">'+esc(q.base)+'</div><div class="ko">'+esc(q.ko)+'</div>';
+ h+='<div class="sent">'+esc(q.s).replace('___','<u id="blank">?</u>')+'</div>';
+ h+='<div class="opts'+(q.k==='t'?' two':'')+'">'+opts.map(function(o){return '<button class="opt" data-o="'+esc(o)+'">'+esc(o)+'</button>'}).join('')+'</div>';
+ h+='<div class="fb" id="fb"></div><button class="next" id="nx">'+(i===Q.length-1?'결과 보기':'다음 →')+'</button></div>';
+ app.innerHTML=h;
+ document.getElementById('quit').onclick=home;
+ [].forEach.call(app.querySelectorAll('.opt'),function(b){b.onclick=function(){pick(b,q)}});
+ document.getElementById('nx').onclick=function(){i++;if(i<Q.length)show();else done()}}
+function pick(b,q){var ok=b.dataset.o===q.ans;[].forEach.call(app.querySelectorAll('.opt'),function(x){x.disabled=true;if(x.dataset.o===q.ans)x.classList.add('ok')});
+ if(!ok){b.classList.add('no');miss.push({q:q,picked:b.dataset.o})}else right++;
+ document.getElementById('blank').textContent=q.ans==='✕'?'✕':q.ans;
+ var fb=document.getElementById('fb');fb.className='fb '+(ok?'ok':'no');
+ fb.innerHTML='<b>'+(ok?'맞아요!':'정답: '+esc(q.ans))+'</b>'+(q.tip?'<small>'+esc(q.tip)+'</small>':'');
+ document.getElementById('nx').classList.add('on')}
+function done(){var pct=Math.round(right/Q.length*100);
+ var h='<div class="card ctr"><div class="kr" style="color:#6b7680">'+esc(title)+'</div><div class="score">'+right+' / '+Q.length+'</div><div style="font-size:19px;font-weight:700;margin-top:6px">'+(miss.length?pct+'% · 틀린 것만 다시 해봐요':'Master! 전부 맞았어요')+'</div></div>';
+ if(miss.length){h+='<div class="card"><b>틀린 것</b><div class="miss">'+miss.map(function(m){return '<div>'+(m.q.k==='v'?esc(m.q.base)+' → ':esc(m.q.s)+' → ')+'<s>'+esc(m.picked)+'</s> <b>'+esc(m.q.ans)+'</b></div>'}).join('')+'</div></div>'}
+ h+='<div class="card"><div class="row">'+(miss.length?'<button class="btn" id="again">틀린 것만 다시</button>':'<button class="btn" id="again2">처음부터 다시</button>')+'<button class="btn sec" id="copy">결과 복사 (카톡용)</button></div><button class="btn gray" id="hm" style="width:100%;margin-top:10px">처음 화면으로</button><div class="msg" id="msg"></div><pre id="out"></pre></div>';
+ app.innerHTML=h;
+ var ag=document.getElementById('again');if(ag)ag.onclick=function(){title=title.replace(/ · 다시$/,'')+' · 다시';start(shuf(miss.map(function(m){return m.q})))};
+ var a2=document.getElementById('again2');if(a2)a2.onclick=function(){start(shuf(Q))};
+ document.getElementById('hm').onclick=home;
+ document.getElementById('copy').onclick=function(){var txt='[Brian · 과거동사 Tap Test]\n'+title+': '+right+' / '+Q.length+'\n'+(miss.length?'틀린 것: '+miss.map(function(m){return (m.q.k==='v'?m.q.base:m.q.s)+' ('+m.picked+' → '+m.q.ans+')'}).join(', '):'전부 맞음');
+  var o=document.getElementById('out');o.textContent=txt;o.classList.add('on');var m=document.getElementById('msg');
+  try{navigator.clipboard.writeText(txt).then(function(){m.textContent='복사됐어요 ✓ 카톡에 붙여넣어 보내주세요.'}).catch(function(){m.textContent='아래 내용을 직접 복사해서 보내주세요.'})}catch(e){m.textContent='아래 내용을 직접 복사해서 보내주세요.'}}}
+home();
+})();
+</script>
+</body>
+</html>
