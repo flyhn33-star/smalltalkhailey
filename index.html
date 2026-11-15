@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#7f5a49">
 <title>The Fluent Me</title>
 <style>
 :root{--bg:#f6f1ea;--card:#fff;--ink:#2b2523;--mute:#7a6d66;--br:#7e5a48;--br-d:#5f4334;--br-l:#efe6de;--teal:#1e7a7a;--teal-l:#e3f1f0;--amber:#de9b2e;--amber-l:#fdf3dc;--red:#b4513e;--red-l:#fbe9e7;--line:#e6dfd7}
@@ -84,7 +84,44 @@ label.f small{font-weight:400;color:var(--mute);margin-left:6px}
 .score{font-family:Georgia,serif;font-size:48px;font-weight:700;color:var(--br-d);line-height:1}
 .msg{font-size:14px;font-weight:700;color:var(--teal);min-height:20px;margin-top:8px}
 .sync{font-size:12px;color:var(--mute);text-align:center;margin-top:20px}
-@media(max-width:720px){.grid,.fx{grid-template-columns:1fr}.rp{grid-template-columns:86px 1fr 52px}}
+.wgt{font-size:13px;font-weight:700;color:var(--br-d);background:var(--br-l);border-radius:8px;padding:4px 10px;margin:14px 0 2px;display:inline-block}
+.w2 td.w{width:46%}
+button,a,label,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:720px){.grid,.fx{grid-template-columns:1fr}
+html{-webkit-text-size-adjust:100%}
+header{padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));gap:8px}
+header b{font-size:18px;white-space:nowrap}
+header>span{display:flex;align-items:center;gap:6px;min-width:0}
+#who{display:none}
+header button{padding:7px 11px;font-size:13px;min-height:36px;white-space:nowrap;margin:0!important}
+main{padding:12px 12px 40px}
+.card{padding:16px 14px}
+.hero{padding:16px 14px}
+.hero .d{font-size:22px}
+textarea,input[type=text],input[type=number],input[type=date],input[type=password],.lg input{font-size:16px}
+.btn{min-height:46px}
+.btn.sm{min-height:42px;padding-left:14px;padding-right:14px}
+.chip{min-height:40px;padding:8px 14px}
+.chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;flex:0 0 auto}
+.ck{padding:12px 0;gap:12px}
+.ck input{width:24px;height:24px;flex:0 0 24px;margin-top:1px}
+summary{padding:16px 14px;min-height:52px}
+details .in{padding-left:14px;padding-right:14px}
+table{font-size:15px}
+.wt tr{display:grid;grid-template-columns:1fr auto;column-gap:10px;padding:9px 2px;border-bottom:1px dashed var(--line)}
+.wt tr:first-child:has(th){display:none}
+.wt th{display:none}
+.wt td{border:0;padding:0}
+.wt td.w{font-size:17px;width:auto}
+.wt td.p{text-align:right;font-size:14px;align-self:center}
+.wt td.k{grid-column:1/-1;grid-row:2;color:var(--mute);font-size:15px;margin-top:2px;justify-self:start;padding:0 4px}
+.w2 td.w{grid-column:1/-1}
+body.stu nav{position:fixed;left:0;right:0;bottom:0;top:auto;border-bottom:0;border-top:1px solid var(--line);justify-content:space-around;gap:0;padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom));overflow:visible;z-index:20;box-shadow:0 -2px 10px rgba(0,0,0,.05)}
+body.stu nav button{flex:1 1 0;padding:9px 2px;font-size:13px;min-height:46px;border-radius:12px;white-space:normal;line-height:1.2}
+body.stu main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52px}}
 </style>
 </head>
 <body>
@@ -116,7 +153,7 @@ var DEF={weeks:[
   intro:'볼 것도 할 것도 넘치는데 오히려 더 자주 지루해지는 현상. 예전엔 할 게 없어서 심심했다면, 지금은 너무 많아서 금방 싫증이 나요.',note:'이번 주는 과거동사 36개를 끝내는 주예요. 하루 15분이면 충분해요. 아래 순서대로만 하면 돼요.',
   todo:[['월 11/16','과거동사 Tap Test ★13 + 스픽 15분'],['화 11/17','수업 때 한 얘기 다시 말해보기 · 피드백 3문장 3번씩'],['수 11/18','★ 스픽 앱 인증 — 누적 화면 캡처를 카톡으로 보내고 분 · 문장 수 적기'],['목 11/19','Tap Test 전체 36 + to/✕'],['금 11/20','권태사회 기초 단어 16개 읽기 · bored/boring 문장 2개'],['토 11/21','녹음 2분 보내기 (22:00까지)']],
   words:[['bored','지루한 (내가 느낌)','I felt bored.'],['boring','지루한 (그것이)','It was boring.'],['boredom','지루함, 권태',''],['scroll','스크롤하다','scrolled'],['skip','건너뛰다','skipped ★'],['quit','그만두다','quit'],['get tired of','~에 싫증 나다','got tired of'],['lose interest','흥미를 잃다','lost interest'],['waste time','시간을 낭비하다','wasted'],['spend time on','~에 시간을 쓰다','spent'],['focus on','~에 집중하다','focused'],['short videos','숏폼 영상',''],['content','콘텐츠',''],['free time','여가 시간',''],['hobby','취미',''],['watch','보다','watched']],
-  words2:[['endless','끝없는','과잉'],['too many choices','선택지가 너무 많음','과잉'],['stimulation','자극','과잉'],['dopamine','도파민','과잉'],['algorithm','알고리즘','과잉'],['binge-watch','몰아보다','과잉'],['attention span','집중 지속 시간','과잉'],['overwhelmed','(너무 많아서) 벅찬','과잉'],['nothing feels new','다 뻔하게 느껴지다','권태'],['be in a slump','슬럼프다, ~태기다','권태'],['go deep into','~에 깊이 빠지다','해결'],['stick with','꾸준히 계속하다','해결'],['unplug','디지털에서 벗어나다','해결'],['take a break from','~을 잠시 쉬다','해결'],['meaningful','의미 있는','해결'],['not worth my time','시간 쓸 가치가 없다','의견']],
+  words2:[['endless','끝없는','너무 많다고 말할 때'],['too many choices','선택지가 너무 많음','너무 많다고 말할 때'],['stimulation','자극','너무 많다고 말할 때'],['dopamine','도파민','너무 많다고 말할 때'],['algorithm','알고리즘','너무 많다고 말할 때'],['binge-watch','몰아보다','너무 많다고 말할 때'],['attention span','집중 지속 시간','너무 많다고 말할 때'],['overwhelmed','(너무 많아서) 벅찬','너무 많다고 말할 때'],['nothing feels new','다 뻔하게 느껴지다','지루하다 · 질렸다고 말할 때'],['be in a slump','슬럼프다, ~태기다','지루하다 · 질렸다고 말할 때'],['go deep into','~에 깊이 빠지다','해결 방법을 말할 때'],['stick with','꾸준히 계속하다','해결 방법을 말할 때'],['unplug','디지털에서 벗어나다','해결 방법을 말할 때'],['take a break from','~을 잠시 쉬다','해결 방법을 말할 때'],['meaningful','의미 있는','해결 방법을 말할 때'],['not worth my time','시간 쓸 가치가 없다','내 의견을 말할 때']],
   questions:['When did you last feel really bored? What did you do?','What did you start and quit this year? Why?','Is being bored bad, or can it be good?'],
   starters:['I think people feel bored because …','I got tired of … , so I quit.','These days I try to stick with one thing: …'],
   article:null,
@@ -128,7 +165,7 @@ var DEF={weeks:[
   intro:'기사 읽기와 정답 확인에 40분, 이후 말하기. 과거동사 쓰기 재확인은 11/22로 넘김.',
   todo:[],
   words:[['plan','계획하다','planned ★'],['book','예약하다','booked'],['leave','떠나다','left'],['take a photo','사진을 찍다','took'],['spend','(돈·시간) 쓰다','spent'],['meet','만나다','met'],['get lost','길을 잃다','got lost'],['exhausted','완전히 지친','']],
-  words2:[['solo trip','혼자 여행','혼자'],['at my own pace','내 속도대로','혼자'],['spontaneous','즉흥적인','혼자'],['compromise','타협하다','같이'],['split the bill','나눠 내다','같이'],['take turns','번갈아 하다','같이'],['itinerary','여행 일정표','공통'],['memorable','기억에 남는','공통'],["I'd rather ~ than ~",'~보다 차라리 ~하겠다','의견'],['It depends on ~','~에 달려 있다','의견'],['pros and cons','장단점','의견']],
+  words2:[['solo trip','혼자 여행','혼자'],['at my own pace','내 속도대로','혼자'],['spontaneous','즉흥적인','혼자'],['compromise','타협하다','같이'],['split the bill','나눠 내다','같이'],['take turns','번갈아 하다','같이'],['itinerary','여행 일정표','공통'],['memorable','기억에 남는','공통'],["I'd rather ~ than ~",'~보다 차라리 ~하겠다','내 의견을 말할 때'],['It depends on ~','~에 달려 있다','내 의견을 말할 때'],['pros and cons','장단점','내 의견을 말할 때']],
   questions:['Would you rather travel alone or with friends?','Tell me about your last trip.','What would you do differently next time?'],
   starters:["I'd rather … than …",'It depends on …'],
   article:['How craft conquered design','Dezeen · 16 Sep 2026','https://www.dezeen.com/2026/09/16/how-craft-conquered-design/','공예가 왜 다시 쿨해졌는지, 그 흐름이 계속될지를 묻는 기사.'],
@@ -214,12 +251,12 @@ $('rbtn').onclick=async function(){var e=$('rerr');e.style.color='';var id=$('ri
  AUTH[id]=await hashPw(id,pw);var nc=newCode();AUTH['rc_'+id]=await hashPw('rc_'+id,normCode(nc));delete AUTH['hint_'+id];var ok=await saveAuth();
  e.style.color='var(--teal)';e.textContent='변경됐어요'+(ok?'':' (이 기기에서만)')+'. 새 복구 코드: '+nc+' — 지금 적어두세요. 이전 코드는 더 이상 쓸 수 없습니다.';$('rcode').value='';$('rpw').value=''};
 $('pwbtn').onclick=function(){tab='pw';render();scrollTo(0,0)};
-$('logout').onclick=function(){cu=null;try{sessionStorage.removeItem('fm2_cu')}catch(e){}$('app').classList.add('hide');$('login').classList.remove('hide');$('lpw').value='';$('lerr').textContent='';$('lhint').textContent=''};
+$('logout').onclick=function(){cu=null;try{sessionStorage.removeItem('fm2_cu')}catch(e){}$('app').classList.add('hide');document.body.classList.remove('stu');$('login').classList.remove('hide');$('lpw').value='';$('lerr').textContent='';$('lhint').textContent=''};
 
 /* ---------- render ---------- */
 var STABS=[['home','홈'],['week','이번 주 자료'],['practice','연습'],['hw','숙제'],['record','기록']];
 var TTABS=[['t-week','주차 올리기'],['t-inbox','제출 확인'],['t-record','기록 · 리포트'],['home','학생 화면 보기']];
-function render(){if(cu.role!=='teacher'&&tab.indexOf('t-')===0)tab='home';if(cu.role==='teacher'&&tab==='review')tab='home';var tabs=cu.role==='teacher'?TTABS.concat(tab==='home'||tab==='mission'||tab==='review'||tab==='week'||tab==='practice'||tab==='hw'||tab==='record'?STABS.slice(1):[]):STABS;
+function render(){document.body.classList.toggle('stu',cu.role!=='teacher');if(cu.role!=='teacher'&&tab.indexOf('t-')===0)tab='home';if(cu.role==='teacher'&&tab==='review')tab='home';var tabs=cu.role==='teacher'?TTABS.concat(tab==='home'||tab==='mission'||tab==='review'||tab==='week'||tab==='practice'||tab==='hw'||tab==='record'?STABS.slice(1):[]):STABS;
  $('nav').innerHTML=tabs.map(function(t){return '<button data-t="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('');
  [].forEach.call($('nav').children,function(b){b.onclick=function(){tab=b.dataset.t;render();scrollTo(0,0)}});
  if(tab!=='review')rv=null;if(tab!=='mission')ms=null;if(tab!=='record')pd=null;var pv=cu.role==='teacher'&&tab.indexOf('t-')!==0&&tab!=='pw';var f={pw:pPw,mission:pMission,review:pReview,home:pHome,week:pWeek,practice:pPractice,hw:pHw,record:pRecord,'t-week':tWeek,'t-inbox':tInbox,'t-record':tRecord}[tab];$('main').innerHTML='';f();if(pv){[].forEach.call($('main').querySelectorAll('input,textarea,button'),function(el){var nav=el.hasAttribute('data-w')||el.id==='blur'||(el.hasAttribute('data-go')&&el.getAttribute('data-go')!=='review');if(nav)return;el.disabled=true;el.style.opacity='.45';el.style.cursor='not-allowed'});$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>보기 전용</b> — Hailey 계정에서는 학생 화면을 볼 수만 있습니다. 체크 · 인증 · 복습 · 숙제 제출은 Brian 계정에서만 진행됩니다.</div>')}}
@@ -299,13 +336,15 @@ function pMission(){var t=today(),d=dmOf(t);var h='<div class="card" style="max-
  var sv=$('msave');if(sv)sv.onclick=function(){var v=$('msent').value.replace(/\s+/g,' ').trim();ms.draft=v;var wc=(v.match(/[A-Za-z][A-Za-z']*/g)||[]).length;if(wc<3){$('mmsg').style.color='var(--red)';$('mmsg').textContent='영어 단어 3개 이상으로 한 문장을 써주세요.';return}
   ST.dm=ST.dm||{};ST.dm[today()]={s:v.slice(0,300),qn:ms.qn,q:ms.ok,w:ms.words.map(function(x){return x.en})};markDay();ms=null;saveState();render()}}
 
+var TAG2={'과잉':'너무 많다고 말할 때','권태':'지루하다 · 질렸다고 말할 때','해결':'해결 방법을 말할 때','의견':'내 의견을 말할 때'};
+function grp2(list){var g=[],ix={};(list||[]).forEach(function(r){var t=String(r[2]||'').trim();t=TAG2[t]||t;if(!(t in ix)){ix[t]=g.length;g.push({t:t,r:[]})}g[ix[t]].r.push(r)});return g}
 function pWeek(){var w=getW(wk)||nextWeek();var n=1;
  var h='<div class="chips">'+weeksSorted().map(function(x){return '<button class="chip'+(x.id===w.id?' on':'')+'" data-w="'+x.id+'">'+md(x.date)+' · '+esc(x.topic)+'</button>'}).join('')+'</div>';
  h+='<div class="card"><h2>'+dw(w.date)+' · '+esc(w.topic)+' <small>'+esc(w.topicKo||'')+'</small></h2><div class="kr">'+esc(w.time)+' · '+esc(w.place)+'</div>'+(w.intro?'<p style="margin:8px 0 0">'+esc(w.intro)+'</p>':'')+'</div>';
  if((w.questions||[]).length)h+='<details open><summary><span><span class="n">'+(n++)+'</span>토픽 · 질문</span></summary><div class="in">'+w.questions.map(function(q,i){return '<div class="q"><i>'+(i+1)+'</i>'+esc(q)+'</div>'}).join('')+((w.starters||[]).length?'<div class="note"><b>Start with</b><br>'+w.starters.map(esc).join('<br>')+'</div>':'')+'</div></details>';
  if((w.words||[]).length||(w.words2||[]).length)h+='<details open><summary><span><span class="n">'+(n++)+'</span>단어 '+((w.words||[]).length+(w.words2||[]).length)+'개</span></summary><div class="in"><button class="btn sm gray" id="blur">뜻 가리고 외우기</button>'+
-  ((w.words||[]).length?'<table style="margin-top:8px"><tr><th>기초 단어</th><th>뜻</th><th>과거형 · 메모</th></tr>'+w.words.map(function(r){return '<tr><td class="w">'+esc(r[0])+'</td><td class="k">'+esc(r[1])+'</td><td class="p">'+esc(r[2])+'</td></tr>'}).join('')+'</table>':'')+
-  ((w.words2||[]).length?'<table style="margin-top:14px"><tr><th>심화 단어</th><th>뜻</th><th>쪽</th></tr>'+w.words2.map(function(r){return '<tr><td class="w">'+esc(r[0])+'</td><td class="k">'+esc(r[1])+'</td><td class="kr">'+esc(r[2])+'</td></tr>'}).join('')+'</table>':'')+'</div></details>';
+  ((w.words||[]).length?'<table class="wt" style="margin-top:8px"><tr><th>기초 단어</th><th>뜻</th><th>과거형 · 메모</th></tr>'+w.words.map(function(r){return '<tr><td class="w">'+esc(r[0])+'</td><td class="k">'+esc(r[1])+'</td><td class="p">'+esc(r[2])+'</td></tr>'}).join('')+'</table>':'')+
+  ((w.words2||[]).length?'<div class="wgh" style="margin-top:18px"><b>심화 단어</b><span class="kr"> — 어떤 말을 할 때 쓰는지에 따라 묶었습니다</span></div>'+grp2(w.words2).map(function(g){return '<div class="wg">'+(g.t?'<div class="wgt">'+esc(g.t)+'</div>':'')+'<table class="wt w2">'+g.r.map(function(r){return '<tr><td class="w">'+esc(r[0])+'</td><td class="k">'+esc(r[1])+'</td></tr>'}).join('')+'</table></div>'}).join(''):'')+'</div></details>';
  if(w.article&&w.article[0])h+='<details open><summary><span><span class="n">'+(n++)+'</span>기사</span></summary><div class="in"><a class="lk" href="'+esc(w.article[2])+'" target="_blank" rel="noopener"><span><b>'+esc(w.article[0])+'</b><span class="s">'+esc(w.article[1])+'</span></span><span>열기 ↗</span></a>'+(w.article[3]?'<div class="kr">'+esc(w.article[3])+'</div>':'')+'</div></details>';
  if((w.practice||[]).length)h+='<details open><summary><span><span class="n">'+(n++)+'</span>연습</span></summary><div class="in">'+w.practice.map(lkHtml).join('')+'</div></details>';
  if((w.files||[]).length)h+='<details><summary><span><span class="n">'+(n++)+'</span>파일 (PDF)</span></summary><div class="in">'+w.files.map(function(f){return lkHtml([f[0],f[1],'다운로드'])}).join('')+'</div></details>';
@@ -356,7 +395,7 @@ function pRecord(){var R=D.records||{};var G=(R.goal&&R.goal[0]>0)?R.goal:[900,1
 /* ---------- teacher ---------- */
 function toLines(a){return (a||[]).map(function(r){return Array.isArray(r)?r.map(function(x){return x==null?'':x}).join(' | '):r}).join('\n')}
 function fromLines(t,cols){return t.split('\n').map(function(l){return l.trim()}).filter(Boolean).map(function(l){if(!cols)return l;var p=l.split('|').map(function(x){return x.trim()});while(p.length<cols)p.push('');return p.slice(0,cols)})}
-var WF=[['todo','이번 주 할 일','날짜 | 할 일 — 날짜를 월 11/16 처럼 쓰면 그날 홈에 떠요 · Hailey와 약속한 일은 할 일 앞에 ★ (인증 버튼이 생겨요)',2],['questions','토픽 질문','한 줄에 하나',0],['starters','시작 문장','한 줄에 하나',0],['words','기초 단어','단어 | 뜻 | 과거형·메모',3],['words2','심화 단어','단어 | 뜻 | 쪽',3],['practice','연습 링크','제목 | 주소 | 설명',3],['files','파일 (PDF)','제목 | 주소',2],['homework','숙제','할 일 | 제출 방법 | 마감',3],['feedback','피드백','틀린 문장 | 고친 문장 | 규칙 (왜 그렇게 고치는지)',3]];
+var WF=[['todo','이번 주 할 일','날짜 | 할 일 — 날짜를 월 11/16 처럼 쓰면 그날 홈에 떠요 · Hailey와 약속한 일은 할 일 앞에 ★ (인증 버튼이 생겨요)',2],['questions','토픽 질문','한 줄에 하나',0],['starters','시작 문장','한 줄에 하나',0],['words','기초 단어','단어 | 뜻 | 과거형·메모',3],['words2','심화 단어','단어 | 뜻 | 쓰는 상황 (예: 해결 방법을 말할 때) — 같은 상황끼리 묶여서 보여요',3],['practice','연습 링크','제목 | 주소 | 설명',3],['files','파일 (PDF)','제목 | 주소',2],['homework','숙제','할 일 | 제출 방법 | 마감',3],['feedback','피드백','틀린 문장 | 고친 문장 | 규칙 (왜 그렇게 고치는지)',3]];
 function tWeek(){var w=getW(wk);var h='<div class="chips">'+weeksSorted().map(function(x){return '<button class="chip'+(w&&x.id===w.id?' on':'')+'" data-w="'+x.id+'">'+md(x.date)+' · '+esc(x.topic)+'</button>'}).join('')+'<button class="chip'+(!w?' on':'')+'" data-w="new">+ 새 주차</button></div>';
  w=w||{id:'',date:'',time:'10:00–11:30',place:'',topic:'',topicKo:'',intro:'',article:null};
  h+='<div class="card"><h2>주차 올리기 <small>저장하면 학생 화면에 바로 반영돼요</small></h2><div class="grid"><div><label class="f">수업 날짜</label><input type="date" id="f_date" value="'+esc(w.date)+'"></div><div><label class="f">시간</label><input type="text" id="f_time" value="'+esc(w.time)+'"></div><div><label class="f">장소</label><input type="text" id="f_place" value="'+esc(w.place)+'" placeholder="수원 · 오프라인 / 줌"></div><div><label class="f">토픽 (영어)</label><input type="text" id="f_topic" value="'+esc(w.topic)+'"></div></div><label class="f">토픽 (한국어)</label><input type="text" id="f_topicKo" value="'+esc(w.topicKo)+'"><label class="f">선생님 한마디<small>학생 홈 맨 위에 보여요 — 이번 주에 뭘 왜 하는지 한두 문장</small></label><textarea id="f_note">'+esc(w.note||'')+'</textarea><label class="f">토픽 소개</label><textarea id="f_intro">'+esc(w.intro)+'</textarea><label class="f">기사 <small>제목 | 출처 | 주소 | 한 줄 설명 (없으면 비워두기)</small></label><input type="text" id="f_article" value="'+esc(w.article?w.article.join(' | '):'')+'">'+
