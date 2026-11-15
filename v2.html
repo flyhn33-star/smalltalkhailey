@@ -42,6 +42,10 @@ h2 small{font-family:inherit;font-size:13px;color:var(--mute);font-weight:400;ma
 .ck.done span.tx{color:var(--mute);text-decoration:line-through}
 .fx{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .fx .x{background:var(--red-l);color:var(--red);border-radius:10px;padding:8px 12px;font-size:15px}
+
+.fx .r{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.65;color:var(--ink);word-break:keep-all}
+.fx .r b{display:inline-block;margin-right:8px;color:var(--teal);font-size:12px;letter-spacing:.04em}
+.fx{margin-bottom:14px}
 .fx .o{background:var(--teal-l);color:var(--teal);border-radius:10px;padding:8px 12px;font-size:15px;font-weight:700}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .chip{border:2px solid var(--line);background:#fff;border-radius:18px;padding:6px 13px;font-size:14px;font-weight:700;color:var(--mute)}
@@ -119,7 +123,7 @@ var DEF={weeks:[
   practice:[['과거동사 36 · Tap Test','practice/past-tense-tap.html','★13 → 전체 36 → to/✕'],['It depends on ~ · 구문 연습','practice/it-depends-on.html','고르기 · 순서 맞추기 · 작문']],
   files:[['권태사회 단어장 (PDF)','materials/Brian_WordList_BoredSociety.pdf'],['주간 위클리 11/16–22 (PDF)','materials/Brian_Weekly_Nov16-22.pdf']],
   homework:[['Recording 2 min — 수업 때 한 얘기 다시, 피드백 3개 넣어서','카톡 음성파일','11/21(토) 22:00'],['과거동사 Tap Test 전체 36 → 36/36','스크린샷','11/22(일) 수업 전']],
-  feedback:[['I always learn to new design tool.','I always learn new design tools.'],['I want to you think.','I want to know what you think.'],['Design is no single correct answer.','Design has no single right answer.']]},
+  feedback:[['I always learn to new design tool.','I always learn new design tools.','learn 뒤에 배우는 대상(명사)이 바로 옵니다. to는 뒤에 동사가 올 때만 씁니다: learn to use a tool. 여러 개를 말할 때는 tools처럼 -s를 붙입니다.'],['I want to you think.','I want to know what you think.','want to 뒤에는 동사원형이 옵니다: want to know. \'네 생각\'은 what you think (what + 주어 + 동사) 순서로 말합니다.'],['Design is no single correct answer.','Design has no single right answer.','\'~가 없다\'는 have/has no + 명사로 말합니다. is를 쓰면 \'디자인 = 정답 없음\'이라는 뜻이 됩니다. 주어 Design은 단수라서 has를 씁니다.']]},
  {id:'2026-11-15',date:'2026-11-15',time:'10:00–11:30',place:'줌',topic:'Solo vs Group Travel · L2',topicKo:'혼자 여행 vs 같이 여행 + 기사 읽기',
   intro:'기사 읽기와 정답 확인에 40분, 이후 말하기. 과거동사 쓰기 재확인은 11/22로 넘김.',
   todo:[],
@@ -131,7 +135,7 @@ var DEF={weeks:[
   practice:[['수업 전 과제 (기사 문제 + Article Card)','practice/2026-11-15-preclass.html','단어 8 · 문제 6']],
   files:[],
   homework:[],
-  feedback:[['I always learn to new design tool.','I always learn new design tools.'],['I want to you think.','I want to know what you think.'],['Design is no single correct answer.','Design has no single right answer.']]}
+  feedback:[['I always learn to new design tool.','I always learn new design tools.','learn 뒤에 배우는 대상(명사)이 바로 옵니다. to는 뒤에 동사가 올 때만 씁니다: learn to use a tool. 여러 개를 말할 때는 tools처럼 -s를 붙입니다.'],['I want to you think.','I want to know what you think.','want to 뒤에는 동사원형이 옵니다: want to know. \'네 생각\'은 what you think (what + 주어 + 동사) 순서로 말합니다.'],['Design is no single correct answer.','Design has no single right answer.','\'~가 없다\'는 have/has no + 명사로 말합니다. is를 쓰면 \'디자인 = 정답 없음\'이라는 뜻이 됩니다. 주어 Design은 단수라서 has를 씁니다.']]}
 ],
 reports:[{id:'2026-10',title:'October Final',date:'2026-10-31',got:43,max:53,
  parts:[['과거동사',17,20],['습관 교정',10,10],['어순',4,5],['그림 빈칸',3,8],['지문 빈칸',9,10]],
@@ -226,7 +230,8 @@ function todoRow(w,t,i,tdy){var k=tk(w,t);var st=isStar(t);var tx=String(t[1]).r
  return h+(st?'':'<div style="border-bottom:1px dashed var(--line)"></div>')+'</div>'}
 var CHEER=['이번 주 숙제 완료. 꾸준히 한 만큼 수업에서 말이 길어집니다.','숙제를 모두 끝냈어요. 지난주보다 한 걸음 더 나아갔습니다.','완료. 오늘 한 연습이 다음 수업의 3분 말하기가 됩니다.','다 끝냈어요. 이 페이스면 과거동사는 곧 고민 없이 나옵니다.'];
 function cheer(id){var n=0;for(var i=0;i<id.length;i++)n+=id.charCodeAt(i);return CHEER[n%CHEER.length]}
-function fxHtml(list){return (list||[]).map(function(f){return '<div class="fx"><div class="x">'+esc(f[0])+'</div><div class="o">'+esc(f[1])+'</div></div>'}).join('')||'<div class="kr">등록된 피드백이 없습니다.</div>'}
+var RULE0={};function ruleOf(f){if(f[2])return f[2];if(!RULE0._)DEF.weeks.forEach(function(w){(w.feedback||[]).forEach(function(x){if(x[2])RULE0[x[0]+'>'+x[1]]=x[2]});RULE0._=1});return RULE0[f[0]+'>'+f[1]]||''}
+function fxHtml(list){return (list||[]).map(function(f){var r=ruleOf(f);return '<div class="fx"><div class="x">'+esc(f[0])+'</div><div class="o">'+esc(f[1])+'</div>'+(r?'<div class="r"><b>규칙</b>'+esc(r)+'</div>':'')+'</div>'}).join('')||'<div class="kr">등록된 피드백이 없습니다.</div>'}
 
 function pHome(){var w=nextWeek();var prev=weeksSorted().filter(function(x){return x.date<w.date})[0];var fb=(w.feedback&&w.feedback.length)?w.feedback:(prev?prev.feedback:[]);
  var h='<div class="hero"><div class="kr" style="color:#eadfd6">다음 수업</div><div class="d">'+dw(w.date)+' · '+esc(w.time)+'</div><div class="t">'+esc(w.place)+' · <b>'+esc(w.topic)+'</b> '+esc(w.topicKo||'')+'</div>'+(w.note?'<div style="margin-top:10px;background:rgba(255,255,255,.14);border-radius:10px;padding:9px 12px;font-size:15px">'+esc(w.note)+'</div>':'<span class="tag">자료 · 숙제는 이 사이트에서 전부 확인해요</span>')+'</div>';
@@ -303,7 +308,7 @@ function pRecord(){var R=D.records||{};var G=(R.goal&&R.goal[0]>0)?R.goal:[900,1
 /* ---------- teacher ---------- */
 function toLines(a){return (a||[]).map(function(r){return Array.isArray(r)?r.map(function(x){return x==null?'':x}).join(' | '):r}).join('\n')}
 function fromLines(t,cols){return t.split('\n').map(function(l){return l.trim()}).filter(Boolean).map(function(l){if(!cols)return l;var p=l.split('|').map(function(x){return x.trim()});while(p.length<cols)p.push('');return p.slice(0,cols)})}
-var WF=[['todo','이번 주 할 일','날짜 | 할 일 — 날짜를 월 11/16 처럼 쓰면 그날 홈에 떠요 · Hailey와 약속한 일은 할 일 앞에 ★ (인증 버튼이 생겨요)',2],['questions','토픽 질문','한 줄에 하나',0],['starters','시작 문장','한 줄에 하나',0],['words','기초 단어','단어 | 뜻 | 과거형·메모',3],['words2','심화 단어','단어 | 뜻 | 쪽',3],['practice','연습 링크','제목 | 주소 | 설명',3],['files','파일 (PDF)','제목 | 주소',2],['homework','숙제','할 일 | 제출 방법 | 마감',3],['feedback','피드백','틀린 문장 | 고친 문장',2]];
+var WF=[['todo','이번 주 할 일','날짜 | 할 일 — 날짜를 월 11/16 처럼 쓰면 그날 홈에 떠요 · Hailey와 약속한 일은 할 일 앞에 ★ (인증 버튼이 생겨요)',2],['questions','토픽 질문','한 줄에 하나',0],['starters','시작 문장','한 줄에 하나',0],['words','기초 단어','단어 | 뜻 | 과거형·메모',3],['words2','심화 단어','단어 | 뜻 | 쪽',3],['practice','연습 링크','제목 | 주소 | 설명',3],['files','파일 (PDF)','제목 | 주소',2],['homework','숙제','할 일 | 제출 방법 | 마감',3],['feedback','피드백','틀린 문장 | 고친 문장 | 규칙 (왜 그렇게 고치는지)',3]];
 function tWeek(){var w=getW(wk);var h='<div class="chips">'+weeksSorted().map(function(x){return '<button class="chip'+(w&&x.id===w.id?' on':'')+'" data-w="'+x.id+'">'+md(x.date)+' · '+esc(x.topic)+'</button>'}).join('')+'<button class="chip'+(!w?' on':'')+'" data-w="new">+ 새 주차</button></div>';
  w=w||{id:'',date:'',time:'10:00–11:30',place:'',topic:'',topicKo:'',intro:'',article:null};
  h+='<div class="card"><h2>주차 올리기 <small>저장하면 학생 화면에 바로 반영돼요</small></h2><div class="grid"><div><label class="f">수업 날짜</label><input type="date" id="f_date" value="'+esc(w.date)+'"></div><div><label class="f">시간</label><input type="text" id="f_time" value="'+esc(w.time)+'"></div><div><label class="f">장소</label><input type="text" id="f_place" value="'+esc(w.place)+'" placeholder="수원 · 오프라인 / 줌"></div><div><label class="f">토픽 (영어)</label><input type="text" id="f_topic" value="'+esc(w.topic)+'"></div></div><label class="f">토픽 (한국어)</label><input type="text" id="f_topicKo" value="'+esc(w.topicKo)+'"><label class="f">선생님 한마디<small>학생 홈 맨 위에 보여요 — 이번 주에 뭘 왜 하는지 한두 문장</small></label><textarea id="f_note">'+esc(w.note||'')+'</textarea><label class="f">토픽 소개</label><textarea id="f_intro">'+esc(w.intro)+'</textarea><label class="f">기사 <small>제목 | 출처 | 주소 | 한 줄 설명 (없으면 비워두기)</small></label><input type="text" id="f_article" value="'+esc(w.article?w.article.join(' | '):'')+'">'+
