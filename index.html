@@ -61,7 +61,7 @@ table{width:100%;border-collapse:collapse;font-size:15px}
 th{text-align:left;font-size:12px;color:var(--mute);font-weight:500;padding:5px 6px;border-bottom:1px solid var(--line)}
 td{padding:7px 6px;border-bottom:1px dashed var(--line)}
 td.w{font-weight:700}td.p{color:var(--red);font-weight:700;font-size:14px}
-td.k.blur{color:transparent;background:#eee8e1;border-radius:4px}
+td.k.blur,.wt td.k.blur{color:transparent!important;background:#eee8e1;border-radius:4px;cursor:pointer;-webkit-user-select:none;user-select:none}td.k.blur.peek,.wt td.k.blur.peek{color:var(--mute)!important;background:transparent}
 .q{padding:8px 0;border-bottom:1px dashed var(--line);font-size:16px}
 .q:last-child{border:0}
 .q i{font-style:normal;font-weight:700;color:var(--br);margin-right:6px}
@@ -187,7 +187,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261116-0940';
+var APPVER='20261122-0846';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -530,7 +530,7 @@ function pWeek(){var w=getW(wk)||nextWeek();var n=1;
  if((w.feedback||[]).length)h+='<details><summary><span><span class="n">'+(n++)+'</span>피드백</span></summary><div class="in">'+fxHtml(w.feedback)+'</div></details>';
  $('main').innerHTML=h;
  [].forEach.call(document.querySelectorAll('[data-w]'),function(b){b.onclick=function(){wk=b.dataset.w;render()}});
- var bl=$('blur');if(bl)bl.onclick=function(){var on=bl.dataset.on!=='1';bl.dataset.on=on?'1':'0';bl.textContent=on?'뜻 다시 보기':'뜻 가리고 외우기';[].forEach.call(document.querySelectorAll('td.k'),function(t){t.classList.toggle('blur',on)})}}
+ var bl=$('blur');if(bl)bl.onclick=function(){var on=bl.dataset.on!=='1';bl.dataset.on=on?'1':'0';bl.textContent=on?'뜻 다시 보기':'뜻 가리고 외우기';[].forEach.call(document.querySelectorAll('td.k'),function(t){t.classList.toggle('blur',on);t.classList.remove('peek')})}} if(!window.__peekK){window.__peekK=1;document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('td.k.blur');if(t)t.classList.toggle('peek')})}
 var rv=null;
 function pReview(){if(!rv)rv={q:dueCards(),i:0,show:false,ok:0};var c=rv.q[rv.i];
  if(!c){markDay();ST.rvDay=today();if(rv.q.length){ST.rvd=ST.rvd||{};ST.rvd[today()]=1}saveState();$('main').innerHTML='<div class="card" style="text-align:center"><div class="score">'+rv.ok+' / '+rv.q.length+'</div><p>오늘 복습 완료 · 연속 <b>'+streak()+'일</b></p><button class="btn" id="rvh">홈으로</button></div>';$('rvh').onclick=function(){rv=null;tab='home';render()};return}
