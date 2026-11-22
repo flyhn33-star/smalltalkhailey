@@ -19,7 +19,8 @@ async function submit(score,text){
   var snap=await fs.getDoc(ref),st;
   if(snap.exists()&&snap.data().json)st=JSON.parse(snap.data().json);else st=lget(LK,null)||{todo:{},hw:{},pr:{},srs:{},days:{}};
   st.prp=st.prp||{};st.prp[pid()]={s:String(score).slice(0,80),x:String(text).slice(0,3000),at:at};st.t=Date.now();
-  await fs.setDoc(ref,{json:JSON.stringify(st),student:STUDENT,updatedAt:Date.now()});
+  var body={json:JSON.stringify(st),student:STUDENT,updatedAt:Date.now()},cd=snap.exists()?snap.data():{},bak={};if(cd.bak&&typeof cd.bak==='object')Object.keys(cd.bak).forEach(function(k){bak[k]=cd.bak[k]});var n=new Date(),day=n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2);if(!bak[day]&&cd.json)bak[day]=cd.json;var ks=Object.keys(bak).sort();while(ks.length>7)delete bak[ks.shift()];
+  try{await fs.setDoc(ref,Object.assign({bak:bak},body))}catch(e){await fs.setDoc(ref,body)}
   var back=await fs.getDoc(ref),ok=false;try{ok=JSON.parse(back.data().json).prp[pid()].at===at}catch(e){}
   if(!ok)return {ok:false,why:'verify'};
   lset(LK,st);var m=lget(SK,{});m[pid()]={s:String(score).slice(0,80),at:at};lset(SK,m);
