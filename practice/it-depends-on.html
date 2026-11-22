@@ -147,7 +147,6 @@ pre.on{display:block}
       <div class="kr">다 했으면 "선생님께 제출"을 누르세요. 점수와 쓴 문장이 선생님에게 바로 전달됩니다.</div>
       <button class="btn w" id="send">선생님께 제출</button>
       <div class="subok" id="subok"></div><div class="msg" id="msg"></div><pre id="out"></pre>
-      <button class="btn sec w" id="copy" style="margin-top:10px">결과 복사 (카톡용)</button>
       <button class="btn gray w" id="reset">처음부터 다시</button>
     </div>
   </div>
@@ -226,9 +225,7 @@ function drawW(){var el=$('write');el.innerHTML=W.map(function(w,i){var c=check(
 function counts(){return {q:Q.filter(function(q,k){return S.qa[k]===q[1][0]}).length,b:B.filter(function(b,k){return S.ba[k]===1}).length,w:W.filter(function(w,k){return (S.w[k]||'').trim().split(/\s+/).filter(Boolean).length>=6}).length}}
 function result(){var c=counts();$('sc').textContent=(c.q+c.b)+' / '+(Q.length+B.length);$('scs').textContent='고르기 '+c.q+'/'+Q.length+' · 순서 맞추기 '+c.b+'/'+B.length+' · 직접 쓰기 '+c.w+'/'+W.length+'문장'}
 function mk(){var c=counts();return '[Brian · It depends on ~ practice]\n고르기: '+c.q+' / '+Q.length+'\n순서 맞추기: '+c.b+' / '+B.length+'\n\n— My sentences —\n'+W.map(function(w,i){return (i+1)+'. '+w[0]+'\n   '+((S.w[i]||'').trim()||'-')}).join('\n')}
-if(window.FM)FM.bind($('send'),$('msg'),$('subok'),function(){var c=counts();return [(c.q+c.b)+'/'+(Q.length+B.length)+' · 쓰기 '+c.w+'/'+W.length+'문장',mk()]});else $('send').onclick=function(){$('msg').textContent='제출 기능을 불러오지 못했어요. 결과 복사로 카톡에 보내주세요.'};
-$('copy').onclick=function(){var txt=mk();
- var o=$('out');o.textContent=txt;o.classList.add('on');var m=$('msg');try{navigator.clipboard.writeText(txt).then(function(){m.textContent='복사됐어요 ✓ 카톡에 붙여넣어 보내주세요.'}).catch(function(){m.textContent='아래 내용을 직접 복사해서 보내주세요.'})}catch(e){m.textContent='아래 내용을 직접 복사해서 보내주세요.'}};
+if(window.FM)FM.bind($('send'),$('msg'),$('subok'),function(){var c=counts();return [(c.q+c.b)+'/'+(Q.length+B.length)+' · 쓰기 '+c.w+'/'+W.length+'문장',mk()]});else $('send').onclick=function(){$('msg').textContent='제출 기능을 불러오지 못했어요. 새로고침한 뒤 다시 눌러 주세요.'};
 var armed=false;$('reset').onclick=function(){if(!armed){armed=true;$('reset').textContent='정말 지울까요? 한 번 더 누르면 지워져요';setTimeout(function(){armed=false;$('reset').textContent='처음부터 다시'},4000);return}try{localStorage.removeItem(K)}catch(e){}location.reload()};
 tabs();drawQ();drawB();drawW();
 })();
