@@ -34,6 +34,6 @@ function bind(btn,msg,box,get){
  btn.onclick=function(){var g=get();btn.disabled=true;msg.textContent='제출하는 중…';
   submit(g[0],g[1]).then(function(r){btn.disabled=false;
    if(r.ok){msg.textContent='';show()}
-   else msg.textContent=r.why==='teacher'?'선생님 기기에서는 제출되지 않습니다.':'온라인 저장에 실패했어요. 인터넷을 확인하고 다시 누르거나, 결과 복사로 카톡에 보내주세요.'})}}
+   else msg.textContent=r.why==='teacher'?'선생님 기기에서는 제출되지 않습니다.':'온라인 저장에 실패했어요. 인터넷을 확인하고 다시 눌러 주세요.'})}}
 window.FM={submit:submit,last:last,isTeacher:isTeacher,bind:bind};
 })();
