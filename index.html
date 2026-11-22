@@ -126,12 +126,14 @@ label.f small{font-weight:400;color:var(--mute);margin-left:6px}
 .cd.cl{background:var(--br-l);color:var(--br-d)}
 .cd.td{border-color:var(--amber)}
 .cd.on{border-color:var(--br);background:#fff}
+.cd.cl.on{background:var(--br-l)}
+.cd u.c{background:var(--br)}
 .cd i{position:absolute;left:0;right:0;bottom:5px;display:flex;gap:3px;justify-content:center}
 .cd u,.lg1{display:inline-block;width:6px;height:6px;border-radius:50%}
 .cd u.a,.lg1.a{background:var(--teal)}
 .cd u.m,.lg1.m{background:var(--amber)}
 .lg1{margin:0 4px 0 10px}
-.lg1.cl{background:var(--br-l);border:1px solid var(--br);margin-left:0}
+.lg1.cl{background:var(--br);margin-left:0}
 .wgt{font-size:13px;font-weight:700;color:var(--br-d);background:var(--br-l);border-radius:8px;padding:4px 10px;margin:14px 0 2px;display:inline-block}
 .w2 td.w{width:46%}
 button,a,label,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -197,7 +199,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261122-1156';
+var APPVER='20261122-1220';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -534,7 +536,7 @@ function calHtml(){var t=today();if(!calM)calM=t.slice(0,7);if(!calSel)calSel=t;
  ((D.records||{}).schedule||[]).forEach(function(x){cls[x[0]]=x[1]||'수업'});D.weeks.forEach(function(w){cls[w.date]=(w.place||'수업')+' · '+w.topic});
  var h='<div class="card" id="calcard"><h2>캘린더 <small>날짜를 누르면 그날 학습 메모를 적을 수 있습니다</small></h2><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><button class="btn sm gray" data-cm="-1" aria-label="이전 달">‹</button><b id="calttl">'+y+'년 '+m+'월</b><button class="btn sm gray" data-cm="1" aria-label="다음 달">›</button></div><div class="cal">'+DOW.map(function(d){return '<span class="ch">'+d+'</span>'}).join('');
  for(var i=0;i<first;i++)h+='<span></span>';
- for(var d=1;d<=dim;d++){var ds=calM+'-'+('0'+d).slice(-2);h+='<button class="cd'+(ds===t?' td':'')+(ds===calSel?' on':'')+(cls[ds]?' cl':'')+'" data-cd="'+ds+'">'+d+'<i>'+(ST.days[ds]?'<u class="a"></u>':'')+(C[ds]?'<u class="m"></u>':'')+'</i></button>'}
+ for(var d=1;d<=dim;d++){var ds=calM+'-'+('0'+d).slice(-2);h+='<button class="cd'+(ds===t?' td':'')+(ds===calSel?' on':'')+(cls[ds]?' cl':'')+'" data-cd="'+ds+'">'+d+'<i>'+(cls[ds]?'<u class="c"></u>':'')+(ST.days[ds]?'<u class="a"></u>':'')+(C[ds]?'<u class="m"></u>':'')+'</i></button>'}
  h+='</div><div class="kr" style="margin-top:8px"><span class="lg1 cl"></span>수업 <span class="lg1 a"></span>공부한 날 <span class="lg1 m"></span>메모</div>';
  var mw=D.weeks.filter(function(w){return w.date&&w.date.slice(0,7)===calM}).sort(function(a,b){return a.date<b.date?-1:1});
  if(mw.length)h+='<div style="margin-top:12px"><b>'+m+'월 수업</b><span class="kr"> · 주제를 누르면 그 수업의 복습 자료가 열립니다</span>'+mw.map(function(w){return '<button data-cw="'+esc(w.id)+'" style="display:flex;width:100%;justify-content:space-between;align-items:center;gap:10px;background:none;border:0;border-bottom:1px dashed var(--line);padding:11px 2px;font:inherit;text-align:left;cursor:pointer;color:inherit"><span><b>'+dw(w.date)+'</b> '+esc(w.topic)+(w.topicKo?' <span class="kr">'+esc(w.topicKo)+'</span>':'')+'</span><span style="color:var(--br-d);font-weight:700;white-space:nowrap">'+(w.date<t?'복습 ›':'자료 ›')+'</span></button>'}).join('')+'</div>';
