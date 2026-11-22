@@ -197,7 +197,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261122-1112';
+var APPVER='20261122-1120';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -288,6 +288,8 @@ function hsh(t){var h=5381;t=String(t);for(var i=0;i<t.length;i++)h=((h<<5)+h+t.
 function tk(w,t){return w.id+'_t'+hsh(String(t[0]).replace('★','').trim()+'|'+String(t[1]).replace(/^\s*★\s*/,''))}
 function hk(w,x){return w.id+'_h'+hsh(x[0])}
 function pk(w,p){return w.id+'_p'+hsh(p[1]+'|'+p[0])}
+function prp(p){var s=String(p[1]||'').split(/[?#]/)[0].split('/').filter(Boolean).slice(-2).join('/');return (ST.prp||{})[s]||null}
+function prVal(w,p){var x=prp(p);return ST.pr[pk(w,p)]||(x?x.s:'')}
 function isToday(label,tdy){return new RegExp('(^|[^0-9])'+tdy.replace('/','\\/')+'($|[^0-9])').test(String(label))}
 function pc(a,b){a=+a;b=+b;return b>0&&isFinite(a)?Math.max(0,Math.min(100,Math.round(a/b*100))):0}
 function typing(){var a=document.activeElement;return !!a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&$('app')&&!$('app').classList.contains('hide')}
@@ -300,7 +302,7 @@ async function doLogin(){var id=$('lid').value.trim().toLowerCase(),pw=$('lpw').
  try{await Promise.race([fbReady,new Promise(function(r){setTimeout(r,4000)})])}catch(e){}
  var ok=await checkPw(id,pw);$('lbtn').disabled=false;$('lbtn').textContent='로그인 →';if(!ok){$('lerr').textContent='ID 또는 비밀번호가 달라요.';$('lhint').textContent=(USERS[id]&&AUTH['hint_'+id])?'힌트: '+AUTH['hint_'+id]:'';return}$('lhint').textContent='';$('lrec').classList.add('hide');
  var u=USERS[id];cu={id:id,role:u.role,name:u.name};try{sessionStorage.setItem('fm2_cu',id)}catch(e){}start()}
-function start(){$('login').classList.add('hide');$('app').classList.remove('hide');$('who').textContent=cu.name;tab=cu.role==='teacher'?'t-week':'home';wk=nextWeek().id;render()}
+function start(){try{localStorage.setItem('fm2_last',cu.id)}catch(e){}$('login').classList.add('hide');$('app').classList.remove('hide');$('who').textContent=cu.name;tab=cu.role==='teacher'?'t-week':'home';wk=nextWeek().id;render()}
 $('lbtn').onclick=doLogin;$('lpw').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin()});
 $('lforgot').onclick=function(){$('lrec').classList.toggle('hide')};
 $('rbtn').onclick=async function(){var e=$('rerr');e.style.color='';var id=$('rid').value.trim().toLowerCase(),code=normCode($('rcode').value),pw=$('rpw').value;
@@ -377,7 +379,7 @@ function buildGoals(w){var G=[],W=ST.wk||{};if(!w||!w.id||w.id==='none')return G
  if(q){var md2=cntIn(ST.dm,w);G.push({id:'speak',title:'토픽 질문에 끊지 않고 답한다',steps:[man('speak','질문 '+q+'개를 읽고 시작 문장 고르기','질문마다 시작 문장 하나를 정함',3,'week'),man('speak','질문 하나에 소리 내어 답하기','3문장 이상 끊지 않고 말함',5,''),{t:'오늘의 미션 4일 하기',c:'이번 주에 4일 완료 · 지금 '+Math.min(md2,4)+' / 4일',m:5,go:'mission',done:md2>=4,auto:1,daily:1}]})}
  var f=(w.feedback||[]).length;
  if(f)G.push({id:'fb',title:'지난 피드백 '+f+'문장을 틀리지 않는다',steps:[man('fb','고친 이유(규칙) 읽기','문장마다 왜 고쳤는지 말할 수 있음',2,'week'),man('fb','고친 문장을 3번씩 소리 내기',f+'문장 × 3번',3,'')]});
- if((w.practice||[]).length)G.push({id:'pr',title:'연습 '+w.practice.length+'개를 끝까지 푼다',steps:w.practice.map(function(p){var k=pk(w,p);return {k:k,t:String(p[0])+' 풀기',c:'끝까지 풀고 점수를 적어 저장',m:10,go:'practice',done:!!ST.pr[k],auto:1,wid:w.id}})});
+ if((w.practice||[]).length)G.push({id:'pr',title:'연습 '+w.practice.length+'개를 끝까지 푼다',steps:w.practice.map(function(p){var k=pk(w,p);return {k:k,t:String(p[0])+' 풀기',c:'끝까지 풀고 "선생님께 제출" 누르기',m:10,go:'practice',done:!!prVal(w,p),auto:1,wid:w.id}})});
  if((w.homework||[]).length)G.push({id:'hw',title:'숙제 '+w.homework.length+'개를 마감 전에 낸다',steps:w.homework.map(function(x){var k=hk(w,x);return {k:k,t:String(x[0]),c:'제출: '+(x[1]||'카톡')+' · 마감 '+(x[2]||'수업 전')+' · "제출 완료" 누르기',m:10,go:'hw',done:!!(ST.hw[k]||{}).done,auto:1,wid:w.id}})});
  var st=(w.todo||[]).filter(isStar);
  if(st.length)G.push({id:'promise',title:'Hailey와 약속을 지킨다',pr:st,steps:st.map(function(t){var k=tk(w,t);return {k:k,t:String(t[1]).replace(/^\s*★\s*/,''),c:'인증 메모를 적고 "인증하기"',m:2,go:'',done:!!(ST.tat||{})[k],auto:1,promise:1}})});
@@ -575,8 +577,8 @@ function pPw(){var h='<div class="card" style="max-width:460px;margin:0 auto"><h
  var sp=$('spsave');if(sp)sp.onclick=async function(){var m=$('spmsg');var v=$('spw').value;fin(m,false);if(v.length<6){m.textContent='6자 이상으로 정해주세요.';return}AUTH[STUDENT]=await hashPw(STUDENT,v);delete AUTH['hint_'+STUDENT];var ok=await saveAuth();fin(m,true);m.textContent=ok?'재설정됐어요. 학생에게 새 비밀번호를 알려주세요.':'이 기기에서만 바뀌었어요. 온라인 저장에 실패했어요.';$('spw').value=''}}
 function lkHtml(p){return '<a class="lk" href="'+esc(p[1])+'" target="_blank" rel="noopener"><span><b>'+esc(p[0])+'</b>'+(p[2]?'<span class="s">'+esc(p[2])+'</span>':'')+'</span><span>열기 ↗</span></a>'}
 
-function pPractice(){var h='<div class="card"><h2>연습 <small>쓰기 · 드릴은 여기서, 수업 시간은 말하기에</small></h2><div class="kr">끝까지 푼 뒤 점수를 적고 "저장"을 누르면 Weekly의 연습 STEP이 자동으로 체크됩니다.</div><button class="btn sm sec" data-go="home" style="margin-top:10px">← Weekly로</button></div>';
- weeksSorted().forEach(function(w){if(!(w.practice||[]).length)return;h+='<div class="card"><h2>'+md(w.date)+' · '+esc(w.topic)+'</h2>'+w.practice.map(function(p,i){var k=pk(w,p);return lkHtml(p)+'<div style="display:flex;gap:8px;margin:-2px 0 12px"><input type="text" data-pr="'+k+'" placeholder="내 점수 · 메모 (예: 36/36, 2번 만에)" value="'+esc(ST.pr[k]||'')+'"><button class="btn sm" data-ps="'+k+'">저장</button></div>'}).join('')+'</div>'});
+function pPractice(){var h='<div class="card"><h2>연습 <small>쓰기 · 드릴은 여기서, 수업 시간은 말하기에</small></h2><div class="kr">끝까지 푼 뒤 연습 화면에서 "선생님께 제출"을 누르면 결과가 Hailey에게 전달되고, Weekly의 연습 STEP이 자동으로 체크됩니다. 이 화면으로 돌아오면 "제출됨" 표시로 확인할 수 있습니다.</div><button class="btn sm sec" data-go="home" style="margin-top:10px">← Weekly로</button></div>';
+ weeksSorted().forEach(function(w){if(!(w.practice||[]).length)return;h+='<div class="card"><h2>'+md(w.date)+' · '+esc(w.topic)+'</h2>'+w.practice.map(function(p,i){var k=pk(w,p),x=prp(p);if(x)return lkHtml(p)+'<div class="note" style="margin:-2px 0 12px"><b style="color:var(--teal)">제출됨 ✓</b> '+esc(x.at)+' · '+esc(x.s)+'<div class="kr">Hailey가 "제출 확인"에서 볼 수 있습니다.</div></div>';return lkHtml(p)+'<div style="display:flex;gap:8px;margin:-2px 0 12px"><input type="text" data-pr="'+k+'" placeholder="내 점수 · 메모 (예: 36/36, 2번 만에)" value="'+esc(ST.pr[k]||'')+'"><button class="btn sm" data-ps="'+k+'">저장</button></div>'}).join('')+'</div>'});
  $('main').innerHTML=h+syncNote();
  [].forEach.call(document.querySelectorAll('[data-ps]'),function(b){b.onclick=function(){var i=document.querySelector('[data-pr="'+b.dataset.ps+'"]');ST.pr[b.dataset.ps]=i.value;saveState();b.textContent=cu.role==='teacher'?'미리보기 (저장 안 됨)':'저장됨 ✓'}})}
 
@@ -617,7 +619,7 @@ function tWeek(){var w=getW(wk);var h='<div class="chips">'+weeksSorted().map(fu
 
 function tInbox(){var h='<div class="card"><h2>제출 확인 · Brian <small>학생이 체크·입력한 내용</small></h2><button class="btn sm gray" id="rf">새로고침</button></div>';
  weeksSorted().forEach(function(w){var td=(w.todo||[]).map(function(t,i){return (ST.todo[tk(w,t)]?'✓ ':'· ')+esc(t[0])+' '+esc(t[1])});var stars=(w.todo||[]).map(function(t,i){return {t:t,k:tk(w,t)}}).filter(function(o){return isStar(o.t)}).map(function(o){var at=(ST.tat||{})[o.k];return '<tr><td>'+(at?'<b style="color:var(--teal)">인증</b>':'<span class="kr">미인증</span>')+'</td><td>'+esc(o.t[0])+' · '+esc(String(o.t[1]).replace(/^\s*★\s*/,''))+(at?'<div class="kr">'+esc(at)+'</div>':'')+((ST.tm||{})[o.k]?'<div class="note" style="margin-top:4px">'+esc(ST.tm[o.k])+'</div>':'')+'</td></tr>'});var hw=(w.homework||[]).map(function(x,i){var s=ST.hw[hk(w,x)]||{};return '<tr><td>'+(s.done?'<b style="color:var(--teal)">제출</b>':'<span class="kr">미제출</span>')+'</td><td>'+esc(x[0])+'<div class="kr">마감 '+esc(x[2])+(s.at?' · 제출 '+esc(s.at):'')+'</div>'+(s.memo?'<div class="note" style="margin-top:4px">'+esc(s.memo)+'</div>':'')+'</td></tr>'});
-  var pr=(w.practice||[]).map(function(p,i){var v=ST.pr[pk(w,p)];return '<tr><td class="w">'+esc(p[0])+'</td><td>'+(v?esc(v):'<span class="kr">기록 없음</span>')+'</td></tr>'});
+  var pr=(w.practice||[]).map(function(p,i){var v=ST.pr[pk(w,p)],x=prp(p);return '<tr><td class="w">'+esc(p[0])+'</td><td>'+(x?'<b style="color:var(--teal)">제출</b> '+esc(x.at)+' · '+esc(x.s)+'<div class="note" style="margin-top:4px;white-space:pre-wrap;font-size:14px">'+esc(x.x)+'</div>':'')+(v?(x?'<div class="kr">메모: '+esc(v)+'</div>':esc(v)):(x?'':'<span class="kr">기록 없음</span>'))+'</td></tr>'});
   if(!td.length&&!hw.length&&!pr.length)return;h+='<div class="card"><h2>'+md(w.date)+' · '+esc(w.topic)+'</h2>'+(stars.length?'<b>★ 약속 인증</b><table style="margin-bottom:10px">'+stars.join('')+'</table>':'')+(hw.length?'<b>숙제</b><table>'+hw.join('')+'</table>':'')+(pr.length?'<b style="display:block;margin-top:10px">연습 점수</b><table>'+pr.join('')+'</table>':'')+(td.length?'<b style="display:block;margin-top:10px">할 일 체크</b><div class="kr">'+td.join('<br>')+'</div>':'')+'</div>'});
  var P=points(),pl=curPlan(),top='';var nwk=nextWeek(),GG=buildGoals(nwk),WW=wood();
  top+='<div class="card"><h2>Weekly 진행 <small>'+md(nwk.date)+' 수업까지</small></h2>'+(GG.length?'<table>'+GG.map(function(g){var d=g.steps.filter(function(x){return x.done}).length;return '<tr><td>'+esc(g.title)+'<div class="kr">'+g.steps.map(function(x){return (x.done?'✓ ':'· ')+esc(x.t)}).join('<br>')+'</div></td><td style="white-space:nowrap"><b>'+d+' / '+g.steps.length+'</b></td></tr>'}).join('')+'</table>':'<div class="kr">목표 없음</div>')+'<div class="kr" style="margin-top:8px">작업실: Lv.'+lvOf(P.total)+' · 작품 '+madeList().length+'개 · 소나무 '+WW.p+' · 참나무 '+WW.o+' · 월넛 '+WW.w+'</div></div>';
