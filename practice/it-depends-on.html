@@ -77,6 +77,7 @@ textarea:focus{outline:none;border-color:var(--teal)}
 .frame{background:var(--amber-l);border-radius:14px;padding:14px 18px;font-size:20px}
 .frame b{color:#8a5c00}
 .score{font-family:Georgia,serif;font-size:64px;font-weight:700;color:var(--teal);text-align:center;line-height:1}
+.subok{display:none;margin-top:10px;padding:11px 14px;border-radius:12px;background:#e3f1f0;color:#165e5e;font-weight:700;font-size:15px;text-align:center;line-height:1.45}
 .msg{text-align:center;font-size:15px;font-weight:700;color:var(--teal);min-height:22px;margin-top:10px}
 pre{display:none;background:#f1f4f6;border-radius:12px;padding:12px;font-size:13px;white-space:pre-wrap;margin:10px 0 0;font-family:ui-monospace,Menlo,monospace}
 pre.on{display:block}
@@ -143,15 +144,17 @@ pre.on{display:block}
   <div class="pane" data-t="결과">
     <div class="card"><div class="score" id="sc">–</div><div class="kr" style="text-align:center;margin-top:8px" id="scs"></div></div>
     <div class="card">
-      <div class="kr">다 했으면 결과를 복사해서 카톡으로 선생님께 보내주세요. 쓴 문장도 같이 들어가요.</div>
-      <button class="btn w" id="copy">결과 복사 (카톡용)</button>
-      <div class="msg" id="msg"></div><pre id="out"></pre>
+      <div class="kr">다 했으면 "선생님께 제출"을 누르세요. 점수와 쓴 문장이 선생님에게 바로 전달됩니다.</div>
+      <button class="btn w" id="send">선생님께 제출</button>
+      <div class="subok" id="subok"></div><div class="msg" id="msg"></div><pre id="out"></pre>
+      <button class="btn sec w" id="copy" style="margin-top:10px">결과 복사 (카톡용)</button>
       <button class="btn gray w" id="reset">처음부터 다시</button>
     </div>
   </div>
 </div>
 <div class="nav"><button class="btn gray" id="prev">← 이전</button><button class="btn" id="next">다음 →</button></div>
 
+<script src="submit.js"></script>
 <script>
 (function(){
 var K='brian-depends-v1';var S={tab:0,qi:0,qa:{},bi:0,ba:{},w:{},m:{}};
@@ -222,7 +225,9 @@ function drawW(){var el=$('write');el.innerHTML=W.map(function(w,i){var c=check(
  [].forEach.call(el.querySelectorAll('[data-m]'),function(x){x.onclick=function(){S.m[+x.dataset.m]=!S.m[+x.dataset.m];save();drawW()}})}
 function counts(){return {q:Q.filter(function(q,k){return S.qa[k]===q[1][0]}).length,b:B.filter(function(b,k){return S.ba[k]===1}).length,w:W.filter(function(w,k){return (S.w[k]||'').trim().split(/\s+/).filter(Boolean).length>=6}).length}}
 function result(){var c=counts();$('sc').textContent=(c.q+c.b)+' / '+(Q.length+B.length);$('scs').textContent='고르기 '+c.q+'/'+Q.length+' · 순서 맞추기 '+c.b+'/'+B.length+' · 직접 쓰기 '+c.w+'/'+W.length+'문장'}
-$('copy').onclick=function(){var c=counts();var txt='[Brian · It depends on ~ practice]\n고르기: '+c.q+' / '+Q.length+'\n순서 맞추기: '+c.b+' / '+B.length+'\n\n— My sentences —\n'+W.map(function(w,i){return (i+1)+'. '+w[0]+'\n   '+((S.w[i]||'').trim()||'-')}).join('\n');
+function mk(){var c=counts();return '[Brian · It depends on ~ practice]\n고르기: '+c.q+' / '+Q.length+'\n순서 맞추기: '+c.b+' / '+B.length+'\n\n— My sentences —\n'+W.map(function(w,i){return (i+1)+'. '+w[0]+'\n   '+((S.w[i]||'').trim()||'-')}).join('\n')}
+if(window.FM)FM.bind($('send'),$('msg'),$('subok'),function(){var c=counts();return [(c.q+c.b)+'/'+(Q.length+B.length)+' · 쓰기 '+c.w+'/'+W.length+'문장',mk()]});else $('send').onclick=function(){$('msg').textContent='제출 기능을 불러오지 못했어요. 결과 복사로 카톡에 보내주세요.'};
+$('copy').onclick=function(){var txt=mk();
  var o=$('out');o.textContent=txt;o.classList.add('on');var m=$('msg');try{navigator.clipboard.writeText(txt).then(function(){m.textContent='복사됐어요 ✓ 카톡에 붙여넣어 보내주세요.'}).catch(function(){m.textContent='아래 내용을 직접 복사해서 보내주세요.'})}catch(e){m.textContent='아래 내용을 직접 복사해서 보내주세요.'}};
 var armed=false;$('reset').onclick=function(){if(!armed){armed=true;$('reset').textContent='정말 지울까요? 한 번 더 누르면 지워져요';setTimeout(function(){armed=false;$('reset').textContent='처음부터 다시'},4000);return}try{localStorage.removeItem(K)}catch(e){}location.reload()};
 tabs();drawQ();drawB();drawW();
