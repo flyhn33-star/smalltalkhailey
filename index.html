@@ -199,11 +199,25 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261122-1236';
+var APPVER='20261122-1417';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
 var DEF={weeks:[
+ {id:'2026-11-28',date:'2026-11-28',time:'10:00–11:30',place:'수원 · 오프라인',topic:'Life ROI',topicKo:'라이프 ROI — 시간·돈 대비 만족',
+  intro:'돈이나 시간을 쓸 때 "얼마나 만족했는지"를 따지는 사람이 늘고 있어요. 비싸도 오래 쓰는 것, 싸지만 금방 질리는 것. 내가 쓴 돈과 시간은 그만한 가치가 있었을까요?',note:'이번 주는 "그만한 가치가 있었나?"를 영어로 말하는 주예요. worth 하나만 제대로 쓰면 됩니다.',
+  todo:[['수 11/25','★ 스픽 앱 인증 — 누적 화면 캡처를 카톡으로 보내고 분 · 문장 수 적기']],
+  words:[['worth','~의 가치가 있는','worth it ★'],['spend','(돈·시간을) 쓰다','spent ★'],['waste','낭비하다, 낭비','wasted'],['save','아끼다, 저축하다','saved'],['pay','지불하다','paid ★'],['cost','(비용이) 들다','cost'],['buy','사다','bought ★'],['afford','~할 여유가 있다',"can't afford"],['regret','후회하다','regretted'],['satisfied','만족한','I was satisfied.'],['last','오래가다','lasted'],['price','가격',''],['quality','품질',''],['experience','경험',''],['expensive','비싼',''],['cheap','싼','']],
+  words2:[['worth the price','값어치를 하는','만족했을 때'],['worth every penny','돈이 하나도 안 아까운','만족했을 때'],['a good deal','싸게 잘 산 것','만족했을 때'],['a waste of money','돈 낭비','후회할 때'],['overpriced','값이 너무 비싼','후회할 때'],['not worth it','그만한 가치가 없는','후회할 때'],['compared to','~와 비교하면','비교할 때'],['in the long run','길게 보면','비교할 때'],["I'd rather",'차라리 ~하겠다','비교할 때'],['splurge on','~에 큰돈을 쓰다','소비 습관을 말할 때'],['cut back on','~을 줄이다','소비 습관을 말할 때'],['budget','예산','소비 습관을 말할 때']],
+  questions:['What did you spend money on recently? Was it worth it?','What is the best thing you bought this year? Why?','Do you prefer spending money on things or on experiences?','What was a waste of time or money for you?','Is it worth paying more for good quality?'],
+  starters:['I recently bought … , and it was worth it because …',"It wasn't worth the price because …",'Compared to … , … is better.',"I'd rather spend money on … than on …"],
+  keys:['worth it / worth the price / worth -ing','compared to ~',"I'd rather A than B"],
+  chunks:[['Was it worth / the money you spent?','그만한 가치가 있었나요 / 당신이 쓴 돈만큼'],['Is it worth / paying more / for good quality?','가치가 있나요 / 돈을 더 내는 것이 / 좋은 품질을 위해'],['Do you prefer / spending money on things / or on experiences?','더 좋아하나요 / 물건에 돈 쓰는 것을 / 아니면 경험에'],['Compared to last year, / I spend less / on clothes.','작년과 비교하면 / 나는 덜 써요 / 옷에']],
+  article:null,
+  practice:[['worth · 구문 연습','practice/worth-it.html','고르기 · 순서 맞추기 · 작문'],['과거동사 36 · Tap Test','practice/past-tense-tap.html','전체 36 → 36/36']],
+  files:[],
+  homework:[['스픽앱 숙제 — "시간·돈 대비 만족" 비교 문장 말하기','스픽에서 말한 문장 적기','11/27(금) 22:00'],['worth 문장 5개 쓰기 (worth it · worth the price · worth -ing)','메모 칸에 적기','11/28(토) 수업 전']],
+  feedback:[]},
  {id:'2026-11-22',date:'2026-11-22',time:'10:00–11:30',place:'수원 · 오프라인',topic:'The Bored Society',topicKo:'권태사회',
   intro:'볼 것도 할 것도 넘치는데 오히려 더 자주 지루해지는 현상. 예전엔 할 게 없어서 심심했다면, 지금은 너무 많아서 금방 싫증이 나요.',note:'이번 주는 과거동사 36개를 끝내는 주예요. 하루 15분이면 충분해요. 아래 순서대로만 하면 돼요.',
   todo:[['수 11/18','★ 스픽 앱 인증 — 누적 화면 캡처를 카톡으로 보내고 분 · 문장 수 적기']],
@@ -247,7 +261,8 @@ async function hashPw(id,pw){var t=id+':'+pw+':fm2';try{var buf=await crypto.sub
 function newCode(){var A='ABCDEFGHJKMNPQRSTUVWXYZ23456789',o='',r=new Uint32Array(8);try{crypto.getRandomValues(r)}catch(e){for(var i=0;i<8;i++)r[i]=Math.floor(Math.random()*1e9)}for(var j=0;j<8;j++)o+=A[r[j]%A.length];return o.slice(0,4)+'-'+o.slice(4)}
 function normCode(c){return String(c).toUpperCase().replace(/[^A-Z0-9]/g,'')}
 async function saveAuth(){lset('fm2_auth',AUTH);if(!db)return false;try{await fs.setDoc(fs.doc(db,'settings','fm2_auth'),Object.assign({updatedAt:Date.now()},AUTH));return true}catch(e){return false}}
-var L=lget('fm2_data',null);if(L){['weeks','reports','records'].forEach(function(k){if(L[k])D[k]=L[k]})}
+function addDefWeeks(){var have={},del=((D.records||{}).delWeeks)||[];D.weeks.forEach(function(w){have[w.id]=1});DEF.weeks.forEach(function(w){if(!have[w.id]&&del.indexOf(w.id)<0)D.weeks.push(JSON.parse(JSON.stringify(w)))})}
+var L=lget('fm2_data',null);if(L){['weeks','reports','records'].forEach(function(k){if(L[k])D[k]=L[k]});addDefWeeks()}
 ST=Object.assign(ST,lget('fm2_state_'+STUDENT,{}));var SNAP=JSON.stringify(ST);var DT=lget('fm2_data_t',0)||0;
 /* safe sync: never write before the server copy was read, never drop what only the server has, keep daily backups */
 var stOK=false,dOK=false,pendS=false,pendD=false,lastST=0,stBak=null,dBak=null,svq=Promise.resolve();
@@ -259,7 +274,7 @@ async function fbInit(){var pushD=false,pushS=false;try{
   var app;try{app=a.initializeApp({apiKey:"AIzaSyCsbL_16s7DLUXRS22Z9bN-WCWsLS1eJq8",authDomain:"hldys-59f64.firebaseapp.com",projectId:"hldys-59f64",storageBucket:"hldys-59f64.firebasestorage.app",messagingSenderId:"222352015503",appId:"1:222352015503:web:9bdb45bf7f11efb9a430fa"},'fm2')}catch(e){app=a.getApp('fm2')}
   db=fs.getFirestore(app);
   try{var au=await fs.getDoc(fs.doc(db,'settings','fm2_auth'));if(au.exists()){var av=au.data();AUTH={};Object.keys(av).forEach(function(k){if(/^(hailey|brian|hint_[a-z]+|rc_[a-z]+)$/.test(k)&&av[k])AUTH[k]=av[k]});lset('fm2_auth',AUTH)}}catch(e){}
-  var s=await fs.getDoc(fs.doc(db,'settings','fm2_data'));if(s.exists()){var v=s.data();dBak=v.bak||null;if((v.updatedAt||0)>=DT||lget('fm2_ddirty','')!=='y'){['weeks','reports','records'].forEach(function(k){if(v[k])D[k]=JSON.parse(v[k])});DT=v.updatedAt||0;lset('fm2_data',D);lset('fm2_data_t',DT)}else{try{var have={};D.weeks.forEach(function(w){have[w.id]=1});(v.weeks?JSON.parse(v.weeks):[]).forEach(function(w){if(w&&w.id&&!have[w.id])D.weeks.push(w)});if(v.records)addMissing(D.records,JSON.parse(v.records));var ht={};(D.reports||[]).forEach(function(r){ht[r.title]=1});(v.reports?JSON.parse(v.reports):[]).forEach(function(r){if(r&&!ht[r.title])D.reports.push(r)})}catch(e){}pushD=true}}dOK=true;
+  var s=await fs.getDoc(fs.doc(db,'settings','fm2_data'));if(s.exists()){var v=s.data();dBak=v.bak||null;if((v.updatedAt||0)>=DT||lget('fm2_ddirty','')!=='y'){['weeks','reports','records'].forEach(function(k){if(v[k])D[k]=JSON.parse(v[k])});addDefWeeks();DT=v.updatedAt||0;lset('fm2_data',D);lset('fm2_data_t',DT)}else{try{var have={};D.weeks.forEach(function(w){have[w.id]=1});(v.weeks?JSON.parse(v.weeks):[]).forEach(function(w){if(w&&w.id&&!have[w.id])D.weeks.push(w)});if(v.records)addMissing(D.records,JSON.parse(v.records));var ht={};(D.reports||[]).forEach(function(r){ht[r.title]=1});(v.reports?JSON.parse(v.reports):[]).forEach(function(r){if(r&&!ht[r.title])D.reports.push(r)})}catch(e){}pushD=true}}dOK=true;
   var t=await fs.getDoc(fs.doc(db,'hwSubmissions','fm2_state_'+STUDENT));if(t.exists()&&t.data().json){var td=t.data();stBak=td.bak||null;var rs=JSON.parse(td.json);lastST=rs.t||0;var dj=lget('fm2_dirty_'+STUDENT,'');if((rs.t||0)>=(ST.t||0)||dj==='n'){var loc=ST;ST=Object.assign({todo:{},hw:{},pr:{},srs:{},days:{}},rs);if(dj==='y'&&loc.t){addMissing(ST,loc);pushS=true}lset('fm2_state_'+STUDENT,ST)}else{addMissing(ST,rs);lset('fm2_state_'+STUDENT,ST);pushS=true}}else if(ST.t){pushS=true}stOK=true;SNAP=JSON.stringify(ST);
   online=true}catch(e){online=false}
   if(online&&pushD){if(cu&&cu.role==='teacher')saveData();else pendD=true}if(online&&pushS){if(cu&&cu.role!=='teacher')saveState();else pendS=true}
@@ -640,7 +655,7 @@ function tWeek(){var w=getW(wk);var h='<div class="chips">'+weeksSorted().map(fu
   var n={id:w.id||d,date:d,time:$('f_time').value.trim(),place:$('f_place').value.trim(),topic:$('f_topic').value.trim(),topicKo:$('f_topicKo').value.trim(),intro:$('f_intro').value.trim(),note:$('f_note').value.trim()};
   var a=$('f_article').value.trim();n.article=a?fromLines(a,4)[0]:null;WF.forEach(function(f){n[f[0]]=fromLines($('f_'+f[0]).value,f[3])});n.todo=n.todo.filter(function(t){return t[1]}).map(function(t){return [t[0],'★ '+String(t[1]).replace(/^\s*★\s*/,'')]});
   D.weeks=D.weeks.filter(function(x){return x.id!==n.id});D.weeks.push(n);wk=n.id;var ok=await saveData();render();$('wmsg').textContent=ok?'저장됐어요 ✓ (온라인)':'이 기기에만 저장됐어요. 온라인 저장은 실패했어요.'};
- var del=$('wdel');if(del){var armed=false;del.onclick=async function(){if(!armed){armed=true;del.textContent='정말 삭제할까요? 한 번 더 누르기';return}D.weeks=D.weeks.filter(function(x){return x.id!==w.id});wk=null;await saveData();render()}}}
+ var del=$('wdel');if(del){var armed=false;del.onclick=async function(){if(!armed){armed=true;del.textContent='정말 삭제할까요? 한 번 더 누르기';return}D.weeks=D.weeks.filter(function(x){return x.id!==w.id});D.records.delWeeks=(D.records.delWeeks||[]).filter(function(i){return i!==w.id}).concat([w.id]);wk=null;await saveData();render()}}}
 
 function tInbox(){var h='<div class="card"><h2>제출 확인 · Brian <small>학생이 체크·입력한 내용</small></h2><button class="btn sm gray" id="rf">새로고침</button></div>';
  weeksSorted().forEach(function(w){var td=(w.todo||[]).map(function(t,i){return (ST.todo[tk(w,t)]?'✓ ':'· ')+esc(t[0])+' '+esc(t[1])});var stars=(w.todo||[]).map(function(t,i){return {t:t,k:tk(w,t)}}).filter(function(o){return isStar(o.t)}).map(function(o){var at=(ST.tat||{})[o.k];return '<tr><td>'+(at?'<b style="color:var(--teal)">인증</b>':'<span class="kr">미인증</span>')+'</td><td>'+esc(o.t[0])+' · '+esc(String(o.t[1]).replace(/^\s*★\s*/,''))+(at?'<div class="kr">'+esc(at)+'</div>':'')+((ST.tm||{})[o.k]?'<div class="note" style="margin-top:4px">'+esc(ST.tm[o.k])+'</div>':'')+'</td></tr>'});var hw=(w.homework||[]).map(function(x,i){var s=ST.hw[hk(w,x)]||{};return '<tr><td>'+(s.done?'<b style="color:var(--teal)">제출</b>':'<span class="kr">미제출</span>')+'</td><td>'+esc(x[0])+'<div class="kr">마감 '+esc(x[2])+(s.at?' · 제출 '+esc(s.at):'')+'</div>'+(s.memo?'<div class="note" style="margin-top:4px;white-space:pre-wrap">'+esc(s.memo)+'</div>':'')+'</td></tr>'});
