@@ -118,6 +118,40 @@ label.f small{font-weight:400;color:var(--mute);margin-left:6px}
 #schpop{position:fixed;inset:0;z-index:40;background:rgba(43,37,35,.45);display:flex;align-items:center;justify-content:center;padding:16px}
 #schpop .card{width:100%;max-width:460px;max-height:86vh;overflow:auto;margin:0}
 .scht td{vertical-align:top}
+#sinfo{position:absolute;left:8px;top:8px;right:8px;background:rgba(43,37,35,.82);color:#fff;border-radius:10px;padding:7px 11px;font-size:14px;line-height:1.4;pointer-events:none}
+#benchbtn{position:absolute;left:39.7%;top:34%;transform:translateX(-50%);box-shadow:0 3px 10px rgba(0,0,0,.18);white-space:nowrap;min-height:40px}
+#chx{transition:transform .3s linear}#chf,#chj,#chb,#che{transform-box:fill-box;transform-origin:50% 100%}
+@keyframes chbreath{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.025)}}
+@keyframes chlook{0%,62%,100%{transform:translateX(0)}68%,78%{transform:translateX(-2px)}84%,94%{transform:translateX(2px)}}
+@keyframes chwalk{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
+@keyframes itarrive{0%{transform:translateY(-46px) scale(.6);opacity:0}60%{transform:translateY(3px) scale(1.06);opacity:1}100%{transform:none;opacity:1}}
+@keyframes spk{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+#chb{animation:chbreath 3.6s ease-in-out infinite}#che{animation:chlook 9s ease-in-out infinite;transform-origin:50% 50%}
+#chj.walk{animation:chwalk .34s linear infinite}
+.arrive{animation:itarrive .7s ease-out both;transform-box:fill-box;transform-origin:50% 100%}
+.spk{animation:spk 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}.spk.s2{animation-delay:1.1s}
+.mb{display:grid;grid-template-columns:54px 1fr 44px;gap:8px;align-items:center;font-size:13px;color:var(--mute);margin-top:6px}.mb b{text-align:right;color:var(--ink)}.mb .bar{height:9px}
+.npj{display:flex;gap:12px;align-items:center}.npj svg,.pj svg{flex:0 0 44px;background:#faf6f1;border-radius:12px}
+.dex{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:6px}
+.dx{background:#faf6f1;border-radius:10px;padding:5px 1px 4px;text-align:center;min-width:0}.dx svg{width:100%;height:34px;display:block}.dx span{display:block;font-size:10px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dx.ok{background:var(--br-l)}.dx.ok span{color:var(--br-d);font-weight:700}
+.pj{align-items:center}.pj.lock{opacity:.6}
+#hairsheet{position:fixed;inset:0;z-index:40;background:rgba(43,37,35,.4);display:flex;align-items:flex-end;justify-content:center}
+#hairsheet .card{width:100%;max-width:520px;margin:0;border-radius:18px 18px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+#mg{position:fixed;inset:0;z-index:60;background:rgba(43,37,35,.55);display:none;align-items:center;justify-content:center;padding:14px}
+#mg .card{width:100%;max-width:440px;margin:0;max-height:92vh;overflow:auto}
+.mgs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}.mgs span{font-size:12px;border-radius:9px;padding:3px 9px;background:#f1ebe4;color:var(--mute)}.mgs span.on{background:var(--br);color:#fff;font-weight:700}.mgs span.dn{background:var(--teal-l);color:var(--teal)}
+#sawwood{position:relative;height:64px;margin:12px 0 8px}.plank{position:absolute;left:4%;right:4%;top:14px;height:36px;border-radius:6px;background:repeating-linear-gradient(90deg,#dcc19a 0 22px,#d3b68c 22px 24px)}
+.plank i{position:absolute;top:-4px;bottom:-4px;width:2px;background:rgba(127,90,73,.25)}.plank i.cut{width:4px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px #c9b08f}
+#gauge{position:relative;height:28px;border-radius:14px;background:#f1ebe4;overflow:hidden}#gauge .zone{position:absolute;left:44%;width:12%;top:0;bottom:0;background:var(--teal-l)}#gauge .line{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--teal)}
+#gm{position:absolute;top:3px;width:10px;height:22px;margin-left:-5px;border-radius:5px;background:var(--br);left:0}
+#sandbox{position:relative;display:grid;grid-template-columns:repeat(8,1fr);gap:0;border-radius:10px;overflow:hidden;margin-top:10px;touch-action:none;user-select:none;-webkit-user-select:none}
+.sc{display:block;height:0;padding-top:100%;background:#c9a877;background-image:radial-gradient(#a8845a 1.2px,transparent 1.4px),radial-gradient(#e3caa2 1px,transparent 1.2px);background-size:7px 7px,9px 9px;background-position:0 0,3px 4px;transition:background-color .25s}
+.sc.sm{background:#e7cfa4;background-image:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,0))}
+.dst{position:absolute;top:40%;width:5px;height:5px;border-radius:50%;background:#d9b98a;pointer-events:none;animation:dst .65s ease-out forwards}
+@keyframes dst{0%{transform:translate(0,0);opacity:.9}100%{transform:translate(var(--dx),34px);opacity:0}}
+.mgdone svg{background:#faf6f1;border-radius:18px}
+@media(prefers-reduced-motion:reduce){#chb,#che,#chj.walk,.arrive,.spk,.dst{animation:none}}
 .hc{width:36px;height:36px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px var(--line);padding:0}
 .hc.on{box-shadow:0 0 0 3px var(--br)}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
@@ -199,7 +233,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261122-1451';
+var APPVER='20261124-0900';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -328,7 +362,7 @@ function prVal(w,p){var x=prp(p);return ST.pr[pk(w,p)]||(x?x.s:'')}
 function isToday(label,tdy){return new RegExp('(^|[^0-9])'+tdy.replace('/','\\/')+'($|[^0-9])').test(String(label))}
 function pc(a,b){a=+a;b=+b;return b>0&&isFinite(a)?Math.max(0,Math.min(100,Math.round(a/b*100))):0}
 function typing(){var a=document.activeElement;return !!a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&$('app')&&!$('app').classList.contains('hide')}
-window.__fm2={isToday:isToday,tk:tk,pc:pc,go:function(t){tab=t;render()}};
+window.__fm2={isToday:isToday,tk:tk,pc:pc,go:function(t){tab=t;render()},mg:function(){return mg}};
 function syncNote(){return '<div class="sync">'+(cu&&cu.role!=='teacher'&&tdev()?'○ 연습 모드 — 선생님 기기라서 저장되지 않아요':online?'● 저장 위치: 온라인 (모든 기기에서 보여요)':'○ 오프라인 — 이 기기에만 저장돼요')+'</div>'}
 
 /* ---------- login ---------- */
@@ -348,7 +382,7 @@ $('rbtn').onclick=async function(){var e=$('rerr');e.style.color='';var id=$('ri
  AUTH[id]=await hashPw(id,pw);var nc=newCode();AUTH['rc_'+id]=await hashPw('rc_'+id,normCode(nc));delete AUTH['hint_'+id];var ok=await saveAuth();
  e.style.color='var(--teal)';e.textContent='변경됐어요'+(ok?'':' (이 기기에서만)')+'. 새 복구 코드: '+nc+' — 지금 적어두세요. 이전 코드는 더 이상 쓸 수 없습니다.';$('rcode').value='';$('rpw').value=''};
 $('pwbtn').onclick=function(){tab='pw';render();scrollTo(0,0)};
-$('logout').onclick=function(){cu=null;try{sessionStorage.removeItem('fm2_cu')}catch(e){}$('app').classList.add('hide');document.body.classList.remove('stu');$('login').classList.remove('hide');$('lpw').value='';$('lerr').textContent='';$('lhint').textContent=''};
+$('logout').onclick=function(){cu=null;try{sessionStorage.removeItem('fm2_cu')}catch(e){}$('app').classList.add('hide');if(mg)mgClose();document.body.classList.remove('stu');$('login').classList.remove('hide');$('lpw').value='';$('lerr').textContent='';$('lhint').textContent=''};
 
 /* ---------- render ---------- */
 var STABS=[['home','Weekly'],['week','자료'],['hw','숙제'],['shop','작업실'],['record','기록']];
@@ -356,7 +390,7 @@ var TTABS=[['t-week','주차 올리기'],['t-inbox','제출 확인'],['t-record'
 function render(){document.body.classList.toggle('stu',cu.role!=='teacher');if(cu.role!=='teacher'&&tab.indexOf('t-')===0)tab='home';if(cu.role==='teacher'&&tab==='review')tab='home';var tabs=cu.role==='teacher'?TTABS.concat(tab==='home'||tab==='mission'||tab==='shop'||tab==='review'||tab==='week'||tab==='practice'||tab==='hw'||tab==='record'?STABS.slice(1):[]):STABS;
  $('nav').innerHTML=tabs.map(function(t){return '<button data-t="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('');
  [].forEach.call($('nav').children,function(b){b.onclick=function(){tab=b.dataset.t;render();scrollTo(0,0)}});
- if(tab!=='review')rv=null;if(tab!=='mission')ms=null;if(tab!=='home')schOpen=false;if(tab!=='shop'){shopEd=false;shopSel=null}if(tab!=='record'){pd=null;calM=null;calSel=null}var pv=cu.role==='teacher'&&tab.indexOf('t-')!==0&&tab!=='pw';var f={pw:pPw,shop:pShop,mission:pMission,review:pReview,home:pHome,week:pWeek,practice:pPractice,hw:pHw,record:pRecord,'t-week':tWeek,'t-inbox':tInbox,'t-record':tRecord}[tab];$('main').innerHTML='';f();if(cu.role!=='teacher'&&tdev())$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>연습 모드</b> — 이 기기는 선생님 기기로 표시되어 있습니다. Brian 계정에서 누른 것은 저장되지 않고, 새로고침하면 원래대로 돌아갑니다.</div>');if(pv){[].forEach.call($('main').querySelectorAll('input,textarea,button'),function(el){var nav=el.hasAttribute('data-w')||el.hasAttribute('data-sch')||el.hasAttribute('data-cd')||el.hasAttribute('data-cm')||el.hasAttribute('data-cx')||el.hasAttribute('data-ca')||el.hasAttribute('data-cw')||el.id==='blur'||(el.hasAttribute('data-go')&&el.getAttribute('data-go')!=='review');if(nav)return;el.disabled=true;el.style.opacity='.45';el.style.cursor='not-allowed'});$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>보기 전용</b> — Hailey 계정에서는 학생 화면을 볼 수만 있습니다. 체크 · 인증 · 복습 · 숙제 제출은 Brian 계정에서만 진행됩니다.</div>')}}
+ if(tab!=='review')rv=null;if(tab!=='mission')ms=null;if(tab!=='home')schOpen=false;if(tab!=='shop'){shopEd=false;shopSel=null;shopSheet=false;if(mg)mgClose()}if(tab!=='record'){pd=null;calM=null;calSel=null}var pv=cu.role==='teacher'&&tab.indexOf('t-')!==0&&tab!=='pw';var f={pw:pPw,shop:pShop,mission:pMission,review:pReview,home:pHome,week:pWeek,practice:pPractice,hw:pHw,record:pRecord,'t-week':tWeek,'t-inbox':tInbox,'t-record':tRecord}[tab];$('main').innerHTML='';f();if(cu.role!=='teacher'&&tdev())$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>연습 모드</b> — 이 기기는 선생님 기기로 표시되어 있습니다. Brian 계정에서 누른 것은 저장되지 않고, 새로고침하면 원래대로 돌아갑니다.</div>');if(pv){[].forEach.call($('main').querySelectorAll('input,textarea,button'),function(el){var nav=el.hasAttribute('data-w')||el.hasAttribute('data-sch')||el.hasAttribute('data-cd')||el.hasAttribute('data-cm')||el.hasAttribute('data-cx')||el.hasAttribute('data-ca')||el.hasAttribute('data-cw')||el.id==='blur'||(el.hasAttribute('data-go')&&el.getAttribute('data-go')!=='review');if(nav)return;el.disabled=true;el.style.opacity='.45';el.style.cursor='not-allowed'});$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>보기 전용</b> — Hailey 계정에서는 학생 화면을 볼 수만 있습니다. 체크 · 인증 · 복습 · 숙제 제출은 Brian 계정에서만 진행됩니다.</div>')}}
 function isStar(t){return /^\s*★/.test(String(t[1]))||/★/.test(String(t[0]))}
 function todoRow(w,t,i,tdy){var k=tk(w,t);var st=isStar(t);var tx=String(t[1]).replace(/^\s*★\s*/,'');var hot=isToday(t[0],tdy);
  var h='<div style="'+(st?'background:var(--amber-l);border:1.5px solid var(--amber);border-radius:10px;padding:2px 10px;margin:6px 0':(hot?'background:var(--br-l);border-radius:8px;padding:0 8px':''))+'"><label class="ck'+(ST.todo[k]?' done':'')+'" style="border:0"><input type="checkbox" data-k="'+k+'"'+(ST.todo[k]?' checked':'')+'><span><span class="dd">'+esc(String(t[0]).replace('★','').trim())+(st?' <span style="background:var(--amber);color:#fff;border-radius:8px;padding:0 8px;font-size:12px;margin-left:4px">★ Hailey와 약속</span>':'')+'</span><span class="tx">'+esc(tx)+'</span></span></label>';
@@ -452,21 +486,41 @@ function lvOf(t){var l=1;LV.forEach(function(x,i){if(t>=x[0])l=i+1});return l}
 function madeList(){return ((ST.shop||{}).made||[]).filter(function(id){return PJ.some(function(p){return p[0]===id})})}
 function wood(){var c=tally(),R=D.records||{};var base=R.base==null?17:(+R.base>0?Math.round(+R.base):0);var e={p:Math.floor(base/2)+c.dm+c.rv+c.st,o:c.hw*2+c.pm*2,w:c.gl},sp={p:0,o:0,w:0};
  madeList().forEach(function(id){PJ.forEach(function(p){if(p[0]===id)for(var k in p[2])sp[k]+=p[2][k]})});return {p:Math.max(0,e.p-sp.p),o:Math.max(0,e.o-sp.o),w:Math.max(0,e.w-sp.w)}}
-var SLOT={s:[[46,60],[85,60],[124,60],[66,118],[104,118],[142,118]],f:[[244,192],[282,192],[318,192]]};
+var SLOT={s:[[46,60],[85,60],[124,60],[100,118],[134,118],[168,118]],f:[[244,196],[282,196],[318,196]]};
 var KIND={spoon:'s',board:'s',cup:'s',frame:'s',stool:'f',chair:'f',shelf:'f'};
 var DPOS={spoon:0,board:1,frame:2,cup:3,stool:0,chair:1,shelf:2};
+var GRD=['','보통','좋음','명품'];
 function placeOf(made){var pos=(ST.shop||{}).pos||{},used={s:{},f:{}},out={};
  made.forEach(function(id){var k=KIND[id],v=pos[id];if(typeof v==='number'&&v>=0&&v<SLOT[k].length&&!used[k][v]){used[k][v]=id;out[id]=v}});
  made.forEach(function(id){if(id in out)return;var k=KIND[id],v=DPOS[id];if(used[k][v]){for(v=0;v<SLOT[k].length;v++)if(!used[k][v])break}if(v<SLOT[k].length){used[k][v]=id;out[id]=v}});return out}
-function itemSvg(id){var o='#b98a5e',d='#8a6248',pn='#dcc19a',wl='#5d4334';
+function pjOf(id){var r=null;PJ.forEach(function(p){if(p[0]===id)r=p});return r}
+function toolLv(name){var l=1;TOOLS.forEach(function(t){if(t[0]===name)l=t[1]});return l}
+function infoOf(id){var x=((ST.shop||{}).info||{})[id]||{};var g=+x.g;return {d:typeof x.d==='string'?x.d:'',g:g>=1&&g<=3?Math.floor(g):1}}
+function itemSvg(id,sil){var o=sil?'#cfc3b4':'#b98a5e',d=sil?'#cfc3b4':'#8a6248',pn=sil?'#cfc3b4':'#dcc19a',wl=sil?'#cfc3b4':'#5d4334',bg=sil?'#cfc3b4':'#f7efe4',gr=sil?'#cfc3b4':'#9db8a6',ho=sil?'#cfc3b4':'#f1e8dc';
  if(id==='spoon')return '<ellipse cx="0" cy="-8" rx="6" ry="8" fill="'+pn+'"/><rect x="-1.5" y="-32" width="3" height="18" rx="1.5" fill="'+pn+'"/>';
- if(id==='board')return '<rect x="-9" y="-26" width="18" height="26" rx="4" fill="'+o+'"/><circle cx="0" cy="-21" r="2" fill="#f1e8dc"/>';
+ if(id==='board')return '<rect x="-9" y="-26" width="18" height="26" rx="4" fill="'+o+'"/><circle cx="0" cy="-21" r="2" fill="'+ho+'"/>';
  if(id==='cup')return '<path d="M-4 -16v-9M0 -16v-12M3 -16v-7" stroke="'+d+'" stroke-width="2"/><rect x="-7" y="-16" width="14" height="16" rx="2" fill="'+pn+'" stroke="'+o+'"/>';
- if(id==='frame')return '<rect x="-15" y="-26" width="30" height="24" fill="#f7efe4" stroke="'+o+'" stroke-width="4"/><path d="M-11 -6l8-9l6 6l4-4l5 7z" fill="#9db8a6"/>';
+ if(id==='frame')return '<rect x="-15" y="-26" width="30" height="24" fill="'+bg+'" stroke="'+o+'" stroke-width="4"/><path d="M-11 -6l8-9l6 6l4-4l5 7z" fill="'+gr+'"/>';
  if(id==='stool')return '<path d="M-10 -26l-4 26M10 -26l4 26M0 -26v26" stroke="'+wl+'" stroke-width="4"/><rect x="-15" y="-32" width="30" height="6" rx="3" fill="'+o+'"/>';
  if(id==='shelf')return '<rect x="-18" y="-82" width="36" height="80" fill="'+pn+'" stroke="'+o+'" stroke-width="4"/><path d="M-18 -56h36M-18 -30h36" stroke="'+o+'" stroke-width="4"/><path d="M-12 -58v-14M-7 -58v-17M-2 -58v-12M6 -32v-13M11 -32v-16" stroke="'+wl+'" stroke-width="4"/>';
  if(id==='chair')return '<path d="M-18 -2q18 10 36 0" fill="none" stroke="'+wl+'" stroke-width="4"/><path d="M-12 -28v-34M12 -28v-34M-12 -56h24M-12 -44h24M-10 -22l-2 20M10 -22l2 20" stroke="'+wl+'" stroke-width="4"/><rect x="-14" y="-28" width="28" height="6" rx="2" fill="'+wl+'"/>';
  return ''}
+function glossSvg(id,g){if(g<2)return '';var f=KIND[id]==='f',x=f?13:8,y=f?-58:-27,st='<path d="M'+(x-9)+' '+(y+12)+'l5-9" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>';
+ if(g>=3)st+='<path class="spk" d="M'+x+' '+(y-5)+'l1.6 3.6l3.6 1.6l-3.6 1.6l-1.6 3.6l-1.6-3.6l-3.6-1.6l3.6-1.6z" fill="#e2a93b"/><path class="spk s2" d="M'+(x-16)+' '+(y+2)+'l1 2.2l2.2 1l-2.2 1l-1 2.2l-1-2.2l-2.2-1l2.2-1z" fill="#e2a93b"/>';return st}
+function thumb(id,sil,g){var f=KIND[id]==='f';return '<svg viewBox="'+(f?'-26 -90 52 96':'-22 -40 44 46')+'" width="44" height="44" aria-hidden="true">'+itemSvg(id,sil)+(sil?'':glossSvg(id,g||0))+'</svg>'}
+function toolSvg(i,on){var c=on?'#9aa3a3':'#d6cabb',w=on?'#8a6248':'#d6cabb',o=on?'#b98a5e':'#d6cabb';
+ if(i===0)return '<rect x="-12" y="2" width="9" height="11" rx="2" fill="'+w+'"/><path d="M-4 3h17l3 8h-20z" fill="'+c+'"/>';
+ if(i===1)return '<rect x="-9" y="3" width="18" height="9" rx="2" fill="'+o+'"/><rect x="-9" y="11" width="18" height="3" rx="1" fill="'+c+'"/>';
+ if(i===2)return '<rect x="-3" y="1" width="6" height="10" rx="2" fill="'+o+'"/><rect x="-2" y="11" width="4" height="12" fill="'+c+'"/>';
+ if(i===3)return '<rect x="-11" y="8" width="22" height="9" rx="3" fill="'+o+'"/><path d="M-5 8q5-9 10 0" fill="none" stroke="'+w+'" stroke-width="3"/>';
+ if(i===4)return '<path d="M-6 2h12v19h-12" fill="none" stroke="'+c+'" stroke-width="4"/><path d="M-6 11h7" stroke="'+w+'" stroke-width="3"/>';
+ return '<rect x="-12" y="16" width="24" height="4" fill="'+w+'"/><rect x="-12" y="6" width="6" height="10" fill="'+c+'"/><rect x="7" y="9" width="5" height="7" fill="'+c+'"/><path d="M-6 11h13" stroke="'+o+'" stroke-width="4"/>'}
+var TPOS=[[176,22],[202,22],[226,22],[176,50],[202,50],[226,50]];
+function skyOf(){var h=new Date().getHours();return h>=6&&h<17?'day':h>=17&&h<20?'dusk':'night'}
+function pileSvg(W){var cols={p:'#dcc19a',o:'#b98a5e',w:'#5d4334'},list=[];['p','o','w'].forEach(function(k){for(var i=0;i<W[k];i++)list.push(k)});var tot=list.length,cap=15,n=Math.min(tot,cap),s='<g id="pile" data-pile="'+n+'" data-total="'+tot+'" style="cursor:pointer">',i=0,row=0,per=5;
+ while(i<n){var cnt=Math.min(per-row,n-i);for(var c=0;c<cnt;c++){var x=12+row*6.2+c*12.4,y=198-row*10.6,k=list[i++];s+='<circle cx="'+x+'" cy="'+y+'" r="6" fill="'+cols[k]+'" stroke="#8a6248" stroke-width="1"/><circle cx="'+x+'" cy="'+y+'" r="2.4" fill="none" stroke="#8a6248" stroke-width=".8" opacity=".55"/>'}row++;if(row>=per)break}
+ if(!tot)s+='<path d="M8 203h56" stroke="#c9b08f" stroke-width="2" stroke-dasharray="3 4"/>';if(tot>cap)s+='<text x="70" y="200" font-size="10" font-weight="700" fill="#7f5a49">+'+(tot-cap)+'</text>';
+ return s+'<rect x="2" y="150" width="72" height="58" fill="transparent"/></g>'}
 var HAIR=[[0,'짧은 머리'],[1,'단발'],[3,'묶음'],[4,'곱슬']],HCOL=[['#5a4334','갈색'],['#2e2622','검정'],['#b8793e','밝은 갈색'],['#d8b45a','금색'],['#8a8f98','회색']];
 function hairOf(){var h=ST.shop||{};var a=+h.hair,b=+h.hairc;return [HAIR.some(function(x){return x[0]===a})?a:0,b>=0&&b<HCOL.length?Math.floor(b):0]}
 function hairSvg(){var h=hairOf(),c=HCOL[h[1]][0],base='<path d="M-14 100q2-18 16-16q13 0 12 16q-8-9-28 0z" fill="'+c+'"/>';
@@ -475,42 +529,100 @@ function hairSvg(){var h=hairOf(),c=HCOL[h[1]][0],base='<path d="M-14 100q2-18 1
  if(h[0]===3)return '<circle cx="0" cy="82" r="6" fill="'+c+'"/>'+base;
  if(h[0]===4)return base+'<circle cx="-10" cy="93" r="6" fill="'+c+'"/><circle cx="-3" cy="88" r="6.5" fill="'+c+'"/><circle cx="5" cy="88" r="6.5" fill="'+c+'"/><circle cx="11" cy="93" r="6" fill="'+c+'"/>';
  return base}
-function shopSvg(made,lv,ed,sel){var n=made.length,o='#b98a5e',d='#8a6248',P=placeOf(made);
- var s='<svg viewBox="0 0 340 210" role="img" aria-label="작업실" style="width:100%;height:auto;display:block;border-radius:14px;touch-action:manipulation"><rect width="340" height="150" fill="#f1e8dc"/><rect y="150" width="340" height="60" fill="#dcc7aa"/><rect y="148" width="340" height="4" fill="#c9b08f"/>';
- if(n>=3)s+='<rect x="236" y="20" width="68" height="54" rx="4" fill="#e3eff0" stroke="'+o+'" stroke-width="4"/><path d="M270 20v54M236 47h68" stroke="'+o+'" stroke-width="3"/><path d="M170 0v20" stroke="'+d+'" stroke-width="2"/><path d="M156 32q14-22 28 0z" fill="#e2a93b"/>';
+function shopSvg(made,lv,ed,sel,W){var n=made.length,o='#b98a5e',d='#8a6248',P=placeOf(made),sky=skyOf();W=W||wood();
+ var s='<svg id="room" viewBox="0 0 340 214" role="img" aria-label="작업실" data-sky="'+sky+'" style="width:100%;height:auto;display:block;border-radius:14px;touch-action:manipulation"><rect width="340" height="150" fill="'+(sky==='night'?'#e9dfd2':'#f1e8dc')+'"/><rect id="floor" y="150" width="340" height="64" fill="#dcc7aa"/><rect y="148" width="340" height="4" fill="#c9b08f"/>';
+ s+='<rect x="250" y="18" width="68" height="54" rx="4" fill="'+(sky==='day'?'#dff0f3':sky==='dusk'?'#f4cfa6':'#3d4a66')+'" stroke="'+o+'" stroke-width="4"/>'+(sky==='day'?'<circle cx="300" cy="33" r="6" fill="#f5d67a"/>':sky==='dusk'?'<circle cx="300" cy="58" r="8" fill="#ef9a5a"/>':'<circle cx="298" cy="34" r="6" fill="#f3ecd2"/><circle cx="295" cy="32" r="5.5" fill="#3d4a66"/><circle cx="266" cy="30" r="1" fill="#f3ecd2"/><circle cx="276" cy="56" r="1" fill="#f3ecd2"/>')+'<path d="M284 18v54M250 45h68" stroke="'+o+'" stroke-width="3"/>';
+ if(n>=3)s+='<path d="M158 0v8" stroke="'+d+'" stroke-width="2"/><path d="M146 18q12-18 24 0z" fill="#e2a93b"/>'+(sky==='night'?'<path d="M146 18l-14 60h52l-14-60z" fill="#f5d67a" opacity=".18"/>':'');
  s+='<rect x="26" y="60" width="118" height="6" rx="2" fill="'+o+'"/><path d="M36 66v10M134 66v10" stroke="'+d+'" stroke-width="3"/>';
- if(n>=5)s+='<ellipse cx="270" cy="194" rx="66" ry="11" fill="#c98f6b" opacity=".4"/><rect x="8" y="152" width="20" height="18" rx="3" fill="#b5673f"/><path d="M18 152q-14-22-4-34q8 14 4 34zM18 152q12-26 6-40q-10 16-6 40z" fill="#5f8f6f"/>';
- s+='<rect x="40" y="118" width="130" height="10" rx="3" fill="'+d+'"/><rect x="48" y="128" width="8" height="42" fill="'+d+'"/><rect x="154" y="128" width="8" height="42" fill="'+d+'"/><rect x="48" y="150" width="114" height="5" fill="'+o+'"/>';
- s+='<path d="M196 30h24l4 8h-28z" fill="#9aa3a3"/><rect x="188" y="28" width="10" height="12" rx="2" fill="'+d+'"/>';
- if(lv>=2)s+='<rect x="200" y="50" width="4" height="16" fill="#9aa3a3"/><rect x="198" y="64" width="8" height="11" rx="2" fill="'+o+'"/>';
- if(lv>=3)s+='<rect x="210" y="52" width="18" height="9" rx="3" fill="'+o+'"/>';
- if(lv>=4)s+='<path d="M214 70h10v20h-10" fill="none" stroke="#7f8a8a" stroke-width="4"/>';
+ if(n>=5)s+='<ellipse cx="270" cy="198" rx="66" ry="11" fill="#c98f6b" opacity=".4"/><rect x="306" y="60" width="10" height="9" rx="2" fill="#b5673f"/><path d="M311 60q-7-11-2-17q4 7 2 17zM311 60q6-13 3-20q-5 8-3 20z" fill="#5f8f6f"/>';
+ s+='<g id="bench"><rect x="80" y="118" width="110" height="10" rx="3" fill="'+d+'"/><rect x="88" y="128" width="8" height="46" fill="'+d+'"/><rect x="174" y="128" width="8" height="46" fill="'+d+'"/><rect x="88" y="152" width="94" height="5" fill="'+o+'"/></g>';
+ TOOLS.forEach(function(t,i){var on=lv>=t[1],p=TPOS[i];s+='<g data-tool="'+i+'" data-on="'+(on?1:0)+'" transform="translate('+p[0]+' '+p[1]+')" style="cursor:pointer"><rect x="-13" y="-4" width="26" height="30" fill="transparent"/><circle cx="0" cy="0" r="1.8" fill="'+(on?d:'#cfc3b4')+'"/>'+toolSvg(i,on)+'</g>'});
+ s+=pileSvg(W);
  var occ={s:{},f:{}};made.forEach(function(id){if(id in P)occ[KIND[id]][P[id]]=id});
  if(ed&&sel){var k=KIND[sel];SLOT[k].forEach(function(p,ix){if(occ[k][ix]===sel)return;s+='<g data-slot="'+ix+'" style="cursor:pointer"><rect x="'+(p[0]-17)+'" y="'+(p[1]-(k==='f'?44:34))+'" width="34" height="'+(k==='f'?46:36)+'" rx="8" fill="#e2a93b" fill-opacity=".22" stroke="#e2a93b" stroke-width="2" stroke-dasharray="5 4"/></g>'})}
- made.forEach(function(id){if(!(id in P))return;var p=SLOT[KIND[id]][P[id]];s+='<g data-it="'+id+'" transform="translate('+p[0]+' '+p[1]+')"'+(ed?' style="cursor:pointer"':'')+'>'+(ed&&sel===id?'<rect x="-22" y="'+(KIND[id]==='f'?-88:-38)+'" width="44" height="'+(KIND[id]==='f'?92:42)+'" rx="8" fill="none" stroke="#7f5a49" stroke-width="2"/>':'')+itemSvg(id)+'</g>'});
- s+='<g id="chx" style="transform:translate('+chX()+'px,0);transition:transform .35s ease"><g id="chj"><rect x="-10" y="160" width="9" height="24" rx="3" fill="#4d3b30"/><rect x="2" y="160" width="9" height="24" rx="3" fill="#4d3b30"/><rect x="-14" y="116" width="29" height="48" rx="9" fill="#6f8f8a"/><rect x="-9" y="126" width="19" height="36" rx="4" fill="#e9d6bb"/><path d="M-9 128q9-10 19 0" fill="none" stroke="#e9d6bb" stroke-width="3"/><circle cx="0" cy="102" r="14" fill="#f0d2b4"/>'+hairSvg()+'<circle cx="-5" cy="104" r="1.6" fill="#3a2c24"/><circle cx="5" cy="104" r="1.6" fill="#3a2c24"/><path d="M-4 109q4 4 8 0" fill="none" stroke="#3a2c24" stroke-width="1.6" stroke-linecap="round"/>'+(lv>=3?'<rect x="-12" y="86" width="24" height="6" rx="3" fill="#e2a93b"/>':'')+'</g></g>';
+ made.forEach(function(id){if(!(id in P))return;var p=SLOT[KIND[id]][P[id]],f=KIND[id]==='f';s+='<g data-it="'+id+'" data-g="'+infoOf(id).g+'" transform="translate('+p[0]+' '+p[1]+')" style="cursor:pointer"><g'+(shopNew===id?' class="arrive"':'')+'><rect x="-20" y="'+(f?-86:-36)+'" width="40" height="'+(f?90:40)+'" fill="transparent"/>'+(ed&&sel===id?'<rect x="-22" y="'+(f?-88:-38)+'" width="44" height="'+(f?92:42)+'" rx="8" fill="none" stroke="#7f5a49" stroke-width="2"/>':'')+itemSvg(id)+glossSvg(id,infoOf(id).g)+'</g></g>'});
+ s+='<g id="chx" style="transform:translate('+chX()+'px,0)"><g id="chf"><g id="chj"><rect x="-16" y="84" width="32" height="104" fill="transparent"/><rect x="-10" y="164" width="9" height="24" rx="3" fill="#4d3b30"/><rect x="2" y="164" width="9" height="24" rx="3" fill="#4d3b30"/><g id="chb"><rect x="-14" y="120" width="29" height="48" rx="9" fill="#6f8f8a"/><rect x="-9" y="130" width="19" height="36" rx="4" fill="#e9d6bb"/><path d="M-9 132q9-10 19 0" fill="none" stroke="#e9d6bb" stroke-width="3"/><g transform="translate(0 4)"><circle cx="0" cy="102" r="14" fill="#f0d2b4"/>'+hairSvg()+'<g id="che"><circle cx="-5" cy="104" r="1.6" fill="#3a2c24"/><circle cx="5" cy="104" r="1.6" fill="#3a2c24"/></g><path d="M-4 109q4 4 8 0" fill="none" stroke="#3a2c24" stroke-width="1.6" stroke-linecap="round"/>'+(lv>=3?'<rect x="-12" y="86" width="24" height="6" rx="3" fill="#e2a93b"/>':'')+'</g></g></g></g></g>';
  return s+'</svg>'}
 function chX(){var v=+((ST.shop||{}).cx);return v>=24&&v<=316?v:204}
-var shopEd=false,shopSel=null;
-function shopGuide(W,made,lv){var nxt=null,can=null;PJ.forEach(function(p){if(made.indexOf(p[0])>=0)return;var tl=0,need=[];TOOLS.forEach(function(t){if(t[0]===p[3])tl=t[1]});for(var k in p[2])if(W[k]<p[2][k])need.push(WN[k]+' '+(p[2][k]-W[k])+'개');if(lv<tl)need.push('Lv.'+tl+' ('+p[3]+')');if(!need.length&&!can)can=p;if(need.length&&!nxt)nxt={p:p,need:need}});
- var now=can?'<b>지금 할 일</b> — 만들 수 있는 작품이 있습니다: <b>'+esc(can[1])+'</b>. 아래 버튼을 누르면 작업실에 놓입니다.<div style="margin-top:8px"><button class="btn sm" data-mk="'+can[0]+'">'+esc(can[1])+' 만들기</button></div>':nxt?'<b>지금 할 일</b> — 다음 작품 <b>'+esc(nxt.p[1])+'</b>까지 '+nxt.need.join(', ')+' 더 필요합니다. Weekly의 할 일을 하면 모입니다.<div style="margin-top:8px"><button class="btn sm sec" data-go="home">Weekly 할 일 하러 가기 →</button></div>':'<b>모든 작품을 완성했습니다.</b> 배치를 바꾸며 작업실을 꾸며 보세요.';
- return '<div class="card" id="shopguide" style="border:2px solid var(--br)"><h2>작업실은 이런 곳입니다 <small>공부한 만큼 작품이 생깁니다</small></h2><div class="q"><i>1</i>Weekly의 할 일 · 오늘의 미션 · 복습 · 숙제를 하면 <b>나무</b>가 모입니다</div><div class="q"><i>2</i>나무가 모이면 <b>만들기</b>를 눌러 작품을 만듭니다</div><div class="q"><i>3</i>만든 작품은 아래 그림 속 작업실에 놓입니다. 이 화면에서 따로 공부할 것은 없습니다</div><div class="note">'+now+'</div></div>'}
-function pShop(){var P=points(),W=wood(),made=madeList(),lv=lvOf(P.total),nx=LV[lv]?LV[lv][0]:null;
- var h=shopGuide(W,made,lv)+'<div class="card" id="shopcard"><h2>작업실 <small>'+esc(cu.role==='teacher'?'Brian':cu.name)+' · Lv.'+lv+' '+LV[lv-1][1]+'</small></h2><div id="scene">'+shopSvg(made,lv,shopEd,shopSel)+'</div>'+(made.length?(shopEd?'<div class="note" style="margin-top:8px"><b>배치 바꾸기</b> — ① 아래에서 작품을 고르고 ② 그림에서 노란 점선 칸을 누르면 옮겨집니다. 작은 작품은 선반과 작업대, 큰 작품은 바닥에 놓을 수 있습니다.</div><div class="chips" style="margin:8px 0 0;flex-wrap:wrap">'+made.map(function(id){var nm='';PJ.forEach(function(p){if(p[0]===id)nm=p[1]});return '<button class="chip'+(shopSel===id?' on':'')+'" data-pick="'+id+'">'+nm+'</button>'}).join('')+'</div><button class="btn sm" id="eddone" style="margin-top:8px">배치 끝내기</button>':'<button class="btn sm sec" id="edgo" style="margin-top:8px">배치 바꾸기</button>'):'<div class="kr" style="margin-top:8px">작품을 만들면 여기에 놓이고, 놓는 자리를 직접 바꿀 수 있습니다.</div>')+'<div id="movebox" style="display:flex;gap:8px;margin-top:10px"><button class="btn sm sec" id="mvl" style="flex:1" aria-label="왼쪽으로 이동">← 이동</button><button class="btn sm" id="mvj" style="flex:1">점프</button><button class="btn sm sec" id="mvr" style="flex:1" aria-label="오른쪽으로 이동">이동 →</button></div><div id="hairbox" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:10px"><b>머리 바꾸기</b><span class="kr"> — 누르면 바로 바뀝니다</span><div class="chips" style="margin:8px 0 6px;flex-wrap:nowrap;gap:6px">'+HAIR.map(function(n){return '<button class="chip'+(hairOf()[0]===n[0]?' on':'')+'" data-hs="'+n[0]+'" style="flex:1 1 0;padding-left:4px;padding-right:4px;white-space:nowrap">'+n[1]+'</button>'}).join('')+'</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+HCOL.map(function(c,i){return '<button class="hc'+(hairOf()[1]===i?' on':'')+'" data-hc="'+i+'" aria-label="'+c[1]+'" title="'+c[1]+'" style="background:'+c[0]+'"></button>'}).join('')+'</div></div><div class="rp" style="grid-template-columns:70px 1fr 110px;margin-top:10px"><span>레벨</span><div class="bar"><i style="width:'+(nx?pc(P.total-LV[lv-1][0],nx-LV[lv-1][0]):100)+'%"></i></div><b>'+(nx?'다음까지 '+(nx-P.total)+'pt':'최고 레벨')+'</b></div>';
- h+='<div class="wd"><span><b id="wd_p">'+W.p+'</b>소나무</span><span><b id="wd_o">'+W.o+'</b>참나무</span><span><b id="wd_w">'+W.w+'</b>월넛</span><span><b>'+made.length+'</b>작품</span></div>';
- h+='<div class="kr" style="margin-top:8px">도구: '+TOOLS.map(function(t){return lv>=t[1]?'<b style="color:var(--br-d)">'+t[0]+'</b>':'<span style="opacity:.55">'+t[0]+' (Lv.'+t[1]+')</span>'}).join(' · ')+'</div></div>';
- h+='<div class="card"><h2>나무와 포인트가 쌓이는 방법</h2><div class="q"><i>1</i>Weekly의 STEP · 오늘의 미션 · 복습을 끝내면 <b>소나무</b> 1개</div><div class="q"><i>2</i>숙제 제출 · Hailey와 약속 인증은 <b>참나무</b> 2개</div><div class="q"><i>3</i>목표 하나의 STEP을 모두 끝내면 <b>월넛</b> 1개</div><div class="q"><i>4</i>포인트가 쌓이면 레벨이 오르고 새 도구가 열립니다. 나무와 도구가 모이면 아래에서 작품을 만듭니다</div></div>';
- h+='<div class="card"><h2>작품 <small>'+made.length+' / '+PJ.length+'</small></h2>'+PJ.map(function(p){var isM=made.indexOf(p[0])>=0,tl=0;TOOLS.forEach(function(t){if(t[0]===p[3])tl=t[1]});var need=[],cost=[];for(var k in p[2]){cost.push(WN[k]+' '+p[2][k]);if(W[k]<p[2][k])need.push(WN[k]+' '+(p[2][k]-W[k])+'개 더')}if(lv<tl)need.push(p[3]+' (Lv.'+tl+')');
-  return '<div class="pj'+(isM?' ok':'')+'"><div style="flex:1"><b>'+p[1]+'</b><div class="kr">재료: '+cost.join(' · ')+' · 도구: '+p[3]+'</div><div class="kr">'+p[4]+' '+p[5]+'</div>'+(!isM&&need.length?'<div class="kr" style="color:var(--red)">부족: '+need.join(', ')+'</div>':'')+'</div>'+(isM?'<span class="gc" style="align-self:center">완성</span>':'<button class="btn sm" data-mk="'+p[0]+'"'+(need.length?' disabled style="opacity:.45"':'')+'>만들기</button>')+'</div>'}).join('')+'</div>'+syncNote();
- $('main').innerHTML=h;
+var shopEd=false,shopSel=null,shopNew=null,shopSheet=false,walkT=null;
+function craftState(p,W,lv){var need=[],bars=[],tl=toolLv(p[3]);for(var k in p[2]){bars.push([WN[k],Math.min(W[k],p[2][k]),p[2][k]]);if(W[k]<p[2][k])need.push([k,p[2][k]-W[k]])}return {tl:tl,locked:lv<tl,need:need,bars:bars,can:lv>=tl&&!need.length}}
+function hiddenPj(i,lv){return i>=5&&lv<toolLv(PJ[i][3])-1}
+function needHint(p,W,lv,total){var c=craftState(p,W,lv),a=[],b=[];c.need.forEach(function(x){a.push(WN[x[0]]+' '+x[1]+'개');if(x[0]==='o'){var hwN=Math.ceil(x[1]/2),left=0,w=nextWeek();(w.homework||[]).forEach(function(h){if(!((ST.hw||{})[hk(w,h)]||{}).done)left++});b.push((hwN<=left?'이번 주 숙제 ':'숙제 ')+hwN+'개')}else if(x[0]==='p')b.push('Weekly STEP · 미션 · 복습 '+x[1]+'번');else b.push('목표 '+x[1]+'개 달성')});
+ if(c.locked){a.push(p[3]+'(Lv.'+c.tl+')');b.push('포인트 '+Math.max(0,LV[c.tl-1][0]-total)+'pt 더')}return {need:a.join(' · '),how:b.join(' + ')}}
+function lvReward(lv){if(!LV[lv])return '';var nl=lv+1,ts=[],ps=[];TOOLS.forEach(function(t){if(t[1]===nl)ts.push(t[0])});PJ.forEach(function(p){if(ts.indexOf(p[3])>=0)ps.push(p[1])});return 'Lv.'+nl+' → '+(ts.length?ts.join(' · ')+' 해금':'새 도구 없음')+(ps.length?' · '+ps.join(' · ')+' 제작 가능':'')}
+function barsHtml(c){return c.bars.map(function(b){return '<div class="mb"><span>'+b[0]+'</span><div class="bar"><i style="width:'+pc(b[1],b[2])+'%"></i></div><b>'+b[1]+'/'+b[2]+'</b></div>'}).join('')}
+function sinfo(t){var e=$('sinfo');if(!e)return;e.textContent=t||'';e.style.display=t?'block':'none'}
+function benchUI(){var b=$('benchbtn');if(!b)return;var near=chX()>=70&&chX()<=200,can=null,W=wood(),lv=lvOf(points().total),made=madeList();PJ.forEach(function(p){if(!can&&made.indexOf(p[0])<0&&craftState(p,W,lv).can)can=p});
+ if(near&&can&&!shopEd){b.style.display='block';b.textContent=can[1]+' 만들기';b.setAttribute('data-mk',can[0])}else b.style.display='none'}
+function shopWalk(x){if(cu.role==='teacher'||shopEd)return;x=Math.max(24,Math.min(316,Math.round(x)));var g=$('chx'),j=$('chj'),f=$('chf');if(!g)return;var from=chX(),ms=Math.max(260,Math.abs(x-from)*9);ST.shop=ST.shop||{};ST.shop.cx=x;
+ if(f)f.style.transform=x<from?'scaleX(-1)':'';g.style.transition='transform '+ms+'ms linear';g.style.transform='translate('+x+'px,0)';if(j)j.classList.add('walk');var bb=$('benchbtn');if(bb)bb.style.display='none';sinfo('');
+ clearTimeout(walkT);walkT=setTimeout(function(){var j2=$('chj');if(j2)j2.classList.remove('walk');benchUI();saveState()},ms+30)}
+window.shopWalk=shopWalk;
+function pShop(){var P=points(),W=wood(),made=madeList(),lv=lvOf(P.total),nx=LV[lv]?LV[lv][0]:null,stu=cu.role!=='teacher';
+ var h='<div class="card" id="shopcard"><h2>작업실 <small>'+esc(stu?cu.name:'Brian')+' · Lv.'+lv+' '+LV[lv-1][1]+'</small></h2><div id="scene" style="position:relative">'+shopSvg(made,lv,shopEd,shopSel,W)+'<div id="sinfo" style="display:none"></div><button class="btn sm" id="benchbtn" data-mk="" style="display:none"></button></div>';
+ h+='<div class="kr" style="margin-top:8px">'+(shopEd?'<b>배치 바꾸기</b> — ① 아래에서 작품을 고르고 ② 그림에서 노란 점선 칸을 누르면 옮겨집니다. 작은 작품은 선반과 작업대, 큰 작품은 바닥에 놓을 수 있습니다.':'바닥을 누르면 그쪽으로 걸어갑니다. 작업대 앞에 서면 만들기 버튼이 뜹니다. 물건을 누르면 설명이, 캐릭터를 누르면 머리 바꾸기가 열립니다.')+'</div>';
+ if(shopEd)h+='<div class="chips" style="margin:8px 0 0;flex-wrap:wrap">'+made.map(function(id){return '<button class="chip'+(shopSel===id?' on':'')+'" data-pick="'+id+'">'+pjOf(id)[1]+'</button>'}).join('')+'</div><button class="btn sm" id="eddone" style="margin-top:8px">배치 끝내기</button>';
+ else if(made.length)h+='<button class="btn sm sec" id="edgo" style="margin-top:8px">배치 바꾸기</button>';
+ h+='<div class="rp" style="grid-template-columns:52px 1fr 104px;margin-top:12px"><span>Lv.'+lv+'</span><div class="bar"><i style="width:'+(nx?pc(P.total-LV[lv-1][0],nx-LV[lv-1][0]):100)+'%"></i></div><b>'+(nx?'다음까지 '+(nx-P.total)+'pt':'최고 레벨')+'</b></div>'+(nx?'<div class="kr" id="lvnext">'+lvReward(lv)+'</div>':'');
+ h+='<div class="wd"><span><b id="wd_p">'+W.p+'</b>소나무</span><span><b id="wd_o">'+W.o+'</b>참나무</span><span><b id="wd_w">'+W.w+'</b>월넛</span><span><b>'+made.length+'</b>작품</span></div></div>';
+ var nxt=null,can=null;PJ.forEach(function(p,i){if(made.indexOf(p[0])>=0||hiddenPj(i,lv))return;var c=craftState(p,W,lv);if(c.can&&!can)can=p;if(!c.can&&!nxt)nxt=p});
+ h+='<div class="card" id="nextpj" style="border:2px solid var(--br)">';
+ if(can)h+='<div class="npj">'+thumb(can[0],false,0)+'<div style="flex:1"><div class="kr">지금 만들 수 있습니다</div><b style="font-size:18px">'+can[1]+'</b><div class="kr">재료와 도구가 모두 준비됐습니다. '+can[5]+'</div></div></div><button class="btn w" data-mk="'+can[0]+'" style="margin-top:10px">'+can[1]+' 만들기</button>';
+ else if(nxt){var nh=needHint(nxt,W,lv,P.total);h+='<div class="npj">'+thumb(nxt[0],true,0)+'<div style="flex:1"><div class="kr">다음 작품</div><b style="font-size:18px">'+nxt[1]+'</b><div class="kr" id="nexthint">'+nh.need+' 필요 → '+nh.how+' 하면 가능</div></div></div>'+barsHtml(craftState(nxt,W,lv))+'<button class="btn sm sec" data-go="home" style="margin-top:10px">Weekly 할 일 하러 가기 →</button>'}
+ else h+='<b>모든 작품을 완성했습니다.</b><div class="kr">배치를 바꾸거나, 다시 다듬어서 등급을 올려 보세요.</div>';
+ h+='</div><div class="card" id="pjcard"><h2>작품 도감 <small>'+made.length+' / '+PJ.length+'</small></h2><div class="dex">'+PJ.map(function(p,i){var m=made.indexOf(p[0])>=0,hid=hiddenPj(i,lv),g=m?infoOf(p[0]).g:0;return '<div class="dx'+(m?' ok':'')+'" data-dx="'+p[0]+'">'+thumb(p[0],!m,g)+'<span>'+(hid?'?':m?GRD[g]:p[1])+'</span></div>'}).join('')+'</div>';
+ h+=PJ.map(function(p,i){var m=made.indexOf(p[0])>=0,hid=hiddenPj(i,lv),c=craftState(p,W,lv),inf=infoOf(p[0]);
+  if(hid)return '<div class="pj lock" data-pj="'+p[0]+'">'+thumb(p[0],true,0)+'<div style="flex:1"><b>?</b><div class="kr">아직 공개되지 않은 작품입니다. 레벨이 오르면 보입니다.</div></div></div>';
+  if(m)return '<div class="pj ok" data-pj="'+p[0]+'">'+thumb(p[0],false,inf.g)+'<div style="flex:1"><b>'+p[1]+'</b> <span class="gc">'+GRD[inf.g]+'</span><div class="kr">'+(inf.d?md(inf.d)+' 완성':'완성')+' · '+p[4]+'</div></div>'+(MGP[p[0]]&&inf.g<3?'<button class="btn sm sec" data-polish="'+p[0]+'">다시 다듬기</button>':'')+'</div>';
+  if(c.locked)return '<div class="pj lock" data-pj="'+p[0]+'">'+thumb(p[0],true,0)+'<div style="flex:1"><b>'+p[1]+'</b><div class="kr">'+p[3]+' · Lv.'+c.tl+'에서 열림</div>'+barsHtml(c)+'</div></div>';
+  return '<div class="pj" data-pj="'+p[0]+'">'+thumb(p[0],!c.can,0)+'<div style="flex:1"><b>'+p[1]+'</b><div class="kr">도구: '+p[3]+' · '+p[5]+'</div>'+barsHtml(c)+'</div>'+(c.can?'<button class="btn sm" data-mk="'+p[0]+'">만들기</button>':'')+'</div>'}).join('')+'</div>';
+ h+='<details id="shophelp"><summary><span>작업실 안내 · 나무가 쌓이는 방법</span></summary><div class="in"><div class="q"><i>1</i>Weekly의 STEP · 오늘의 미션 · 복습을 끝내면 <b>소나무</b> 1개</div><div class="q"><i>2</i>숙제 제출 · Hailey와 약속 인증은 <b>참나무</b> 2개</div><div class="q"><i>3</i>목표 하나의 STEP을 모두 끝내면 <b>월넛</b> 1개</div><div class="q"><i>4</i>포인트가 쌓이면 레벨이 오르고 새 도구가 열립니다</div><div class="q"><i>5</i>만들기의 공정 놀이로는 나무를 얻지 못합니다. 못해도 작품은 완성되고, 그만둬도 나무는 그대로입니다</div></div></details>'+syncNote();
+ if(shopSheet&&stu)h+='<div id="hairsheet" data-hsx="1"><div class="card"><h2>머리 바꾸기 <small>누르면 바로 바뀝니다</small></h2><div class="chips" style="margin:8px 0 10px;flex-wrap:nowrap;gap:6px">'+HAIR.map(function(n){return '<button class="chip'+(hairOf()[0]===n[0]?' on':'')+'" data-hs="'+n[0]+'" style="flex:1 1 0;padding-left:4px;padding-right:4px;white-space:nowrap">'+n[1]+'</button>'}).join('')+'</div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+HCOL.map(function(c,i){return '<button class="hc'+(hairOf()[1]===i?' on':'')+'" data-hc="'+i+'" aria-label="'+c[1]+'" title="'+c[1]+'" style="background:'+c[0]+'"></button>'}).join('')+'</div><button class="btn w" id="hsclose" data-hsx="1" style="margin-top:14px">닫기</button></div></div>';
+ $('main').innerHTML=h;shopNew=null;benchUI();
  [].forEach.call(document.querySelectorAll('[data-hs]'),function(b){b.onclick=function(){ST.shop=ST.shop||{};ST.shop.hair=+b.dataset.hs;saveState();render()}});[].forEach.call(document.querySelectorAll('[data-hc]'),function(b){b.onclick=function(){ST.shop=ST.shop||{};ST.shop.hairc=+b.dataset.hc;saveState();render()}});
- function mv(d){var x=Math.max(24,Math.min(316,chX()+d));ST.shop=ST.shop||{};ST.shop.cx=x;var g=$('chx');if(g)g.style.transform='translate('+x+'px,0)';saveState()}
- var ml=$('mvl'),mr=$('mvr'),mj=$('mvj');if(ml)ml.onclick=function(){mv(-28)};if(mr)mr.onclick=function(){mv(28)};if(mj)mj.onclick=function(){var g=$('chj');if(!g)return;g.classList.remove('jump');void g.getBoundingClientRect();g.classList.add('jump')};
+ [].forEach.call(document.querySelectorAll('[data-hsx]'),function(b){b.onclick=function(e){if(b.id==='hairsheet'&&e.target!==b)return;shopSheet=false;render()}});
  var eg=$('edgo');if(eg)eg.onclick=function(){shopEd=true;shopSel=madeList()[0]||null;render()};var edd=$('eddone');if(edd)edd.onclick=function(){shopEd=false;shopSel=null;render()};
  [].forEach.call(document.querySelectorAll('[data-pick]'),function(b){b.onclick=function(){shopSel=b.dataset.pick;render()}});
- if(shopEd&&cu.role!=='teacher'){[].forEach.call(document.querySelectorAll('#scene [data-it]'),function(g){g.onclick=function(){shopSel=g.getAttribute('data-it');render()}});
-  [].forEach.call(document.querySelectorAll('#scene [data-slot]'),function(g){g.onclick=function(){var id=shopSel;if(!id||madeList().indexOf(id)<0)return;var to=+g.getAttribute('data-slot'),P=placeOf(madeList()),from=P[id],k=KIND[id];ST.shop=ST.shop||{};var np={};for(var x in P)np[x]=P[x];for(var y in P)if(y!==id&&KIND[y]===k&&P[y]===to)np[y]=from;np[id]=to;ST.shop.pos=np;saveState();render()}})}
- [].forEach.call(document.querySelectorAll('[data-mk]'),function(b){b.onclick=function(){var id=b.dataset.mk,p=null;PJ.forEach(function(x){if(x[0]===id)p=x});if(!p||madeList().indexOf(id)>=0)return;var W2=wood(),tl=0;TOOLS.forEach(function(t){if(t[0]===p[3])tl=t[1]});if(lvOf(points().total)<tl)return;for(var k in p[2])if(W2[k]<p[2][k])return;ST.shop=ST.shop||{};ST.shop.made=madeList().concat([id]);saveState();render()}});bindGo()}
+ var room=$('room');if(room)room.onclick=function(e){var r=room.getBoundingClientRect();if(!r.width)return;shopWalk((e.clientX-r.left)/r.width*340)};
+ [].forEach.call(document.querySelectorAll('#scene [data-it]'),function(g){g.onclick=function(e){e.stopPropagation();var id=g.getAttribute('data-it');if(shopEd){if(stu){shopSel=id;render()}return}var inf=infoOf(id);sinfo(pjOf(id)[1]+' · '+(inf.d?md(inf.d)+' 완성':'완성')+' · '+GRD[inf.g])}});
+ [].forEach.call(document.querySelectorAll('#scene [data-tool]'),function(g){g.onclick=function(e){e.stopPropagation();var t=TOOLS[+g.getAttribute('data-tool')];sinfo(lv>=t[1]?t[0]+' · Lv.'+t[1]+' 도구 · 사용 중':t[0]+' · Lv.'+t[1]+'에서 열림')}});
+ var pile=$('pile');if(pile)pile.onclick=function(e){e.stopPropagation();sinfo('나무 더미 · 소나무 '+W.p+' · 참나무 '+W.o+' · 월넛 '+W.w)};
+ var ch=$('chx');if(ch)ch.onclick=function(e){e.stopPropagation();if(!stu||shopEd)return;shopSheet=true;render()};
+ if(shopEd&&stu)[].forEach.call(document.querySelectorAll('#scene [data-slot]'),function(g){g.onclick=function(e){e.stopPropagation();var id=shopSel;if(!id||madeList().indexOf(id)<0)return;var to=+g.getAttribute('data-slot'),Q=placeOf(madeList()),from=Q[id],k=KIND[id];ST.shop=ST.shop||{};var np={};for(var x in Q)np[x]=Q[x];for(var y in Q)if(y!==id&&KIND[y]===k&&Q[y]===to)np[y]=from;np[id]=to;ST.shop.pos=np;saveState();render()}});
+ [].forEach.call(document.querySelectorAll('#main [data-mk]'),function(b){b.onclick=function(e){e.stopPropagation();if(b.dataset.mk)mgOpen(b.dataset.mk,'make')}});
+ [].forEach.call(document.querySelectorAll('[data-polish]'),function(b){b.onclick=function(){mgOpen(b.dataset.polish,'polish')}});bindGo()}
+
+/* ---------- making: short process games. no timer, no fail, wood is only spent when the piece is finished ---------- */
+var MGP={spoon:['saw','sand'],board:['saw','sand']};var mg=null,mgRAF=0;
+function canMake(id){var p=pjOf(id);if(!p||madeList().indexOf(id)>=0)return false;return craftState(p,wood(),lvOf(points().total)).can}
+function mgEl(){var e=$('mg');if(!e){e=document.createElement('div');e.id='mg';document.body.appendChild(e)}return e}
+function mgClose(){cancelAnimationFrame(mgRAF);mg=null;var e=$('mg');if(e){e.innerHTML='';e.style.display='none'}}
+function mgOpen(id,mode){if(!cu||cu.role==='teacher')return;var p=pjOf(id);if(!p)return;if(mode==='make'&&!canMake(id))return;if(mode==='polish'&&(madeList().indexOf(id)<0||!MGP[id]))return;
+ var steps=String(p[5]).split('→').map(function(x){return x.trim()}),plan=MGP[id]||[],play=[];steps.forEach(function(nm,i){var k=/재단/.test(nm)?'saw':/사포/.test(nm)?'sand':'';if(k&&plan.indexOf(k)>=0)play.push({i:i,k:k})});
+ mg={id:id,mode:mode,steps:steps,play:play,at:0,sc:[],lv:lvOf(points().total),p:0,dir:1,cuts:[],cells:{},done:false,fix:null,last:0};mgDraw()}
+function mgStepsHtml(){var cur=mg.done?-1:(mg.play[mg.at]||{}).i;return '<div class="mgs">'+mg.steps.map(function(nm,i){var pl=mg.play.some(function(x){return x.i===i}),dn=mg.done||mg.play.some(function(x,ix){return x.i===i&&ix<mg.at})||(!pl&&(cur===undefined||i<cur));return '<span class="'+(i===cur?'on':dn?'dn':'')+'">'+esc(nm)+(pl?'':' · 자동')+'</span>'}).join('')+'</div>'}
+function mgDraw(){var e=mgEl(),p=pjOf(mg.id);e.style.display='flex';cancelAnimationFrame(mgRAF);
+ var h='<div class="card" role="dialog" aria-label="'+p[1]+' 만들기"><h2>'+p[1]+(mg.mode==='polish'?' 다시 다듬기':' 만들기')+' </h2><div class="kr" style="margin:-6px 0 10px">시간 제한이 없고, 못해도 완성됩니다. 그만둬도 나무는 그대로입니다.</div>'+mgStepsHtml();
+ if(!mg.play.length&&!mg.done){h+='<div class="note">이 작품의 공정 놀이는 준비 중입니다. 바로 완성하고, 나중에 다시 다듬을 수 있게 됩니다.</div><div style="display:flex;gap:8px;margin-top:14px"><button class="btn" style="flex:1" id="mgfin" onclick="mgFinish()">완성하기</button><button class="btn gray" onclick="mgClose()">그만두기</button></div></div>';mg.sc=[0.5];mg.done=true;e.innerHTML=h;return}
+ if(mg.done){var a=0;mg.sc.forEach(function(x){a+=x});a=mg.sc.length?a/mg.sc.length:0;mg.grade=a>=0.85?3:a>=0.6?2:1;var old=mg.mode==='polish'?infoOf(mg.id).g:0;
+  h+='<div style="text-align:center;padding:10px 0"><div class="mgdone">'+thumb(mg.id,false,Math.max(mg.grade,old)).replace('width="44" height="44"','width="96" height="96"')+'</div><div style="font-size:20px;font-weight:700;margin-top:6px" id="mggrade">'+GRD[mg.grade]+'</div><div class="kr">'+(mg.mode==='polish'?(mg.grade>old?'등급이 올랐습니다: '+GRD[old]+' → '+GRD[mg.grade]:'지금 등급('+GRD[old]+')을 그대로 둡니다. 등급은 내려가지 않습니다.'):'완성했습니다. 등급은 나중에 다시 다듬어서 올릴 수 있습니다.')+'</div></div><button class="btn w" id="mgfin" onclick="mgFinish()">'+(mg.mode==='polish'?'확인':'작업실에 놓기')+'</button></div>';e.innerHTML=h;return}
+ var st=mg.play[mg.at];
+ if(st.k==='saw'){h+='<b>재단 · 톱</b><div class="kr">표시가 가운데 선에 올 때 "톱질"을 누릅니다. 세 번 자릅니다. '+(mg.lv>1?'도구 레벨이 높아 게이지가 천천히 움직입니다.':'')+'</div><div id="sawwood"><div class="plank">'+[0,1,2].map(function(i){return '<i class="'+(mg.cuts.length>i?'cut':'')+'" style="left:'+(25+i*25)+'%"></i>'}).join('')+'</div><div id="dust"></div></div><div id="gauge"><span class="zone"></span><span class="line"></span><span id="gm"></span></div><div class="kr" id="sawmsg" style="min-height:22px;text-align:center">'+(mg.cuts.length?['','첫 번째','두 번째','세 번째'][mg.cuts.length]+' 톱질 · '+(mg.cuts[mg.cuts.length-1]>=0.85?'정확합니다':mg.cuts[mg.cuts.length-1]>=0.5?'괜찮습니다':'조금 빗나갔습니다'):'&nbsp;')+'</div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn" style="flex:1" id="sawbtn" onclick="mgSaw()">톱질 ('+(mg.cuts.length+1)+' / 3)</button><button class="btn gray" onclick="mgClose()">그만두기</button></div>'}
+ else{var tot=40,n=Object.keys(mg.cells).length;h+='<b>사포</b><div class="kr">거친 면을 손가락으로 문지릅니다. 다 문지르면 다음으로 넘어갑니다.</div><div id="sandbox">'+(function(){var o='';for(var i=0;i<tot;i++)o+='<i class="sc'+(mg.cells[i]?' sm':'')+'" data-sc="'+i+'"></i>';return o})()+'</div><div class="mb" style="margin-top:8px"><span>매끈함</span><div class="bar"><i id="sandbar" style="width:'+pc(n,tot)+'%"></i></div><b id="sandn">'+n+'/'+tot+'</b></div><div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="sandok" onclick="mgSandDone()" style="flex:1'+(n<24?';opacity:.45" disabled':'"')+'>이 정도면 됐습니다</button><button class="btn gray" onclick="mgClose()">그만두기</button></div>'}
+ h+='</div>';e.innerHTML=h;
+ if(st.k==='saw'){mg.last=0;var tick=function(ts){if(!mg||mg.done||(mg.play[mg.at]||{}).k!=='saw')return;if(!mg.last)mg.last=ts;var dt=Math.min(60,ts-mg.last);mg.last=ts;var sp=0.00085*(1-0.13*(Math.min(mg.lv,5)-1));mg.p+=mg.dir*dt*sp;if(mg.p>1){mg.p=1;mg.dir=-1}if(mg.p<0){mg.p=0;mg.dir=1}var m=$('gm');if(m)m.style.left=((mg.fix!=null?mg.fix:mg.p)*100)+'%';mgRAF=requestAnimationFrame(tick)};mgRAF=requestAnimationFrame(tick)}
+ else{var box=$('sandbox'),rub=function(ev){if(ev.type==='pointermove'&&ev.pointerType==='mouse'&&!ev.buttons)return;var t=document.elementFromPoint(ev.clientX,ev.clientY);if(t&&t.getAttribute&&t.getAttribute('data-sc')!=null)mgSand(+t.getAttribute('data-sc'))};box.addEventListener('pointerdown',rub);box.addEventListener('pointermove',rub)}}
+function mgDust(host,n){if(!host)return;for(var i=0;i<n;i++){var d=document.createElement('b');d.className='dst';d.style.left=(30+Math.random()*40)+'%';d.style.setProperty('--dx',(Math.random()*60-30)+'px');host.appendChild(d);(function(x){setTimeout(function(){if(x.parentNode)x.parentNode.removeChild(x)},700)})(d)}}
+function mgSaw(){if(!mg||mg.done||(mg.play[mg.at]||{}).k!=='saw')return;var p=mg.fix!=null?mg.fix:mg.p,d=Math.abs(p-0.5),a=d<=0.06?1:Math.max(0,1-(d-0.06)/0.44);mg.cuts.push(a);
+ if(mg.cuts.length>=3){var s=0;mg.cuts.forEach(function(x){s+=x});mg.sc.push(s/3);mg.cuts=[];mgNext()}else{mgDraw();mgDust($('dust'),8)}}
+function mgSand(i){if(!mg||mg.done||(mg.play[mg.at]||{}).k!=='sand'||mg.cells[i])return;mg.cells[i]=1;var c=document.querySelector('[data-sc="'+i+'"]');if(c)c.classList.add('sm');var n=Object.keys(mg.cells).length;var b=$('sandbar');if(b)b.style.width=pc(n,40)+'%';var t=$('sandn');if(t)t.textContent=n+'/40';var ok=$('sandok');if(ok&&n>=24){ok.disabled=false;ok.style.opacity=''}if(n%4===0)mgDust($('sandbox'),3);if(n>=40)mgSandDone()}
+function mgSandDone(){if(!mg||mg.done||(mg.play[mg.at]||{}).k!=='sand')return;var n=Object.keys(mg.cells).length;if(n<24)return;mg.sc.push(n/40);mg.cells={};mgNext()}
+function mgNext(){mg.at++;if(mg.at>=mg.play.length)mg.done=true;mgDraw()}
+function mgFinish(){if(!mg||!mg.done)return;var id=mg.id,g=mg.grade||1,mode=mg.mode;mgClose();if(!cu||cu.role==='teacher')return;ST.shop=ST.shop||{};ST.shop.info=ST.shop.info||{};
+ if(mode==='make'){if(!canMake(id)){render();return}ST.shop.made=madeList().concat([id]);ST.shop.info[id]={d:today(),g:g};shopNew=id}
+ else{if(madeList().indexOf(id)<0)return;var o=infoOf(id);ST.shop.info[id]={d:o.d,g:Math.max(o.g,g)}}
+ saveState();tab='shop';render();scrollTo(0,0)}
+window.mgOpen=mgOpen;window.mgClose=mgClose;window.mgSaw=mgSaw;window.mgSand=mgSand;window.mgSandDone=mgSandDone;window.mgFinish=mgFinish;
 
 /* ---------- daily mission · points · lesson plan ---------- */
 var ms=null,pd=null;
