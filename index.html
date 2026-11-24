@@ -235,7 +235,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261124-0955';
+var APPVER='20261124-1000';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -396,7 +396,7 @@ function render(){document.body.classList.toggle('stu',cu.role!=='teacher');if(c
  $('nav').innerHTML=tabs.map(function(t){return '<button data-t="'+t[0]+'" class="'+(tab===t[0]?'on':'')+'">'+t[1]+'</button>'}).join('');
  [].forEach.call($('nav').children,function(b){b.onclick=function(){tab=b.dataset.t;render();scrollTo(0,0)}});
  if(tab!=='review')rv=null;if(tab!=='vquiz')vq=null;if(tab!=='mission')ms=null;if(tab!=='home')schOpen=false;if(tab!=='shop'){shopEd=false;shopSel=null;shopSheet=false;if(mg)mgClose()}if(tab!=='record'){pd=null;calM=null;calSel=null}var pv=cu.role==='teacher'&&tab.indexOf('t-')!==0&&tab!=='pw';var f={pw:pPw,vquiz:pVquiz,shop:pShop,mission:pMission,review:pReview,home:pHome,week:pWeek,practice:pPractice,hw:pHw,record:pRecord,'t-week':tWeek,'t-inbox':tInbox,'t-record':tRecord}[tab];$('main').innerHTML='';f();if(cu.role!=='teacher'&&tdev())$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>연습 모드</b> — 이 기기는 선생님 기기로 표시되어 있습니다. Brian 계정에서 누른 것은 저장되지 않고, 새로고침하면 원래대로 돌아갑니다.</div>');if(pv){[].forEach.call($('main').querySelectorAll('input,textarea,button'),function(el){var nav=el.hasAttribute('data-w')||el.hasAttribute('data-audplay')||el.hasAttribute('data-sch')||el.hasAttribute('data-cd')||el.hasAttribute('data-cm')||el.hasAttribute('data-cx')||el.hasAttribute('data-ca')||el.hasAttribute('data-cw')||el.id==='blur'||(el.hasAttribute('data-go')&&el.getAttribute('data-go')!=='review'&&el.getAttribute('data-go')!=='vquiz');if(nav)return;el.disabled=true;el.style.opacity='.45';el.style.cursor='not-allowed'});$('main').insertAdjacentHTML('afterbegin','<div class="note" style="margin:0 0 14px"><b>보기 전용</b> — Hailey 계정에서는 학생 화면을 볼 수만 있습니다. 체크 · 인증 · 복습 · 숙제 제출은 Brian 계정에서만 진행됩니다.</div>')}}
-var PALIAS={'스픽 앱 인증 — 누적 화면 캡처를 카톡으로 보내고 분 · 문장 수 적기':'스픽 말하기 기록 — 녹음 파일을 올리고, 말한 내용을 적기'};
+var PALIAS={'스픽 앱 인증 — 누적 화면 캡처를 카톡으로 보내고 분 · 문장 수 적기':'스픽 녹음 올리고 말한 내용 적기'};
 function ptx(v){var x=String(v).replace(/^\s*★\s*/,'');return PALIAS[x]||x}
 /* ---------- recordings: audio is stored in small Firestore pieces next to the student state ---------- */
 var AUDMAX=6*1024*1024,AUDCH=700000;
@@ -488,7 +488,7 @@ function buildGoals(w){var G=[],W=ST.wk||{};if(!w||!w.id||w.id==='none')return G
  if((w.practice||[]).length)G.push({id:'pr',title:'연습 '+w.practice.length+'개를 끝까지 푼다',steps:w.practice.map(function(p){var k=pk(w,p);return {k:k,t:String(p[0])+' 풀기',c:'끝까지 풀고 "선생님께 제출" 누르기',m:10,go:'practice',done:!!prVal(w,p),auto:1,wid:w.id}})});
  if((w.homework||[]).length)G.push({id:'hw',title:'숙제 '+w.homework.length+'개를 마감 전에 낸다',steps:w.homework.map(function(x){var k=hk(w,x);return {k:k,t:hwT(x),c:'제출: '+(hwS(x)||'카톡')+' · 마감 '+(x[2]||'수업 전')+' · "제출 완료" 누르기',m:10,go:'hw',done:!!(ST.hw[k]||{}).done,auto:1,wid:w.id}})});
  var st=(w.todo||[]).filter(isStar);
- if(st.length)G.push({id:'promise',title:st.some(function(t){return /스픽|speak/i.test(String(t[1]))})?(function(){var g=(D.records||{}).goal||[];return '스픽 앱 목표를 달성한다 — 12/31까지 '+(g[0]>0?g[0]:900)+'분 · '+(g[1]>0?g[1]:1400).toLocaleString('en-US')+'문장'})():'Hailey와 약속을 지킨다',pr:st,steps:st.map(function(t){var k=tk(w,t);return {k:k,t:ptx(t[1]),c:'인증 메모를 적고 "인증하기"',m:2,go:'',done:!!(ST.tat||{})[k],auto:1,promise:1}})});
+ if(st.length)G.push({id:'promise',title:st.some(function(t){return /스픽|speak/i.test(String(t[1]))})?(function(){var g=(D.records||{}).goal||[];return '스피킹 연습! 12/31까지 '+(g[0]>0?g[0]:900)+'분 · '+(g[1]>0?g[1]:1400).toLocaleString('en-US')+'문장'})():'Hailey와 약속을 지킨다',pr:st,steps:st.map(function(t){var k=tk(w,t);return {k:k,t:ptx(t[1]),c:'인증 메모를 적고 "인증하기"',m:2,go:'',done:!!(ST.tat||{})[k],auto:1,promise:1}})});
  (w.goals||[]).forEach(function(line){var p=String(Array.isArray(line)?line.join('|'):line).split('|').map(function(x){return x.trim()}).filter(Boolean);if(!p.length)return;var gid='c:'+p[0],steps;
   if(p.length>1)steps=p.slice(1).map(function(x){return man(gid,x,'끝까지 했음',5,'')});else{var tp=GDEF;for(var i=0;i<GT.length;i++)if(GT[i][0].test(p[0])){tp=GT[i][1];break}steps=tp.map(function(x){return man(gid,x[0],x[1],x[2],'')})}
   G.push({id:gid,title:p[0],steps:steps})});
