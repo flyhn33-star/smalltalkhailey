@@ -235,7 +235,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261126-0855';
+var APPVER='20261126-1110';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -710,7 +710,7 @@ function points(){var it=[],lab={};weeksSorted().forEach(function(w){(w.homework
  Object.keys(ST.rvd||{}).sort().forEach(function(d){if(ST.rvd[d])it.push([md(d),'복습 카드 끝내기',1])});
  Object.keys(ST.hw||{}).forEach(function(k){var x=ST.hw[k];if(x&&x.done)it.push([x.at||'','숙제 제출'+(lab[k]?' · '+lab[k].slice(0,26):''),5])});
  Object.keys(ST.tat||{}).forEach(function(k){if(ST.tat[k])it.push([ST.tat[k],'Hailey와 약속 인증'+(lab[k]?' · '+lab[k].slice(0,26):''),7])});
- var TC=tally();if(TC.st)it.push(['','Weekly STEP '+TC.st+'개',TC.st]);TC.gls.forEach(function(g){it.push([g[0],'목표 달성 · '+g[1].slice(0,24),3])});
+ var TC=tally();if(TC.st)it.push(['','Weekly STEP '+TC.st+'개',TC.st]);TC.gls.forEach(function(g){it.push(['','목표 달성 · '+g[1].slice(0,24)+' ('+g[0]+' 수업 준비)',3])});
  var R=D.records||{};var base=R.base==null?17:(+R.base>0?Math.round(+R.base):0);Object.keys(ST.bn||{}).sort().forEach(function(d){var b=ST.bn[d];if(b&&b.p)it.push([md(d),'깜짝 보너스',b.p])});PFIX.forEach(function(f){it.unshift(f)});if(base)it.unshift(['시작','이전 사이트에서 가져온 포인트',base]);var tot=0;it.forEach(function(x){tot+=x[2]});var rw=(R.reward&&R.reward[0]>0)?R.reward:[110,'교보문고 5,000원 쿠폰'];var used=(R.redeem||[]).length;
  return {items:it,total:tot,left:Math.max(0,tot-used*rw[0]),cost:rw[0],name:rw[1]||'리워드',used:used}}
 function ptsHtml(){var P=points();var h='<div class="card" id="ptcard"><h2>포인트 <small>모으면 '+esc(P.name)+'</small></h2><div style="display:flex;align-items:flex-end;gap:10px"><div class="score" id="ptleft">'+P.left+'</div><div class="kr" style="padding-bottom:6px">pt · '+(P.left>=P.cost?'<b style="color:var(--teal)">'+esc(P.name)+' 받아가세요. Hailey에게 말하면 됩니다.</b>':esc(P.name)+'까지 '+(P.cost-P.left)+'pt 남음')+'</div></div><div class="bar" style="margin:10px 0 14px"><i style="width:'+pc(Math.min(P.left,P.cost),P.cost)+'%"></i></div>';
