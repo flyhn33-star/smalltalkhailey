@@ -75,8 +75,6 @@ td.k.blur.peek,.wt td.k.blur.peek{color:var(--mute)!important;background:transpa
 .pqcard{background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25);width:100%;max-width:380px;max-height:calc(100vh - 110px);overflow:auto;padding:14px}.pqhd{display:flex;flex-direction:column;gap:2px;margin-bottom:8px}.pqhd b{font-size:16px;color:var(--br-d)}
 @media(min-width:721px){#pqpop{align-items:center;padding:16px}}
 .pqbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1.5px dashed var(--br)}.pqbar b{color:var(--br-d)}
-.pqsw{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0 2px}.pqsw .kr{margin-right:2px}.pqsw button{width:26px;height:26px;min-height:0;padding:0;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer}.pqsw button.on{box-shadow:0 0 0 2px var(--br-d)}
-.pqany{position:relative;width:26px;height:26px;border-radius:50%;border:1px dashed var(--mute);display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:var(--mute);overflow:hidden;cursor:pointer}.pqany input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;padding:0;border:0}
 .pgs{font-weight:700;color:var(--br-d);margin:14px 0 4px;padding-top:10px;border-top:1px solid var(--line)}.pgs:first-child{margin-top:0;padding-top:0;border-top:0}
 .pgr{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-bottom:1px dashed var(--line)}.pgt{min-width:0;overflow-wrap:anywhere}
 .pgd{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#eee8e1;color:var(--mute);font-weight:700}.pgd.on{background:var(--teal);color:#fff}
@@ -249,7 +247,7 @@ body:not(.stu) nav button{min-height:42px}.rp{grid-template-columns:86px 1fr 52p
 </div>
 
 <script type="module">
-var APPVER='20261127-0905';
+var APPVER='20261127-1010';
 var USERS={hailey:{pw:'hailey26',role:'teacher',name:'Hailey'},brian:{pw:'brian26',role:'student',name:'Brian'}};
 var STUDENT='brian';
 /* ---------- default data (used until the teacher saves) ---------- */
@@ -818,8 +816,7 @@ var PICQ=[
  {id:'q17',pic:'meeting',ko:'회의에서 그녀는 손을 들었다. 그녀는 주 4일제에 찬성한다. "생산성이 올라가요"라고 말했다.',parts:['In the meeting, she ',{a:['raised'],v:'raise'},' her hand. She is ',{a:['for']},' the four-day workweek. She ',{a:['said'],v:'say'},', "It boosts productivity."']},
  {id:'q18',pic:'noreceipt',ko:'그는 영수증을 잃어버려서 환불을 받을 수 없었다.',parts:['He ',{a:['lost'],v:'lose'},' the receipt, so he ',{a:["couldn't",'could not'],v:'can (부정)'},' get his money ',{a:['back']},'.']}];
 var PMD={counter:'#c9845a',night:'#5d7f9b',compare:'#6f8f8a',splurge:'#c96f8c',refund:'#5d7f9b',impulse:'#c9845a',cafe:'#6f8f8a',piggy:'#5d7f9b',fourday:'#6f8f8a',product:'#c9845a',watch:'#2b2b2b',handmade:'#c96f8c',dinner:'#5d7f9b',queue:'#6f8f8a',jog:'#c96f8c',meeting:'#c9845a',noreceipt:'#6f8f8a'};
-var PQCOL=['#5d7f9b','#6f8f8a','#c9845a','#c96f8c','#7d6aa6','#c0483a','#e0b23a','#2f6f4f','#2b2b2b','#f4f1ea'];
-function pqCol(pic){var c=(ST&&ST.pqc)||'';return /^#[0-9a-f]{6}$/.test(c)?c:(PMD[pic]||'#6f8f8a')}
+function pqCol(pic){return PMD[pic]||'#6f8f8a'}
 function pnorm(s){return String(s||'').toLowerCase().replace(/[‘’]/g,"'").replace(/\s+/g,' ').replace(/^\s+|\s+$/g,'').replace(/[.,!?]+$/,'')}
 function picBlanks(it){return it.parts.filter(function(p){return typeof p!=='string'})}
 function picRight(it,vals){return picBlanks(it).every(function(p,i){return p.a.indexOf(pnorm((vals||[])[i]))>=0})}
@@ -834,11 +831,9 @@ function pqMaybe(){if(!cu||cu.role==='teacher'||tdev()||PQZ||pqToday()>=1)return
 function pqOpen(preview){var used={};(ST.pq||[]).slice(-6).forEach(function(x){used[x.id]=1});var L=PICQ.filter(function(q){return !used[q.id]});if(!L.length)L=PICQ.slice();var it=L[Math.floor(Math.random()*L.length)];PQZ={id:it.id,vals:[],t0:Date.now(),ko:false,checked:false,preview:!!preview};pqPaint()}
 function pqClose(){PQZ=null;var o=$('pqpop');if(o)o.remove()}
 function pqPaint(){var o=$('pqpop');if(!PQZ){if(o)o.remove();return}if(!o){o=document.createElement('div');o.id='pqpop';document.body.appendChild(o)}var it=picById(PQZ.id),n=picBlanks(it).length,ok=PQZ.checked?picBlanks(it).filter(function(p,i){return p.a.indexOf(pnorm(PQZ.vals[i]))>=0}).length:0;
- o.innerHTML='<div class="pqcard" role="dialog" aria-modal="true" aria-label="깜짝 그림 퀴즈"><div class="pqhd"><b>깜짝 그림 퀴즈</b><span class="kr">10월 복습 · 그림을 보고 빈칸 채우기'+(PQZ.preview?' · 미리 보기(저장 안 됨)':'')+'</span></div>'+picHtml(it,PQZ.vals,PQZ.checked,PQZ.ko)+(PMD[it.pic]?'<div class="pqsw"><span class="kr">주인공 옷 색</span>'+PQCOL.map(function(c){return '<button type="button" data-pqc="'+c+'" aria-label="옷 색 '+c+'" class="'+(pqCol(it.pic)===c?'on':'')+'" style="background:'+c+'"></button>'}).join('')+'<label class="pqany" aria-label="다른 색 고르기">+<input type="color" data-pqany="1" value="'+pqCol(it.pic)+'"></label></div>':'')+
+ o.innerHTML='<div class="pqcard" role="dialog" aria-modal="true" aria-label="깜짝 그림 퀴즈"><div class="pqhd"><b>깜짝 그림 퀴즈</b><span class="kr">10월 복습 · 그림을 보고 빈칸 채우기'+(PQZ.preview?' · 미리 보기(저장 안 됨)':'')+'</span></div>'+picHtml(it,PQZ.vals,PQZ.checked,PQZ.ko)+
   (PQZ.checked?'<div class="msg" style="margin-top:8px;color:'+(ok===n?'var(--teal)':'var(--br-d)')+'">'+n+'개 중 '+ok+'개 정답 · '+Math.max(1,Math.round(PQZ.sec))+'초'+(PQZ.preview?'':(PQZ.pt?' · +1pt':' · 오늘 포인트는 이미 받았어요'))+'</div><button class="btn w" id="pqx" style="margin-top:8px">닫기</button>':'<div class="msg" id="pqmsg" style="min-height:0"></div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" id="pqok" style="flex:2">확인</button><button class="btn gray" id="pqlater" style="flex:1">나중에</button></div>')+'</div>';
  [].forEach.call(o.querySelectorAll('.pin[data-pi]'),function(i){i.oninput=function(){PQZ.vals[+i.dataset.pi]=i.value}});
- function setC(c){c=String(c||'').toLowerCase();if(!/^#[0-9a-f]{6}$/.test(c))return;ST.pqc=c;if(!PQZ.preview&&cu&&cu.role!=='teacher'&&!tdev())saveState();pqPaint()}
- [].forEach.call(o.querySelectorAll('[data-pqc]'),function(b){b.onclick=function(){setC(b.dataset.pqc)}});var pa=o.querySelector('[data-pqany]');if(pa)pa.onchange=function(){setC(pa.value)};
  var kb=o.querySelector('[data-pko]');if(kb)kb.onclick=function(){PQZ.ko=true;pqPaint()};
  var b=$('pqok');if(b)b.onclick=function(){var v=PQZ.vals;if(picBlanks(it).some(function(p,i){return !pnorm(v[i])})){$('pqmsg').style.color='var(--red)';$('pqmsg').textContent='빈칸을 모두 채운 뒤 눌러 주세요.';return}PQZ.checked=true;PQZ.sec=(Date.now()-PQZ.t0)/1000;
   var bl=picBlanks(it),k=bl.filter(function(p,i){return p.a.indexOf(pnorm(v[i]))>=0}).length;
